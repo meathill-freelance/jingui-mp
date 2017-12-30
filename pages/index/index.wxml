@@ -1,0 +1,22 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="banner">
+    <image class="banner-image" src="../../img/banner.jpg"></image>
+  </view>
+  <view class="day-count">
+    <text>打开时间：</text>
+    <view>
+      <button type="default">第N天</button>
+    </view>
+    <view class="signed">
+      <image class="icon-user"></image> {{signedNumber}}人已报名
+    </view>
+  </view>
+  <view class="intro cover">
+    <text>【21天搞定复试英语口听】这是由海文考研专家团队推出的针对考研复试英语口语听力的趣味学习计划，将考研复试常考察的口语、听力内容科学合理地融入每日学习中。帮您快速、有效提升考研复试英语口语和听力综合能力！
+      加入我们，考研复试英语不再是拦路虎！！！Fight！
+    </text>
+    <navigator url="/pages/intro/intro" class="link">查看活动详情
+    </navigator>
+  </view>
+</view>

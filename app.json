@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/intro/intro",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#EEE",
+    "navigationBarTitleText": "21天英语学习",
+    "navigationBarTextStyle":"black"
+  }
+}

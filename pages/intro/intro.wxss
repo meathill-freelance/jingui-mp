@@ -1,0 +1,41 @@
+.article {
+  background-color: #fff;
+  border-radius: 0.25em;
+  margin: 1em 0.5em;
+}
+.h2 {
+  display: block;
+  font-size: 32rpx;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+.h2::before {
+  background-color: #f29801;
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  left: -1em;
+}
+.paragraph {
+  margin: 0 0.5em;
+}
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+.card {
+  width: 150rpx;
+  height: 128rpx;
+  border: 2rpx solid solide;
+  border-radius: 1em;
+}
+.card image {
+  margin: 1em auto;
+}
+.card text {
+  text-align: center;
+}
+.card:nth-child(n+4) {
+  margin-top: 2em;
+}
