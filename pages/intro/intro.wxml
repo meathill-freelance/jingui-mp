@@ -3,11 +3,11 @@
     <image class="banner-image" src="../../img/banner.jpg"></image>
   </view>
   <view class="article cover">
-    <text class="h2">复试英语产品介绍</text>
-    <text class="paragraph">【21天搞定复试英语口听】这是由海文考研专家团队推出的针对考研复试英语口语听力的趣味学习计划，将考研复试常考察的口语、听力内容科学地融入了每日学习中，帮您快速、有效提升考研复试英语口语和听力综合能力！
+    <view class="h2">复试英语产品介绍</view>
+    <view class="paragraph">【21天搞定复试英语口听】这是由海文考研专家团队推出的针对考研复试英语口语听力的趣味学习计划，将考研复试常考察的口语、听力内容科学地融入了每日学习中，帮您快速、有效提升考研复试英语口语和听力综合能力！
       加入我们，考研复试英语不再是拦路虎！！！Fight！
-    </text>
-    <text class="h2 mt-1">课程目标及亮点</text>
+    </view>
+    <view class="h2 mt-1">课程目标及亮点</view>
     <view class="card-list">
       <view class="card">
         <image src="../../img/icon.png"></image>
@@ -34,15 +34,17 @@
         <text>定期礼品奖励</text>
       </view>
     </view>
-    <text class="h2 mt-2">打卡时间及奖励</text>
-    <text class="paragraph">
+    <view class="h2 mt-2">打卡时间及奖励</view>
+    <view class="paragraph">
       每日打卡时间：AM 5:00-AM 10:00
       连续完成21天打卡任务的同学我们将会有丰富礼品赠送，课程资料、寒假体验营等惊喜福利等你来拿。礼品赠送消息我们将在下方微信群内通知，请同学提前加入：
-    </text>
+    </view>
     <image src="../../img/qrcode.png" class="qrcode"></image>
-    <text>
-      2018考研复试交流群
-      海文名师答疑 学长学姐解惑
-    </text>
+    <view class="footer">
+      <text>
+        2018考研复试交流群
+        海文名师答疑 学长学姐解惑
+      </text>
+    </view>
   </view>
 </view>

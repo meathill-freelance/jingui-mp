@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "bluebird": "^3.5.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
-    "gulp-stylus": "^2.7.0"
+    "gulp-stylus": "^2.7.0",
+    "lodash": "^4.17.4"
   }
 }

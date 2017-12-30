@@ -5,13 +5,14 @@ const app = getApp();
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
+    userInfo: null,
+    userId: null,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
     signedNumber: 0,
     date: 0,
-
+    calendar: [],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -20,6 +21,15 @@ Page({
     })
   },
   onLoad: function () {
+    let calendar = [];
+    for (let i = 0; i < 21; i++) {
+      calendar.push({
+        status: 0,
+      });
+    }
+    this.setData({
+      calendar
+    });
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

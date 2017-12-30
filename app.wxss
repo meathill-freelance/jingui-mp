@@ -1,6 +1,3 @@
-html {
-  font-size: 24rpx;
-}
 .container {
   background-color: #eee;
   height: 100%;
@@ -52,12 +49,23 @@ view {
 .mt-9 {
   margin-top: 9em;
 }
-.icon-user {
-  width: 1em;
-  height: 1em;
-}
 .banner-image {
   width: 750rpx;
   height: 318rpx;
   display: block;
+}
+.icon-user {
+  width: 1em;
+  height: 1em;
+}
+.button {
+  display: inline-block;
+  padding: 0.5em 1em;
+}
+.button .big {
+  font-size: 2em;
+}
+.primary-button {
+  background-color: #f29801;
+  color: #fff;
 }

@@ -7,28 +7,40 @@
   padding: 1em;
   width: 100%;
 }
-.day-count button {
-  background-color: #f29801;
-  color: #fff;
+.day-count .button {
+  margin-right: 2em;
 }
-.signed {
+.others {
   border-top: 1px solid #f29801;
   display: flex;
   margin-top: 1em;
   padding-top: 0.5em;
   width: 100%;
 }
-.signed .icon-user {
+.others .icon-user {
   margin-right: 0.5em;
 }
 .intro {
-  background-color: #fff;
-  border-radius: 0.25em;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.25);
   margin: 0.5em;
   padding: 1em;
 }
 .intro .link {
   color: #f29801;
   text-align: right;
+}
+.sign-up,
+.quit {
+  padding: 0.5em 0;
+  text-align: center;
+  width: 100%;
+}
+.sign-up button,
+.quit button {
+  width: 640rpx;
+  height: 64rpx;
+  font-size: 28rpx;
+  line-height: 64rpx;
+}
+.quit {
+  padding: 1.5em 0;
 }

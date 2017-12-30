@@ -17,25 +17,50 @@
   left: -1em;
 }
 .paragraph {
-  margin: 0 0.5em;
+  margin: 0 1em;
 }
 .card-list {
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
+  margin-top: 2em;
 }
 .card {
   width: 150rpx;
   height: 128rpx;
-  border: 2rpx solid solide;
+  border: 2rpx #f29801 solid;
   border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 70rpx;
+  padding: 12rpx 0 6rpx;
+  font-size: 10px;
 }
 .card image {
-  margin: 1em auto;
+  background-color: #ddd;
+  margin: 0 auto;
+  width: 120rpx;
+  height: 70rpx;
 }
 .card text {
   text-align: center;
 }
 .card:nth-child(n+4) {
   margin-top: 2em;
+}
+.card:nth-child(3n + 1) {
+  margin-left: 45rpx;
+}
+.qrcode {
+  background-color: #ddd;
+  display: block;
+  margin: 2em auto 0;
+  padding: 2em;
+  width: 300rpx;
+  height: 300rpx;
+}
+.footer {
+  color: #f29801;
+  text-align: center;
 }

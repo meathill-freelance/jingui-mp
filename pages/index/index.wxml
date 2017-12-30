@@ -5,10 +5,8 @@
   </view>
   <view class="day-count">
     <text>打开时间：</text>
-    <view>
-      <button type="default">第N天</button>
-    </view>
-    <view class="signed">
+    <view class="button">第<text class="big">{{date}}</text>天</view>
+    <view class="others">
       <image class="icon-user"></image> {{signedNumber}}人已报名
     </view>
   </view>
@@ -18,5 +16,22 @@
     </text>
     <navigator url="/pages/intro/intro" class="link">查看活动详情
     </navigator>
+  </view>
+  <view class="sign-up" wx:if="{{!userInfo || !userId}}">
+    <button type="primary">马上加入学习</button>
+  </view>
+  <view class="signed" wx:else>
+    <button type="default">查看排名</button>
+    <button type="primary">继续学习</button>
+  </view>
+  <view class="calendar cover">
+    <view class="h2">21天知识回顾</view>
+    <text class="small-hints">点击日期按钮可以回看当天知识点</text>
+    <view class="days" wx:for="{{calendar}}">
+      <view class="day">{{index + 1}}</view>
+    </view>
+  </view>
+  <view class="quit" wx:if="{{userId}}">
+    <button type="primary">退出早起计划</button>
   </view>
 </view>
