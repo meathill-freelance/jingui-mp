@@ -6,10 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:meathillfreelance/mp.git"
+  },
   "keywords": [],
-  "author": "",
+  "author": "Meathill <meathill@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "animate.css": "^3.5.2",
     "bluebird": "^3.5.1",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",

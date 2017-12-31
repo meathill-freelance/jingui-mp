@@ -1,14 +1,14 @@
 //index.js
 //获取应用实例
+import * as Weixin from '../../services/Weixin';
 const app = getApp();
 
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: null,
     userId: null,
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    noAuth: false,
+    isLoading: true,
 
     signedNumber: 0,
     date: 0,
@@ -30,39 +30,39 @@ Page({
     this.setData({
       calendar
     });
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
+    if (app.isReady) {
+      if (app.globalData.sessionId) {
+        this.setData('userId', app.globalData.sessionId);
       }
+      this.setData({isLoading: false});
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo;
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          });
+      app.readyCallback = () => {
+        if (app.globalData.sessionId) {
+          this.setData('userId', app.globalData.sessionId);
         }
-      })
+        this.setData({
+          isLoading: false,
+        });
+      };
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+    console.log(e);
+    if (!e.detail.userInfo) {
+      this.setData({noAuth: true});
+      return;
+    }
+    app.globalData.userInfo = e.detail.userInfo;
     this.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  }
-})
+      isLoading: true,
+    });
+    Weixin.login()
+      .then(sessionId => {
+        this.setData({
+          isLoading: false,
+          userId: sessionId,
+        });
+      });
+  },
+});
