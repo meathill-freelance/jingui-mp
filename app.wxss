@@ -18,7 +18,7 @@ view {
 .cover {
   background-color: #fff;
   border-radius: 0.25em;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   padding: 1em;
   margin: 0.5em;
 }
@@ -58,6 +58,54 @@ view {
   width: 1em;
   height: 1em;
 }
+.article {
+  background-color: #fff;
+  border-radius: 0.25em;
+  margin: 1em 0.5em;
+}
+.h2 {
+  display: block;
+  font-size: 32rpx;
+  margin-bottom: 0.5em;
+  position: relative;
+  text-indent: 0.5em;
+}
+.h2::before {
+  background-color: #f29801;
+  content: '';
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  left: -1em;
+}
+.paragraph {
+  margin: 0 1em;
+}
+.alert {
+  background-color: #fff;
+  padding: 0.5em 0.75em;
+  border-radius: 0.5em;
+  display: inline-block;
+  margin: 0 auto 0.5em;
+  position: relative;
+}
+.alert::after {
+  background-color: #fff;
+  content: '';
+  width: 0.5em;
+  height: 0.5em;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 50%;
+  bottom: -0.25em;
+}
+.alert-danger {
+  background-color: #f33;
+  color: #fff;
+}
+.alert-danger::after {
+  background-color: #f33;
+}
 .button {
   display: inline-block;
   padding: 0.5em 1em;
@@ -65,7 +113,7 @@ view {
 .button .big {
   font-size: 2em;
 }
-.primary-button {
+.button-primary {
   background-color: #f29801;
   color: #fff;
 }

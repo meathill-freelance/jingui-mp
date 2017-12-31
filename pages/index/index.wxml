@@ -18,7 +18,8 @@
     </navigator>
   </view>
   <view class="sign-up" wx:if="{{!userInfo || !userId}}">
-    <button type="primary">马上加入学习</button>
+    <text class="alert alert-danger">您必须对本小程序授权才能正常使用我们的服务哦。</text>
+    <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">马上加入学习</button>
   </view>
   <view class="signed" wx:else>
     <button type="default">查看排名</button>
@@ -27,8 +28,8 @@
   <view class="calendar cover">
     <view class="h2">21天知识回顾</view>
     <text class="small-hints">点击日期按钮可以回看当天知识点</text>
-    <view class="days" wx:for="{{calendar}}">
-      <view class="day">{{index + 1}}</view>
+    <view class="days">
+      <view class="day status-{{item.status}}" wx:for="{{calendar}}">{{index + 1}}</view>
     </view>
   </view>
   <view class="quit" wx:if="{{userId}}">

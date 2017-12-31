@@ -24,7 +24,7 @@ Page({
     let calendar = [];
     for (let i = 0; i < 21; i++) {
       calendar.push({
-        status: 0,
+        status: Math.random()*3 >> 0,
       });
     }
     this.setData({
@@ -48,11 +48,11 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          app.globalData.userInfo = res.userInfo;
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
-          })
+          });
         }
       })
     }
