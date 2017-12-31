@@ -9,7 +9,8 @@
   font-size: 24rpx;
   line-height: 1.5;
 }
-view {
+view,
+navigator {
   box-sizing: border-box;
 }
 .text-muted {
@@ -68,7 +69,7 @@ view {
   font-size: 32rpx;
   margin-bottom: 0.5em;
   position: relative;
-  text-indent: 0.5em;
+  text-indent: 1em;
 }
 .h2::before {
   background-color: #f29801;
@@ -76,7 +77,9 @@ view {
   width: 20rpx;
   height: 20rpx;
   position: absolute;
-  left: -1em;
+  top: 20%;
+  left: 0;
+  transform: rotate(45deg);
 }
 .paragraph {
   margin: 0 1em;
@@ -107,8 +110,14 @@ view {
   background-color: #f33;
 }
 .button {
-  display: inline-block;
-  padding: 0.5em 1em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 2em;
+  padding: 0 1em;
+  border-radius: 10rpx;
+  margin-left: auto;
+  margin-right: auto;
 }
 .button .big {
   font-size: 2em;
@@ -117,3 +126,45 @@ view {
   background-color: #f29801;
   color: #fff;
 }
+.button-secondary {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.button-block {
+  display: block;
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  animation-duration: 2s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY,
+.animated.bounceIn,
+.animated.bounceOut {
+  animation-duration: .75s;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  animation-name: slideInDown;
+}
+

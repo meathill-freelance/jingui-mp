@@ -26,7 +26,7 @@
             disabled="{{isLoading}}">马上加入学习</button>
   </view>
   <view class="signed" wx:else>
-    <button type="default">查看排名</button>
+    <navigator url="/pages/top/morning" class="button button-secondary button-block">查看排名</navigator>
     <button type="primary">继续学习</button>
   </view>
   <view class="calendar cover">

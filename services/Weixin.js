@@ -46,7 +46,7 @@ export function login() {
       app.globalData.userInfo = userInfo;
 
       return request({
-        url: `${API}login`,
+        url: 'login',
         method: 'POST',
         data: {
           code: code,
@@ -83,6 +83,7 @@ export function getUserInfo(code) {
 }
 
 export function request(obj) {
+  obj.url = /^(https?:)?\/\//.test(obj.url) ? obj.url : `${API}${obj.url}`;
   return new Promise( (resolve, reject) => {
     obj.success = result => {
       resolve(result);

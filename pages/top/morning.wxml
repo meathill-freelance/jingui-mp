@@ -1,0 +1,17 @@
+<view class="container">
+  <image class="banner" src="../../img/banner2.png"></image>
+  <text>morning</text>
+  <view class="list">
+    <view class="item" wx:for="{{users}}" wx:key="{{item.id}}">
+      <image class="avatar" src="{{item.avatar}}"></image>
+      <view>
+        <text>
+          {{item.nickname}}
+          早起第{{item.day}}天
+          今天{{item.time}}
+        </text>
+      </view>
+      <button type="default">{{item.like}}</button>
+    </view>
+  </view>
+</view>

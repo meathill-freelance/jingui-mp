@@ -29,17 +29,30 @@
   text-align: right;
 }
 .sign-up,
+.signed,
 .quit {
   padding: 0.5em 0;
   text-align: center;
   width: 100%;
 }
 .sign-up button,
-.quit button {
+.signed button,
+.quit button,
+.sign-up .button,
+.signed .button,
+.quit .button {
   width: 640rpx;
   height: 64rpx;
   font-size: 28rpx;
   line-height: 64rpx;
+}
+.sign-up button + button,
+.signed button + button,
+.quit button + button,
+.sign-up .button + button,
+.signed .button + button,
+.quit .button + button {
+  margin-top: 0.5em;
 }
 .h2 {
   border-bottom: 1rpx solid #f29801;

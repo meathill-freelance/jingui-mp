@@ -30,17 +30,22 @@
     color $primary-color
     text-align right
 
-.sign-up
+.sign-up,
+.signed,
 .quit
   padding .5em 0
   text-align center
   width 100%
 
-  button
+  button,
+  .button
     width 640rpx
     height 64rpx
     font-size 28rpx
     line-height 64rpx
+
+    + button
+      margin-top .5em
 
 .h2
   border-bottom 1rpx solid $primary-color

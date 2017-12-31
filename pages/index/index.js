@@ -5,7 +5,6 @@ const app = getApp();
 
 Page({
   data: {
-    motto: 'Hello World',
     userId: null,
     noAuth: false,
     isLoading: true,
@@ -13,12 +12,6 @@ Page({
     signedNumber: 0,
     date: 0,
     calendar: [],
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
   onLoad: function () {
     let calendar = [];
@@ -38,7 +31,9 @@ Page({
     } else {
       app.readyCallback = () => {
         if (app.globalData.sessionId) {
-          this.setData('userId', app.globalData.sessionId);
+          this.setData({
+            userId: app.globalData.sessionId,
+          });
         }
         this.setData({
           isLoading: false,
