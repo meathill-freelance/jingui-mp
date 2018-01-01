@@ -9,12 +9,17 @@ Page({
     userId: null,
     noAuth: false,
     isLoading: true,
+    isChecking: false,
 
-    signedNumber: 0,
-    date: 0,
+    count: '-',
     calendar: [],
+    fellow: null,
+    fellowNumber: 0,
   },
   checkIn() {
+    this.setData({
+      isChecking: true,
+    });
     Weixin.request({
       url: 'checkIn',
       method: 'POST',
@@ -31,8 +36,13 @@ Page({
       .catch(err => {
         console.log(err);
         wx.showToast({
-          title: '签到失败，请稍后重试。',
-          icon: 'fail',
+          title: err.message || '签到失败',
+          icon: false,
+        });
+      })
+      .then(() => {
+        this.setData({
+          isChecking: false,
         });
       });
   },
@@ -73,13 +83,20 @@ Page({
       .then(response => {
         this.setData({
           calendar: response.data,
+          count: response.count,
         });
       });
   },
   getCurrentUser: function () {
     Weixin.request({
-      url: ''
+      url: 'fellow'
     })
+      .then(response => {
+        this.setData({
+          fellow: response.data,
+          fellowNumber: response.total,
+        });
+      })
   },
   start() {
     if (app.globalData.sessionId) {

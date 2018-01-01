@@ -7,17 +7,25 @@
   padding: 1em;
 }
 .day-count .button {
-  margin-right: 2em;
+  margin-right: 1em;
 }
 .others {
   border-top: 1px solid #f29801;
   display: flex;
+  flex-wrap: wrap;
   margin-top: 1em;
   padding-top: 0.5em;
   width: 100%;
 }
+.others .h3 {
+  width: 100%;
+  margin-bottom: 0.5em;
+}
 .others .icon-user {
   margin-right: 0.5em;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
 }
 .intro {
   margin: 0.5em;

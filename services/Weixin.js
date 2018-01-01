@@ -89,7 +89,7 @@ export function request(obj) {
       if (result.statusCode === 200) {
         resolve(result.data);
       }
-      reject(result);
+      reject(new Error(result.data.msg));
     };
     obj.failed = (err) => {
       reject(err);
