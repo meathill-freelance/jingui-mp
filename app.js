@@ -11,6 +11,12 @@ App({
     setting: null, // 用户设置，主要是权限
   },
   onLaunch: function () {
+    wx.showLoading({
+      title: '加载中，请稍候',
+      mask: true,
+
+    });
+
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
@@ -28,6 +34,7 @@ App({
         if (this.readyCallback) {
           this.readyCallback();
         }
+        wx.hideLoading();
       });
   },
 });

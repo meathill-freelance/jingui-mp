@@ -86,7 +86,10 @@ export function request(obj) {
   obj.url = /^(https?:)?\/\//.test(obj.url) ? obj.url : `${API}${obj.url}`;
   return new Promise( (resolve, reject) => {
     obj.success = result => {
-      resolve(result);
+      if (result.statusCode === 200) {
+        resolve(result.data);
+      }
+      reject(result);
     };
     obj.failed = (err) => {
       reject(err);

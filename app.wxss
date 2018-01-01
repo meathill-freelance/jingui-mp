@@ -3,7 +3,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: flex-start;
   box-sizing: border-box;
   font-size: 24rpx;

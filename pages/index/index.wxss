@@ -5,7 +5,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 1em;
-  width: 100%;
 }
 .day-count .button {
   margin-right: 2em;
@@ -64,7 +63,7 @@
 .days {
   display: flex;
   flex-wrap: wrap;
-  padding: 40rpx 10rpx 10rpx;
+  padding: 30rpx 10rpx 10rpx;
 }
 .day {
   width: 60rpx;
@@ -83,7 +82,7 @@
 .day:nth-child(n+8) {
   margin-top: 39rpx;
 }
-.day.status-0 {
+.day.status-2 {
   background-color: #f29801;
   border: 1px solid #fff;
   color: #fff;

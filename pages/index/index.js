@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 import * as Weixin from '../../services/Weixin';
+import {fill} from '../../utils/util';
 const app = getApp();
 
 Page({
@@ -13,33 +14,27 @@ Page({
     date: 0,
     calendar: [],
   },
-  onLoad: function () {
-    let calendar = [];
-    for (let i = 0; i < 21; i++) {
-      calendar.push({
-        status: Math.random()*3 >> 0,
-      });
-    }
-    this.setData({
-      calendar
-    });
-    if (app.isReady) {
-      if (app.globalData.sessionId) {
-        this.setData('userId', app.globalData.sessionId);
-      }
-      this.setData({isLoading: false});
-    } else {
-      app.readyCallback = () => {
-        if (app.globalData.sessionId) {
-          this.setData({
-            userId: app.globalData.sessionId,
-          });
-        }
-        this.setData({
-          isLoading: false,
+  checkIn() {
+    Weixin.request({
+      url: 'checkIn',
+      method: 'POST',
+      data: {
+        sessionId: app.globalData.sessionId,
+      },
+    })
+      .then(() => {
+        wx.showToast({
+          title: '签到成功',
+          icon: 'success',
         });
-      };
-    }
+      })
+      .catch(err => {
+        console.log(err);
+        wx.showToast({
+          title: '签到失败，请稍后重试。',
+          icon: 'fail',
+        });
+      });
   },
   getUserInfo: function(e) {
     console.log(e);
@@ -59,5 +54,50 @@ Page({
           userId: sessionId,
         });
       });
+  },
+  getCalendar() {
+    if (!app.globalData.sessionId) {
+      return this.setData({
+        calendar: fill([], 20, {
+          status: 0,
+        }),
+      });
+    }
+    Weixin.request({
+      url: 'calendar',
+      method: 'POST',
+      data: {
+        sessionId: this.data.userId,
+      },
+    })
+      .then(response => {
+        this.setData({
+          calendar: response.data,
+        });
+      });
+  },
+  getCurrentUser: function () {
+    Weixin.request({
+      url: ''
+    })
+  },
+  start() {
+    if (app.globalData.sessionId) {
+      this.setData({
+        userId: app.globalData.sessionId
+      });
+    }
+    this.setData({isLoading: false});
+    this.getCalendar();
+    this.getCurrentUser();
+  },
+  onLoad: function () {
+    if (app.isReady) {
+      this.start();
+    } else {
+      app.readyCallback = () => {
+        this.start();
+      };
+    }
   },
 });
