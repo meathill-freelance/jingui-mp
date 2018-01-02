@@ -4,12 +4,20 @@ import * as Weixin from '../../services/Weixin';
 import {fill} from '../../utils/util';
 const app = getApp();
 
+function createEmptyCalendar() {
+  return fill([], 20, {
+    status: 0,
+  });
+}
+
 Page({
   data: {
     userId: null,
     noAuth: false,
     isLoading: true,
     isChecking: false,
+    isChecked: false,
+    isCustomer: false,
 
     count: '-',
     calendar: [],
@@ -68,9 +76,7 @@ Page({
   getCalendar() {
     if (!app.globalData.sessionId) {
       return this.setData({
-        calendar: fill([], 20, {
-          status: 0,
-        }),
+        calendar: createEmptyCalendar(),
       });
     }
     Weixin.request({
@@ -84,6 +90,14 @@ Page({
         this.setData({
           calendar: response.data,
           count: response.count,
+          isChecked: response.isChecked,
+          isCustomer: true,
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setData({
+          calendar: createEmptyCalendar(),
         });
       });
   },
