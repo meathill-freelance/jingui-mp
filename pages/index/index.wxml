@@ -35,7 +35,7 @@
   </view>
   <view class="signed" wx:else>
     <navigator url="/pages/top/morning" class="button button-secondary button-block">查看排名</navigator>
-    <button type="primary">继续学习</button>
+    <button type="primary" bindtap="doStudy">继续学习</button>
   </view>
   <view class="calendar cover">
     <view class="h2">21天知识回顾</view>
@@ -48,3 +48,22 @@
     <button type="primary">退出早起计划</button>
   </view>
 </view>
+
+<rich-modal isOpen="{{isModalOpen}}" title="选择报名模式" cancel="{{false}}" bindconfirm="onPaymentConfirm" bindcancel="onModalCancel">
+  <radio-group class="group" bindchange="changePayment">
+    <label>
+      <icon type="success" size="16" wx:if="{{paymentType === 1}}"></icon>
+      <view class="icon" wx:else></view>
+      <radio hidden value="1" checked="{{paymentType === 1}}"></radio>
+      <text>土豪模式</text>
+      <text class="small text-muted">99元，原价直接购买</text>
+    </label>
+    <label>
+      <icon type="success" size="16" wx:if="{{paymentType === 2}}"></icon>
+      <view class="icon" wx:else></view>
+      <radio hidden value="2" checked="{{paymentType === 2}}"></radio>
+      <text>优惠模式（限时）</text>
+      <text class="small text-muted">9.9元，分享至考研微信群后购买</text>
+    </label>
+  </radio-group>
+</rich-modal>

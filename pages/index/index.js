@@ -5,7 +5,7 @@ import {fill} from '../../utils/util';
 const app = getApp();
 
 function createEmptyCalendar() {
-  return fill([], 20, {
+  return fill([], 21, {
     status: 0,
   });
 }
@@ -18,12 +18,21 @@ Page({
     isChecking: false,
     isChecked: false,
     isCustomer: false,
+    isModalOpen: false,
+    isShareOpen: false,
 
     count: '-',
     calendar: [],
     fellow: null,
     fellowNumber: 0,
+    paymentType: 1,
   },
+  changePayment(event) {
+    this.setData({
+      paymentType: Number(event.detail.value),
+    });
+  },
+  // 签到
   checkIn() {
     this.setData({
       isChecking: true,
@@ -54,7 +63,20 @@ Page({
         });
       });
   },
-  getUserInfo: function(e) {
+  // 开始学习
+  doStudy() {
+    if (this.data.isCustomer) {
+      return wx.navigateTo({
+        url: '/pages/study/study',
+      });
+    }
+
+    this.setData({
+      isModalOpen: true,
+    });
+  },
+  // 登录+获取用户信息
+  getUserInfo(e) {
     console.log(e);
     if (!e.detail.userInfo) {
       this.setData({noAuth: true});
@@ -101,7 +123,7 @@ Page({
         });
       });
   },
-  getCurrentUser: function () {
+  getCurrentUser () {
     Weixin.request({
       url: 'fellow'
     })
@@ -122,7 +144,29 @@ Page({
     this.getCalendar();
     this.getCurrentUser();
   },
-  onLoad: function () {
+  pay(type) {
+    Weixin.request({
+      url: 'order',
+      method: 'POST',
+      data: {
+        sessionId: app.globalData.sessionId,
+        type: type,
+      },
+    })
+      .then(response => {
+        if (response.code >= 400) {
+          Weixin.alert('创建订单失败。服务器返回：' + response.msg);
+        }
+        return Weixin.pay(response.payParams);
+      })
+      .then(response => {
+
+      })
+      .catch(err => {
+
+      });
+  },
+  onLoad() {
     if (app.isReady) {
       this.start();
     } else {
@@ -131,4 +175,19 @@ Page({
       };
     }
   },
+  onModalCancel() {
+    this.setData({
+      isModelOpen: false
+    })
+  },
+  onPaymentConfirm(event) {
+    if (this.paymentType === 1) {
+      return this.pay(1);
+    }
+
+    this.setData({
+      isModalOpen: false,
+      isShareOpen: true,
+    });
+  }
 });

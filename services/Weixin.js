@@ -97,3 +97,26 @@ export function request(obj) {
     wx.request(obj);
   })
 }
+
+export function pay(obj) {
+  obj.timeStamp = obj.timeStamp.toString();
+  return new Promise( (resolve, reject) => {
+    obj.success = response => {
+      resolve(response);
+    };
+    obj.fail = response => {
+      if (response.errMsg === 'requestPayment:fail cancel' || response.errMsg === 'requestPayment:fail') {
+        return resolve(response);
+      }
+      reject(response.errMsg.slice(20));
+    };
+    wx.requestPayment(obj);
+  });
+}
+
+export function alert(msg) {
+  wx.showModal({
+    content: msg,
+    showCancel: false,
+  })
+}

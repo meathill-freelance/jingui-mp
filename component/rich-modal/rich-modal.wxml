@@ -1,0 +1,12 @@
+<view class="backdrop animated fadeIn" bindtap="cancel" wx:if="{{isOpen}}">
+  <view class="rich-modal animated slideInDown">
+    <view class="header">{{title}}</view>
+    <view class="body">
+      <slot></slot>
+    </view>
+    <view class="footer">
+      <view class="modal-button confirm-button" bindtap="confirm" wx:if="{{confirm}}">{{confirm}}</view>
+      <view class="modal-button cancel-button" bindtap="cancel" wx:if="{{cancel}}">{{cancel}}</view>
+    </view>
+  </view>
+</view>

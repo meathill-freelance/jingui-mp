@@ -16,6 +16,7 @@
   margin-top: 1em;
   padding-top: 0.5em;
   width: 100%;
+  height: 112rpx;
 }
 .others .h3 {
   width: 100%;
@@ -109,4 +110,34 @@
 }
 .quit {
   padding: 1.5em 0;
+}
+radio-group {
+  border: 1rpx solid #ddd;
+  border-radius: 1em;
+}
+radio-group label {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  padding-left: 2em;
+  position: relative;
+}
+radio-group label + label {
+  border-top: 1rpx solid #ddd;
+}
+radio-group .icon {
+  width: 30rpx;
+  height: 30rpx;
+  border: 2px solid #808080;
+  border-radius: 50%;
+}
+radio-group .icon,
+radio-group icon {
+  position: absolute;
+  top: 18rpx;
+  left: 16rpx;
+}
+radio-group text {
+  display: block;
+  width: 100%;
 }

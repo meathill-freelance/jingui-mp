@@ -1,7 +1,12 @@
 <view class="container">
   <image class="banner" src="../../img/banner2.png"></image>
-  <text>morning</text>
-  <view class="list">
+  <view class="list cover">
+    <view class="item empty-item" wx:if="{{isTooEarly}}">
+      您来的太早了，还未到签到时间。
+    </view>
+    <view class="item empty-item" wx:if="{{users && users.length === 0}}">
+      暂时还没人签到，去抢个第一名吧！
+    </view>
     <view class="item" wx:for="{{users}}" wx:key="{{item.id}}">
       <image class="avatar" src="{{item.avatar}}"></image>
       <view>

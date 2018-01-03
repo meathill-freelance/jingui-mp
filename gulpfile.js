@@ -3,7 +3,7 @@ const stylus = require('gulp-stylus');
 const rename = require('gulp-rename');
 
 gulp.task('watch', () => {
-  gulp.watch(['app.styl', 'pages/**/*.styl'], event => {
+  gulp.watch(['app.styl', 'pages/**/*.styl', 'component/**/*.styl'], event => {
     if (!/\.styl$/.test(event.path)) {
       return;
     }
