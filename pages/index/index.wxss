@@ -141,3 +141,30 @@ radio-group text {
   display: block;
   width: 100%;
 }
+.share-modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  width: 539rpx;
+  height: 638rpx;
+  padding-top: 339rpx;
+  position: relative;
+}
+.share-modal image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.share-modal text {
+  position: relative;
+  font-size: 28rpx;
+  margin: 0 30rpx 0;
+}
+.share-modal button {
+  background-color: #f53b55;
+  border-radius: 0;
+  color: #ffc706;
+  margin: auto 30rpx 30rpx;
+}

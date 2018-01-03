@@ -49,7 +49,7 @@
   </view>
 </view>
 
-<rich-modal isOpen="{{isModalOpen}}" title="选择报名模式" cancel="{{false}}" bindconfirm="onPaymentConfirm" bindcancel="onModalCancel">
+<rich-modal isOpen="{{isPaymentModalOpen}}" title="选择报名模式" cancel="{{false}}" bindconfirm="onPaymentConfirm" bindcancel="onModalCancel">
   <radio-group class="group" bindchange="changePayment">
     <label>
       <icon type="success" size="16" wx:if="{{paymentType === 1}}"></icon>
@@ -67,3 +67,11 @@
     </label>
   </radio-group>
 </rich-modal>
+
+<styled-modal class="share-modal" width="539" height="638" isOpen="{{isShareOpen}}">
+  <view class="modal-body">
+    <image src="../../img/share.png" class="bg"></image>
+    <text>将小应用分享给你的考研同胞，获取优惠机会!!</text>
+    <button open-type="share">邀请微信群好友一起学</button>
+  </view>
+</styled-modal>

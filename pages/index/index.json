@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "rich-modal": "../../component/rich-modal/rich-modal"
+    "rich-modal": "../../component/rich-modal/rich-modal",
+    "styled-modal": "../../component/styled-modal/styled-modal"
   }
 }

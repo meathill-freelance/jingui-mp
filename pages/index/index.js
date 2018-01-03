@@ -18,7 +18,7 @@ Page({
     isChecking: false,
     isChecked: false,
     isCustomer: false,
-    isModalOpen: false,
+    isPaymentModalOpen: false,
     isShareOpen: false,
 
     count: '-',
@@ -72,7 +72,7 @@ Page({
     }
 
     this.setData({
-      isModalOpen: true,
+      isPaymentModalOpen: true,
     });
   },
   // 登录+获取用户信息
@@ -159,11 +159,14 @@ Page({
         }
         return Weixin.pay(response.payParams);
       })
-      .then(response => {
-
+      .then(() => {
+        wx.showToast({
+          title: '付费成功',
+          icon: 'success',
+        });
       })
       .catch(err => {
-
+        Weixin.alert('付费失败，请稍后重试。微信返回：' + err.msg);
       });
   },
   onLoad() {
@@ -186,8 +189,10 @@ Page({
     }
 
     this.setData({
-      isModalOpen: false,
       isShareOpen: true,
     });
-  }
+  },
+  onShareAppMessage(options) {
+
+  },
 });

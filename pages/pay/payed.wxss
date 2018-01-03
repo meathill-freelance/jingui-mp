@@ -1,0 +1,16 @@
+.weui-form-preview{
+  margin-top: 40rpx;
+}
+
+.weui-form-preview__label,
+.weui-form-preview__btn_primary {
+  font-size: 30rpx;
+}
+
+.weui-form-preview__bd .weui-form-preview__label {
+  font-size: 28rpx;
+}
+
+.weui-form-preview__value_in-hd {
+  font-size: 48rpx;
+}

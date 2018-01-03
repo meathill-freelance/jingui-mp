@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">付款金额</view>
+          <view class="weui-form-preview__value_in-hd">¥{{total / 100}}</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">订单号码</view>
+          <view class="weui-form-preview__value">{{order_id}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">下单时间</view>
+          <view class="weui-form-preview__value">{{created_time}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">支付方式</view>
+          <view class="weui-form-preview__value">微信支付</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">当前状态</view>
+          <view class="weui-form-preview__value">支付成功</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__ft">
+        <navigator open-type="navigateBack" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">确定</navigator>
+      </view>
+    </view>
+  </view>
+</view>

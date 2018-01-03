@@ -1,5 +1,5 @@
-<view class="backdrop animated fadeIn" bindtap="cancel" wx:if="{{isOpen}}">
-  <view class="rich-modal animated slideInDown">
+<view class="backdrop animated fast fadeIn" bindtap="cancel" wx:if="{{isOpen}}">
+  <view class="rich-modal animated fast fadeInUp" catch:tap="stopPropagation">
     <view class="header">{{title}}</view>
     <view class="body">
       <slot></slot>

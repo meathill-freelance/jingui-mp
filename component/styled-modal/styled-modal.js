@@ -8,5 +8,13 @@ Component({
       type: Boolean,
       value: false,
     },
-  }
+    width: {
+      type: Number,
+      value: 500,
+    },
+    height: {
+      type: Number,
+      value: 300,
+    },
+  },
 });

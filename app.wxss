@@ -1,5 +1,6 @@
 page {
   background-color: #eee;
+  line-height: 1.6;
 }
 .container {
   height: 100%;
@@ -8,7 +9,6 @@ page {
   justify-content: flex-start;
   box-sizing: border-box;
   font-size: 24rpx;
-  line-height: 1.5;
 }
 view,
 navigator {
