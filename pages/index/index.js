@@ -15,25 +15,23 @@ Page({
     userId: null,
     noAuth: false,
     isLoading: true,
-    isChecking: false,
-    isChecked: false,
-    isCustomer: false,
-    isPaymentModalOpen: false,
-    isShareOpen: false,
+    isChecking: false, // 签到中
+    isChecked: false, // 已签到
+    isCustomer: false, // 已经付费成为我们的用户
+    isPaymentModalOpen: false, // 打开付费窗口
+    isShareOpen: false, // 打开分享矿口
+    hasShared: false, // 已经分享过
+    isAlarmChanged: false, // 修改了提醒时间
 
     count: '-',
     calendar: [],
     fellow: null,
     fellowNumber: 0,
     paymentType: 1,
-  },
-  changePayment(event) {
-    this.setData({
-      paymentType: Number(event.detail.value),
-    });
+    alarmClock: '07:00',
   },
   // 签到
-  checkIn() {
+  checkIn(event) {
     this.setData({
       isChecking: true,
     });
@@ -42,6 +40,7 @@ Page({
       method: 'POST',
       data: {
         sessionId: app.globalData.sessionId,
+        formId: event.formId,
       },
     })
       .then(() => {
@@ -92,6 +91,7 @@ Page({
         this.setData({
           isLoading: false,
           userId: sessionId,
+          isPaymentModalOpen: true,
         });
       });
   },
@@ -118,8 +118,13 @@ Page({
       })
       .catch(err => {
         console.log(err);
+        let hasShared = false;
+        if (err.data && err.statusCode === 402) {
+          hasShared = err.data.is_shared;
+        }
         this.setData({
           calendar: createEmptyCalendar(),
+          hasShared,
         });
       });
   },
@@ -134,6 +139,40 @@ Page({
         });
       })
   },
+  saveAlarmOnServer(event) {
+    Weixin.request({
+      url: 'setalarm',
+      method: 'POST',
+      data: {
+        ...event.detail,
+        sessionId: app.globalData.sessionId,
+      },
+    })
+      .then(() => {
+        wx.showToast({
+          title: '保存提醒成功',
+          icon: 'success',
+        });
+        this.setData({
+          isAlarmChanged: false,
+        });[]
+      })
+      .catch(err => {
+        let msg = err.msg || (err.data && err.data.msg);
+        Weixin.alert('保存提醒失败。' + msg);
+      });
+  },
+  setAlarmClock(event) {
+    this.setData({
+      alarmClock: event.detail.value,
+      isAlarmChanged: true,
+    });
+  },
+  setPayment(event) {
+    this.setData({
+      paymentType: Number(event.detail.value),
+    });
+  },
   start() {
     if (app.globalData.sessionId) {
       this.setData({
@@ -145,6 +184,10 @@ Page({
     this.getCurrentUser();
   },
   pay(type) {
+    wx.showLoading({
+      title: '生成订单中',
+      mask: true,
+    });
     Weixin.request({
       url: 'order',
       method: 'POST',
@@ -166,7 +209,11 @@ Page({
         });
       })
       .catch(err => {
-        Weixin.alert('付费失败，请稍后重试。微信返回：' + err.msg);
+        let msg = err.msg || (err.data && err.data.msg);
+        Weixin.alert('付费失败，请稍后重试。错误信息：' + msg);
+      })
+      .then(() => {
+        wx.hideLoading();
       });
   },
   onLoad() {
@@ -178,21 +225,39 @@ Page({
       };
     }
   },
-  onModalCancel() {
-    this.setData({
-      isModelOpen: false
-    })
-  },
-  onPaymentConfirm(event) {
-    if (this.paymentType === 1) {
+  onPaymentConfirm() {
+    if (this.data.paymentType === 1) {
       return this.pay(1);
+    } else if (this.data.hasShared) {
+      return this.pay(2);
     }
 
     this.setData({
       isShareOpen: true,
     });
   },
-  onShareAppMessage(options) {
-
+  onShareAppMessage() {
+    let self = this;
+    return {
+      title: '21天突破研究生复试口语听力',
+      path: '/pages/index/index',
+      success() {
+        Weixin.request({
+          url: 'onshare',
+          method: 'POST',
+          data: {
+            sessionId: app.globalData.sessionId,
+          },
+        })
+          .catch(() => {
+            console.log('Fail to record');
+          })
+          .then(() => {
+            self.setData({
+              hasShared: true,
+            });
+          })
+      },
+    };
   },
 });

@@ -1,18 +1,25 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" xmlns:bind="http://www.w3.org/1999/xhtml" xmlns:wx="http://www.w3.org/1999/XSL/Transform">
   <view class="banner">
     <image class="banner-image" src="../../img/banner.jpg"></image>
   </view>
   <view class="day-count">
-    <text>打卡时间：5:00-10:00</text>
-    <button type="default"
-            class="button"
-            bindtap="checkIn"
-            disabled="{{isChecking || !isCustomer}}"
-            loading="{{isChecking}}">
-      <text wx:if="{{isChecked}}">第<text class="big">{{count}}</text>天</text>
-      <text wx:else>签到</text>
-    </button>
+    <form report-submit="true" bind:submit="saveAlarmOnServer">
+      <picker mode="time" value="{{alarmClock}}" bind:change="setAlarmClock" start="05:00" end="10:00" name="alarm">
+        <text>打卡时间：5:00-10:00
+        提醒时间：{{alarmClock}}</text>
+      </picker>
+      <button form-type="submit" size="mini" wx:if="{{isAlarmChanged}}">保存</button>
+    </form>
+    <form report-submit="true" bind:submit="checkIn">
+      <button form-type="submit"
+              class="button"
+              disabled="{{isChecking || !isCustomer}}"
+              loading="{{isChecking}}">
+        <text wx:if="{{isChecked}}">第<text class="big">{{count}}</text>天</text>
+        <text wx:else>签到</text>
+      </button>
+    </form>
     <view class="others">
       <text class="h3">{{fellowNumber}}人已报名</text>
       <image class="icon-user" src="{{item.avatar}}" wx:for="{{fellow}}" wx:key="{{index}}"></image>
@@ -29,13 +36,13 @@
     <text class="alert alert-danger animated slideInDown" wx:if="{{noAuth}}">您必须对本小程序授权才能正常使用我们的服务哦。</text>
     <button type="primary"
             open-type="getUserInfo"
-            bindgetuserinfo="getUserInfo"
+            bind:getuserinfo="getUserInfo"
             loading="{{isLoading}}"
             disabled="{{isLoading}}">马上加入学习</button>
   </view>
   <view class="signed" wx:else>
     <navigator url="/pages/top/morning" class="button button-secondary button-block">查看排名</navigator>
-    <button type="primary" bindtap="doStudy">继续学习</button>
+    <button type="primary" bind:tap="doStudy">继续学习</button>
   </view>
   <view class="calendar cover">
     <view class="h2">21天知识回顾</view>
@@ -49,8 +56,8 @@
   </view>
 </view>
 
-<rich-modal isOpen="{{isPaymentModalOpen}}" title="选择报名模式" cancel="{{false}}" bindconfirm="onPaymentConfirm" bindcancel="onModalCancel">
-  <radio-group class="group" bindchange="changePayment">
+<rich-modal isOpen="{{isPaymentModalOpen}}" title="选择报名模式" cancel="{{false}}" bindconfirm="onPaymentConfirm">
+  <radio-group class="group" bind:change="setPayment">
     <label>
       <icon type="success" size="16" wx:if="{{paymentType === 1}}"></icon>
       <view class="icon" wx:else></view>
@@ -71,7 +78,9 @@
 <styled-modal class="share-modal" width="539" height="638" isOpen="{{isShareOpen}}">
   <view class="modal-body">
     <image src="../../img/share.png" class="bg"></image>
-    <text>将小应用分享给你的考研同胞，获取优惠机会!!</text>
-    <button open-type="share">邀请微信群好友一起学</button>
+    <text wx:if="{{hasShared}}">您已经完成分享，可以以优惠价 ￥9.9 加入学习</text>
+    <text wx:else>将小应用分享给你的考研同胞，获取优惠机会!!</text>
+    <button bind:tap="buy" wx:if="{{hasShared}}">立即购买，开始学习</button>
+    <button open-type="share" wx:else>邀请微信群好友一起学</button>
   </view>
 </styled-modal>

@@ -1,5 +1,5 @@
 import Promise from '../libs/bluebird';
-import {API} from '../config/dev';
+import {API} from '../config/production';
 
 let app;
 
@@ -55,16 +55,13 @@ export function login() {
         },
       });
     })
-    .then(({data, statusCode}) => {
-      if (statusCode >= 400) {
-        throw new Error('熊领巾登录失败');
+    .then(({code, sessionId}) => {
+      if (code !== 0) {
+        throw new Error('登录失败');
       }
-      if (data.code !== 0) {
-        throw new Error(data.msg);
-      }
-      app.globalData.sessionId = data.sessionId;
-      wx.setStorageSync('sessionId', data.sessionId);
-      return data.sessionId;
+      app.globalData.sessionId = sessionId;
+      wx.setStorageSync('sessionId', sessionId);
+      return sessionId;
     });
 }
 
@@ -89,7 +86,7 @@ export function request(obj) {
       if (result.statusCode === 200) {
         resolve(result.data);
       }
-      reject(new Error(result.data.msg));
+      reject(result);
     };
     obj.failed = (err) => {
       reject(err);

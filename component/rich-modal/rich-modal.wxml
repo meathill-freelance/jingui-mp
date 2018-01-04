@@ -1,12 +1,12 @@
-<view class="backdrop animated fast fadeIn" bindtap="cancel" wx:if="{{isOpen}}">
+<view class="backdrop animated fast fadeIn" bind:tap="cancel" wx:if="{{isOpen}}">
   <view class="rich-modal animated fast fadeInUp" catch:tap="stopPropagation">
     <view class="header">{{title}}</view>
     <view class="body">
       <slot></slot>
     </view>
     <view class="footer">
-      <view class="modal-button confirm-button" bindtap="confirm" wx:if="{{confirm}}">{{confirm}}</view>
-      <view class="modal-button cancel-button" bindtap="cancel" wx:if="{{cancel}}">{{cancel}}</view>
+      <view class="modal-button confirm-button" bind:tap="confirm" wx:if="{{confirm}}">{{confirm}}</view>
+      <view class="modal-button cancel-button" bind:tap="cancel" wx:if="{{cancel}}">{{cancel}}</view>
     </view>
   </view>
 </view>
