@@ -116,7 +116,7 @@ radio-group {
   border-radius: 1em;
 }
 radio-group label {
-  padding: 0.5em;
+  padding: 0.5em 0.5em 0.5em 2em;
 }
 radio-group label + label {
   border-top: 1rpx solid #ddd;

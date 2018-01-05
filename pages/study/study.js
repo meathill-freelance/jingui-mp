@@ -224,7 +224,7 @@ Page({
       url: 'study',
       method: 'POST',
       data: {
-        sessionId: 'd0uVMjRh2zr4UYemb46dWxfyGGUzG9U2XjRqfhKmu66KEo3Ys10Qvu5gT9Ar74P6nOHPy1arnjqF8a5c9rlAewpbkuVKhpRfIfs5fAkOopm8EKm63Wa9lSxulLo7MPtC', //app.globalData.sessionId,
+        sessionId: app.globalData.sessionId,
       },
     })
       .then(({code, data}) => {

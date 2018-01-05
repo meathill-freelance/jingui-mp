@@ -13,7 +13,9 @@
         <button class="backward-button" type="button" bind:tap="backward">
           <view></view>
         </button>
-        <button class="pause-button" type="button" bind:tap="pause" wx:if="{{isPlaying}}">暂停</button>
+        <button class="pause-button" type="button" bind:tap="pause" wx:if="{{isPlaying}}">
+          <view></view>
+        </button>
         <button class="play-button" type="button" bind:tap="play" wx:else>
           <view></view>
         </button>

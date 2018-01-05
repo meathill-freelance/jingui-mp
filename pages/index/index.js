@@ -97,9 +97,10 @@ Page({
   },
   getCalendar() {
     if (!app.globalData.sessionId) {
-      return this.setData({
+      this.setData({
         calendar: createEmptyCalendar(),
       });
+      return Promise.resolve();
     }
     return Weixin.request({
       url: 'calendar',
