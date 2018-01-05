@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/intro/intro",
     "pages/top/morning",
-    "pages/logs/logs"
+    "pages/study/study"
   ],
   "window":{
     "backgroundTextStyle":"light",

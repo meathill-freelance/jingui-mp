@@ -1,1 +1,14 @@
-<view>study</view>
+<view class="listen" wx:if="{{type === 0 || type === 2}}">
+  <view class="header cover">
+    <view class="h1">{{title}}</view>
+    <view class="player"></view>
+  </view>
+
+  <view class="listen-select cover" wx:if="{{type === 0}}">
+
+  </view>
+
+  <view class="listen-fill cover" wx:else>
+
+  </view>
+</view>

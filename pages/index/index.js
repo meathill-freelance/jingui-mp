@@ -183,7 +183,7 @@ Page({
     this.getCalendar();
     this.getCurrentUser();
   },
-  pay(type) {
+  pay() {
     wx.showLoading({
       title: '生成订单中',
       mask: true,
@@ -193,7 +193,7 @@ Page({
       method: 'POST',
       data: {
         sessionId: app.globalData.sessionId,
-        type: type,
+        type: this.data.paymentType,
       },
     })
       .then(response => {
@@ -207,6 +207,10 @@ Page({
           title: '付费成功',
           icon: 'success',
         });
+        this.setData({
+          isCustomer: true,
+        });
+        this.doStudy();
       })
       .catch(err => {
         let msg = err.msg || (err.data && err.data.msg);
@@ -226,10 +230,8 @@ Page({
     }
   },
   onPaymentConfirm() {
-    if (this.data.paymentType === 1) {
-      return this.pay(1);
-    } else if (this.data.hasShared) {
-      return this.pay(2);
+    if (this.data.paymentType === 1 || this.data.hasShared) {
+      return this.pay();
     }
 
     this.setData({
