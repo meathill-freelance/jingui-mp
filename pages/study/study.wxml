@@ -25,24 +25,48 @@
   </view>
 
   <view class="listen-select cover" wx:if="{{type === 0}}">
-    <radio-group class="group"
-                 bind:change="setAnswer"
-                 wx:for="{{extra.questions}}"
-                 wx:for-item="question"
-                 wx:for-index="qIndex"
-                 data-index="{{qIndex}}">
-      <text class="index">{{qIndex + 1}}.</text>
-      <label wx:for="{{question.options}}">
-        <icon type="success" size="16" wx:if="{{question.select === index}}"></icon>
-        <view class="icon" wx:else></view>
-        <radio hidden value="{{index}}" checked="{{question.select === index}}"></radio>
-        <text>{{item.title}}</text>
-      </label>
-    </radio-group>
-    <button type="primary">提交</button>
+    <view class="switch" wx:if="{{showExplanation}}">
+      <text>解析</text>
+      <switch color="#f29801" bind:change="changeExplanation"></switch>
+      <text>原文</text>
+    </view>
+    <text class="original-article" wx:if="{{showExplanation && showArticle}}">{{article}}</text>
+    <form bind:submit="submitSelect" wx:else="">
+      <radio-group class="group {{showExplanation ? question.correct ? 'correct' : 'wrong' : ''}}"
+                   bind:change="setAnswer"
+                   wx:for="{{extra.questions}}"
+                   wx:for-item="question"
+                   wx:for-index="qIndex"
+                   data-index="{{qIndex}}">
+        <text class="index">{{qIndex + 1}}.</text>
+        <label wx:for="{{question.options}}">
+          <icon type="success" size="16" wx:if="{{question.select === index}}" color="#f29801"></icon>
+          <view class="icon" wx:else></view>
+          <radio hidden value="{{index}}" checked="{{question.select === index}}"></radio>
+          <text>{{item.title}}</text>
+        </label>
+      </radio-group>
+      <button type="primary" form-type="submit" wx:if="{{!showExplanation}}">提交</button>
+    </form>
+    <view class="explanation" wx:if="{{showExplanation}}">
+      <text class="h2">答案解析：</text>
+      <text>{{explanation}}</text>
+    </view>
   </view>
 
   <view class="listen-fill cover" wx:else>
-
+    <text class="original-article">{{article}}</text>
+    <view class="h2">答题</view>
+    <form bind:submit="submitFill">
+      <view class="blank-list">
+        <view class="blank-item {{showExplanation ? item.correct ? 'correct' : 'wrong' : ''}}" wx:for="{{blanks}}">
+          <text>{{index + 1}}.</text>
+          <input type="text" name="{{'blank-' + index}}" confirm-type="next" bind:confirm="setInput" data-index="{{index}}" />
+        </view>
+      </view>
+      <button type="primary" form-type="submit" wx:if="{{!showExplanation}}">提交</button>
+    </form>
   </view>
+
+  <button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise">下一题</button>
 </view>

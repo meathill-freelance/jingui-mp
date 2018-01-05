@@ -1,5 +1,5 @@
 import * as Weixin from '../../services/Weixin';
-import {toMinute} from '../../utils/util';
+import {fill, toMinute} from '../../utils/util';
 
 const app = getApp();
 
@@ -7,16 +7,22 @@ Page({
   data: {
     isPlaying: false,
     isCanPlay: false,
+    hasNext: false,
+    showExplanation: false,
+    ShowArticle: false,
     audioCurrent: '00:00',
     audioPosition: 0,
     audioDuration: 0,
 
-    index: 0,
+    index: 2,
     title: '',
     type: null,
     article: '',
+    explanation: '',
     audio: '',
     extra: null,
+    blanks: null,
+    inputs: [],
     error: '',
     exercises: null,
   },
@@ -35,6 +41,11 @@ Page({
   seekAudio(event) {
     this.audioContext.seek(event.detail.value);
   },
+  changeExplanation(event) {
+    this.setData({
+      showArticle: event.detail.value,
+    });
+  },
   setAnswer(event) {
     let target = event.target;
     let index = target.dataset.index;
@@ -43,17 +54,65 @@ Page({
       extra: this.data.extra,
     });
   },
+  setInput(event) {
+    let value = event.detail.value;
+    let index = event.target.dataset.index;
+    this.data.inputs[index] = value;
+    this.setData({
+      inputs: this.data.inputs,
+    });
+  },
+  submitFill() {
+    this.data.blanks = this.data.blanks.map((blank, index) => {
+      blank.correct = this.data.inputs[index] === blank.key;
+      return blank;
+    });
+    this.setData({
+      showExplanation: true,
+      blanks: this.data.blanks
+    })
+  },
+  submitSelect() {
+    if (this.data.extra.questions.every(question => question.select !== null)) {
+      this.data.extra.questions = this.data.extra.questions.map(question => {
+        question.correct = question.select === Number(question.answer);
+        return question;
+      });
+      this.setData({
+        showExplanation: true,
+        extra: this.data.extra,
+      });
+    }
+  },
   doExercise() {
     let exercise = this.data.exercises[this.data.index];
     let {title, type, extra} = exercise;
-    let {article, audio} = extra;
+    let {article, audio, explaination} = extra;
+    let blanks = [];
+    article = article.replace(/{([\w ]+)}/g, (match, key) => {
+      blanks.push({
+        correct: false,
+        key
+      });
+      return fill([], key.length, '_').join('');
+    });
     this.setData({
+      showExplanation: false,
+      hasNext: this.data.index < this.data.exercises.length - 1,
       title,
       type,
       article,
       extra,
+      blanks,
+      explanation: explaination,
     });
     this.audioContext.src = audio;
+  },
+  doNextExercise() {
+    this.setData({
+      index: this.data.index + 1,
+    });
+    this.doExercise();
   },
   onLoad() {
     wx.showLoading({

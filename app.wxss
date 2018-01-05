@@ -1,4 +1,5 @@
 page {
+  font-size: 28rpx;
   background-color: #eee;
   line-height: 1.6;
 }
@@ -126,6 +127,7 @@ navigator {
 .button .big {
   font-size: 2em;
 }
+button[type=primary],
 .button-primary {
   background-color: #f29801;
   color: #fff;

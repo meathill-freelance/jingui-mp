@@ -85,13 +85,28 @@ slider {
 .backward-button {
   transform: rotate(-180deg);
 }
+.switch {
+  font-size: 28rpx;
+  padding-bottom: 40rpx;
+}
+.switch switch {
+  margin: 0 10rpx;
+}
 radio-group {
   font-size: 32rpx;
   position: relative;
   padding-left: 40rpx;
   margin-bottom: 40rpx;
 }
+radio-group.correct {
+  background-color: #d4edda;
+}
+radio-group.wrong {
+  background-color: #f8d7da;
+}
 radio-group .index {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   left: 0;
@@ -99,4 +114,42 @@ radio-group .index {
 radio-group .icon,
 radio-group icon {
   top: 12rpx;
+}
+.original-article {
+  display: block;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+.explanation {
+  font-size: 28rpx;
+  padding: 20rpx 0;
+  margin-bottom: 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.blank-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.blank-item {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  margin-left: 5%;
+  margin-bottom: 20rpx;
+}
+.blank-item:nth-child(2n) {
+  margin-left: 8%;
+}
+.blank-item text {
+  color: #f29801;
+  display: block;
+  font-size: 24rpx;
+  width: 40rpx;
+}
+.blank-item input {
+  border-bottom: 1px solid #ccc;
+  height: 1.2em;
+  min-height: 1.2em;
 }

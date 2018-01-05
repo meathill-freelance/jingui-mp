@@ -74,13 +74,28 @@ slider
 .backward-button
   transform rotate(-180deg)
 
+.switch
+  font-size 28rpx
+  padding-bottom 40rpx
+
+  switch
+    margin 0 10rpx
+
 radio-group
   font-size 32rpx
   position relative
   padding-left 40rpx
   margin-bottom 40rpx
 
+  &.correct
+    background-color #d4edda
+
+  &.wrong
+    background-color #f8d7da
+
   .index
+    display flex
+    flex-direction column
     position absolute
     top 0
     left 0
@@ -88,3 +103,41 @@ radio-group
   .icon,
   icon
     top 12rpx
+
+.original-article
+  display block
+  font-size 28rpx
+  margin-bottom 20rpx
+
+.explanation
+  font-size 28rpx
+  padding 20rpx 0
+  margin-bottom 20px
+  border-top 1px solid #DDD
+  border-bottom 1px solid #DDD
+
+.blank-list
+  display flex
+  flex-direction row
+  flex-wrap: wrap
+
+.blank-item
+  display flex
+  flex-direction row
+  width 40%
+  margin-left 5%
+  margin-bottom 20rpx
+
+  &:nth-child(2n)
+    margin-left 8%
+
+  text
+    color $primary-color
+    display block
+    font-size 24rpx
+    width 40rpx
+
+  input
+    border-bottom 1px solid #CCC
+    height 1.2em
+    min-height 1.2em
