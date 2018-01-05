@@ -1,5 +1,6 @@
 import Promise from '../libs/bluebird';
-import {API} from '../config/production';
+//import {API} from '../config/production';
+import {API} from '../config/dev';
 
 let app;
 
@@ -116,4 +117,21 @@ export function alert(msg) {
     content: msg,
     showCancel: false,
   })
+}
+
+export function upload(obj) {
+  obj.url = /^(https?:)?\/\//.test(obj.url) ? obj.url : `${API}${obj.url}`;
+  obj.name = 'file';
+  return new Promise((resolve, reject) => {
+    obj.success = response => {
+      if (response.statusCode === 200) {
+        return resolve(response.data);
+      }
+      reject(response.data);
+    };
+    obj.fail = err => {
+      reject(err);
+    };
+    wx.uploadFile(obj);
+  });
 }

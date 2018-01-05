@@ -4,26 +4,37 @@ import {fill, toMinute} from '../../utils/util';
 const app = getApp();
 
 Page({
+  audioContext: null,
+  recorderManager: null,
+  playback: null,
+
   data: {
     isPlaying: false,
-    isCanPlay: false,
+    isRecording: false,
+    isUploading: false,
+    isPlaybackPlaying: false,
     hasNext: false,
+    hasRecordAll: false,
     showExplanation: false,
     ShowArticle: false,
     audioCurrent: '00:00',
     audioPosition: 0,
     audioDuration: 0,
 
-    index: 2,
+    index: 1,
+    readIndex: 0,
     title: '',
     type: null,
     article: '',
+    fillArticle: '',
     explanation: '',
     audio: '',
     extra: null,
     blanks: null,
     inputs: [],
+    records: [],
     error: '',
+    avatar: '',
     exercises: null,
   },
   backward() {
@@ -40,6 +51,12 @@ Page({
   },
   seekAudio(event) {
     this.audioContext.seek(event.detail.value);
+  },
+  playPlayback() {
+    this.playback.play();
+  },
+  pausePlayback() {
+    this.playback.pause();
   },
   changeExplanation(event) {
     this.setData({
@@ -72,6 +89,37 @@ Page({
       blanks: this.data.blanks
     })
   },
+  submitRecord() {
+    if (!this.data.hasRecordAll) {
+      return;
+    }
+    this.setData({
+      isUploading: true,
+    });
+    this.data.records.reduce((p, record) => {
+      return p.then(() => {
+        return Weixin.upload({
+          url: 'file',
+          filePath: record,
+          formData: {
+            sessionId: app.globalData.sessionId,
+            index: this.data.readIndex,
+            eid: this.data.exercises[this.data.index].id,
+          },
+        });
+      });
+    }, Promise.resolve())
+      .then(() => {
+        wx.showToast({
+          title: '保存录音成功',
+          icon: 'success',
+        });
+        this.setData({
+          isUploading: false,
+          showExplanation: true,
+        });
+      });
+  },
   submitSelect() {
     if (this.data.extra.questions.every(question => question.select !== null)) {
       this.data.extra.questions = this.data.extra.questions.map(question => {
@@ -89,7 +137,7 @@ Page({
     let {title, type, extra} = exercise;
     let {article, audio, explaination} = extra;
     let blanks = [];
-    article = article.replace(/{([\w ]+)}/g, (match, key) => {
+    let fillArticle = article.replace(/{([\w ]+)}/g, (match, key) => {
       blanks.push({
         correct: false,
         key
@@ -102,6 +150,7 @@ Page({
       title,
       type,
       article,
+      fillArticle,
       extra,
       blanks,
       explanation: explaination,
@@ -111,8 +160,52 @@ Page({
   doNextExercise() {
     this.setData({
       index: this.data.index + 1,
+      readIndex: 0,
     });
     this.doExercise();
+  },
+  initCurrentPage() {
+    if (this.data.readIndex === 0) {
+      this.audioContext.src = this.data.audio;
+    } else {
+      this.audioContext.src = this.data.extra['audio' + this.data.readIndex];
+      if (this.data.records[this.data.readIndex - 1]) {
+        this.playback.src = this.data.records[this.data.readIndex - 1];
+      }
+    }
+  },
+  showPreviousPage() {
+    this.setData({
+      readIndex: this.data.readIndex - 1,
+    });
+    this.initCurrentPage();
+  },
+  showNextPage() {
+    this.setData({
+      readIndex: this.data.readIndex + 1,
+    });
+    this.initCurrentPage();
+  },
+  startRecord() {
+    this.setData({
+      isRecording: true,
+    });
+    if (!this.recorderManager) {
+      this.recorderManager = wx.getRecorderManager();
+      this.recorderManager.onStart(this.recorder_onStart.bind(this));
+      this.recorderManager.onStop(this.recorder_onStop.bind(this));
+    }
+    this.recorderManager.start({
+      duration: 120000,
+      sampleRate: 44100,
+      numberOfChannels: 1,
+      encodeBitRate: 192000,
+      format: 'mp3',
+      frameSize: 50,
+    });
+  },
+  stopRecord() {
+    this.recorderManager.stop();
   },
   onLoad() {
     wx.showLoading({
@@ -124,6 +217,9 @@ Page({
     this.audioContext.onError(this.player_onError.bind(this));
     this.audioContext.onPlay(this.player_onPlay.bind(this));
     this.audioContext.onPause(this.player_onPause.bind(this));
+    this.playback = wx.createInnerAudioContext();
+    this.playback.onPlay(this.playback_onPlay.bind(this));
+    this.playback.onPause(this.playback_onPause.bind(this));
     Weixin.request({
       url: 'study',
       method: 'POST',
@@ -151,6 +247,16 @@ Page({
         wx.hideLoading();
       });
   },
+  playback_onPlay() {
+    this.setData({
+      isPlaybackPlaying: true,
+    });
+  },
+  playback_onPause() {
+    this.setData({
+      isPlaybackPlaying: false,
+    });
+  },
   player_onError(err) {
     console.log(err);
   },
@@ -170,5 +276,19 @@ Page({
     this.setData({
       isPlaying: false,
     });
+  },
+  recorder_onStart() {
+    this.setData({
+      isRecording: true,
+    });
+  },
+  recorder_onStop(result) {
+    this.data.records[this.data.readIndex - 1] = result.tempFilePath;
+    this.setData({
+      isRecording: false,
+      hasRecordAll: this.data.records.length === 3 && this.data.records.every(record => !!record),
+      records: this.data.records,
+    });
+    this.playback.src = result.tempFilePath;
   },
 });

@@ -55,18 +55,65 @@
   </view>
 
   <view class="listen-fill cover" wx:else>
-    <text class="original-article">{{article}}</text>
-    <view class="h2">答题</view>
-    <form bind:submit="submitFill">
-      <view class="blank-list">
-        <view class="blank-item {{showExplanation ? item.correct ? 'correct' : 'wrong' : ''}}" wx:for="{{blanks}}">
-          <text>{{index + 1}}.</text>
-          <input type="text" name="{{'blank-' + index}}" confirm-type="next" bind:confirm="setInput" data-index="{{index}}" />
+    <view wx:if="showExplanation">
+      <view class="h2">答案及原文</view>
+      <text class="original-article">{{article}}</text>
+    </view>
+    <view wx:else>
+      <text class="original-article">{{fillArticle}}</text>
+      <view class="h2">答题</view>
+      <form bind:submit="submitFill">
+        <view class="blank-list">
+          <view class="blank-item {{showExplanation ? item.correct ? 'correct' : 'wrong' : ''}}" wx:for="{{blanks}}">
+            <text>{{index + 1}}.</text>
+            <input type="text" name="{{'blank-' + index}}" confirm-type="next" bind:confirm="setInput" data-index="{{index}}" />
+          </view>
         </view>
-      </view>
-      <button type="primary" form-type="submit" wx:if="{{!showExplanation}}">提交</button>
-    </form>
+        <button type="primary" form-type="submit" wx:if="{{!showExplanation}}">提交</button>
+      </form>
+    </view>
   </view>
-
-  <button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise">下一题</button>
 </view>
+
+<view class="read cover" wx:else>
+  <view class="h2">今日任务</view>
+  <view class="h1" wx:if="{{readIndex === 0}}">{{title}}</view>
+  <view class="h1" wx:else>阅读，第{{readIndex}}部分</view>
+  <view class="player one-line">
+    <view class="controls">
+      <button class="pause-button" bind:tap="pause" wx:if="{{isPlaying}}"><view></view></button>
+      <button class="play-button" bind:tap="play" wx:else><view></view></button>
+    </view>
+    <view class="progress-bar">
+      <text class="current">{{audioCurrent}}</text>
+      <slider bind:change="seekAudio" value="{{audioPosition}}" max="{{audioDuration}}" activeColor="#ce8101"></slider>
+      <text class="total">{{sliderMax}}</text>
+    </view>
+  </view>
+  <view class="player one-line playback" wx:if="{{readIndex > 0 && records[readIndex - 1]}}">
+    <text>我的录音</text>
+    <view class="controls">
+      <button class="pause-button" wx:if="{{isPlaybackPlaying}}" bind:tap="pausePlayback"><view></view></button>
+      <button class="play-button" wx:else bind:tap="playPlayback"><view></view></button>
+    </view>
+  </view>
+  <text class="original-article" wx:if="{{readIndex === 0}}">{{article}}</text>
+  <text class="original-article" wx:if="{{readIndex === 1}}">{{extra.article1}}</text>
+  <text class="original-article" wx:if="{{readIndex === 2}}">{{extra.article2}}</text>
+  <text class="original-article" wx:if="{{readIndex === 3}}">{{extra.article3}}</text>
+
+  <button class="mt-2" type="primary" bind:tap="showNextPage" wx:if="{{readIndex === 0}}">继续学习</button>
+  <view wx:else class="nav-button">
+    <button class="back-button" bind:tap="showPreviousPage"><view></view></button>
+    <button class="stop-record-button" bind:tap="stopRecord" wx:if="{{isRecording}}"><view></view></button>
+    <button class="record-button" bind:tap="startRecord" wx:else>录</button>
+    <button class="next-button" bind:tap="showNextPage"><view></view></button>
+  </view>
+  <button class="mt-3"
+          type="primary"
+          bind:tap="submitRecord"
+          wx:if="{{readIndex === 3 && hasRecordAll && !showExplanation}}"
+          loading="{{isUploading}}">提交</button>
+</view>
+
+<button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise">下一题</button>

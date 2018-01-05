@@ -13,6 +13,27 @@
   background-color $primary-color
   color white
 
+  &.one-line
+    display flex
+    flex-direction row
+    margin-bottom 40rpx
+
+    .controls
+      padding 10rpx
+      width 110rpx
+
+    .play-button
+    .pause-button
+      margin 0
+
+    slider
+      width 360rpx
+
+  &.playback
+    padding 0 40rpx
+    align-items center
+    justify-content center
+
 .progress-bar
   display flex
   justify-content center
@@ -35,23 +56,32 @@ slider
   padding-bottom 40rpx
 
 .play-button,
+.pause-button,
 .backward-button,
 .forward-button
   background-color $primary-color
   border 10rpx solid white
   border-radius 50%
+  padding 0
   display flex
   justify-content center
   align-items center
 
-.play-button
+.play-button,
+.pause-button
   width 90rpx
   height 90rpx
   margin 0 50rpx
 
-  view
-    margin-left 10rpx
-    triangle-right(18rpx, 30rpx, white)
+.play-button view
+  margin-left 10rpx
+  triangle-right(18rpx, 30rpx, white)
+
+.pause-button view
+  border-left 10rpx white solid
+  border-right 10rpx white solid
+  width 30rpx
+  height 36rpx
 
 .backward-button,
 .forward-button
@@ -141,3 +171,43 @@ radio-group
     border-bottom 1px solid #CCC
     height 1.2em
     min-height 1.2em
+
+.nav-button
+  display flex
+  flex-direction row
+  justify-content space-between
+  align-items flex-end
+  margin-top 40rpx
+
+  button
+    border-radius 50%
+    display flex
+    justify-content center
+    align-items center
+
+  .record-button,
+  .stop-record-button
+    background-color white
+    border 4rpx solid $primary-color
+    width 90rpx
+    height 90rpx
+
+  .stop-record-button view
+    width 30rpx
+    height 30rpx
+    background-color $primary-color
+
+  .back-button,
+  .next-button
+    background-color $primary-color
+    border none
+    margin 0
+    width 72rpx
+    height 72rpx
+
+    view
+      margin-left 8rpx
+      triangle-right(16rpx, 25rpx, white)
+
+  .back-button
+    transform rotate(-180deg)
