@@ -1,0 +1,102 @@
+.header.cover {
+  padding: 0;
+}
+.h1 {
+  font-size: 36rpx;
+  padding: 0.5em;
+  text-align: center;
+}
+.player {
+  background-color: #f29801;
+  color: #fff;
+}
+.progress-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0 20rpx;
+}
+slider {
+  width: 386rpx;
+}
+.current,
+.total {
+  font-size: 24rpx;
+  width: 80rpx;
+  text-align: center;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 40rpx;
+}
+.play-button,
+.backward-button,
+.forward-button {
+  background-color: #f29801;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-button {
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 50rpx;
+}
+.play-button view {
+  margin-left: 10rpx;
+  width: 0;
+  height: 0;
+  border-top: 18rpx solid transparent;
+  border-left: 30rpx solid #fff;
+  border-bottom: 18rpx solid transparent;
+}
+.backward-button,
+.forward-button {
+  width: 75rpx;
+  height: 75rpx;
+  margin: 0;
+  position: relative;
+}
+.backward-button view,
+.forward-button view {
+  margin-right: 6rpx;
+  width: 0;
+  height: 0;
+  border-top: 12rpx solid transparent;
+  border-left: 16rpx solid #fff;
+  border-bottom: 12rpx solid transparent;
+}
+.backward-button view:after,
+.forward-button view:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 12rpx solid transparent;
+  border-left: 16rpx solid #fff;
+  border-bottom: 12rpx solid transparent;
+  position: absolute;
+  top: 17rpx;
+  left: 30rpx;
+}
+.backward-button {
+  transform: rotate(-180deg);
+}
+radio-group {
+  font-size: 32rpx;
+  position: relative;
+  padding-left: 40rpx;
+  margin-bottom: 40rpx;
+}
+radio-group .index {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+radio-group .icon,
+radio-group icon {
+  top: 12rpx;
+}

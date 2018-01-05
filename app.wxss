@@ -137,6 +137,28 @@ navigator {
 .button-block {
   display: block;
 }
+radio-group label {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2em;
+  position: relative;
+}
+radio-group .icon {
+  width: 30rpx;
+  height: 30rpx;
+  border: 2px solid #808080;
+  border-radius: 50%;
+}
+radio-group .icon,
+radio-group icon {
+  position: absolute;
+  top: 18rpx;
+  left: 16rpx;
+}
+radio-group text {
+  display: block;
+  width: 100%;
+}
 .animated {
   animation-duration: 1s;
   animation-fill-mode: both;

@@ -1,0 +1,90 @@
+@import "../../styl/variable.styl"
+@import "../../styl/shape.styl"
+
+.header.cover
+  padding 0
+
+.h1
+  font-size 36rpx
+  padding .5em
+  text-align center
+
+.player
+  background-color $primary-color
+  color white
+
+.progress-bar
+  display flex
+  justify-content center
+  align-items center
+  padding 30rpx 0 20rpx
+
+slider
+  width 386rpx
+
+.current,
+.total
+  font-size 24rpx
+  width 80rpx
+  text-align center
+
+.controls
+  display flex
+  justify-content center
+  align-items center
+  padding-bottom 40rpx
+
+.play-button,
+.backward-button,
+.forward-button
+  background-color $primary-color
+  border 10rpx solid white
+  border-radius 50%
+  display flex
+  justify-content center
+  align-items center
+
+.play-button
+  width 90rpx
+  height 90rpx
+  margin 0 50rpx
+
+  view
+    margin-left 10rpx
+    triangle-right(18rpx, 30rpx, white)
+
+.backward-button,
+.forward-button
+  width 75rpx
+  height 75rpx
+  margin 0
+  position relative
+
+  view
+    margin-right 6rpx
+    triangle-right(12rpx, 16rpx, white)
+
+    &:after
+      content: ''
+      triangle-right(12rpx, 16rpx, white)
+      position absolute
+      top 17rpx
+      left 30rpx
+
+.backward-button
+  transform rotate(-180deg)
+
+radio-group
+  font-size 32rpx
+  position relative
+  padding-left 40rpx
+  margin-bottom 40rpx
+
+  .index
+    position absolute
+    top 0
+    left 0
+
+  .icon,
+  icon
+    top 12rpx

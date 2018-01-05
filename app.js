@@ -14,7 +14,6 @@ App({
     wx.showLoading({
       title: '加载中，请稍候',
       mask: true,
-
     });
 
     // 展示本地存储能力

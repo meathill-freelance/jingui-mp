@@ -101,7 +101,7 @@ Page({
         calendar: createEmptyCalendar(),
       });
     }
-    Weixin.request({
+    return Weixin.request({
       url: 'calendar',
       method: 'POST',
       data: {
@@ -180,7 +180,10 @@ Page({
       });
     }
     this.setData({isLoading: false});
-    this.getCalendar();
+    this.getCalendar()
+      .then(() => {
+        wx.hideLoading();
+      });
     this.getCurrentUser();
   },
   pay() {
@@ -221,6 +224,11 @@ Page({
       });
   },
   onLoad() {
+    wx.showLoading({
+      title: '加载中，请稍候',
+      icon: 'loading',
+      mask: true,
+    });
     if (app.isReady) {
       this.start();
     } else {
