@@ -107,12 +107,12 @@
     <button class="back-button" bind:tap="showPreviousPage"><view></view></button>
     <button class="stop-record-button" bind:tap="stopRecord" wx:if="{{isRecording}}"><view></view></button>
     <button class="record-button" bind:tap="startRecord" wx:else>录</button>
-    <button class="next-button" bind:tap="showNextPage"><view></view></button>
+    <button class="next-button" bind:tap="showNextPage" disabled="{{readIndex >= 3}}"><view></view></button>
   </view>
   <button class="mt-3"
           type="primary"
           bind:tap="submitRecord"
-          wx:if="{{readIndex === 3 && hasRecordAll && !showExplanation}}"
+          wx:if="{{readIndex >= 3 && hasRecordAll && !showExplanation}}"
           loading="{{isUploading}}">提交</button>
 </view>
 
