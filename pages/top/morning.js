@@ -1,10 +1,38 @@
 import * as Weixin from '../../services/Weixin';
 
+const app = getApp();
+
 Page({
   data: {
     isTooEarly: false,
 
     users: null,
+  },
+  like(event) {
+    let date = new Date();
+    date = date.toLocaleDateString().replace(/\//g, '-');
+    let id = event.target.dataset.id;
+    let key = date + '-' + id;
+    let store = wx.getStorageSync(key);
+    if (store) {
+      return Weixin.alert('您已经为他/她投过票了。');
+    }
+    Weixin.request({
+      url: 'like',
+      method: 'POST',
+      data: {
+        sessionId: app.globalData.sessionId,
+        to: id,
+      },
+    })
+      .then(() => {
+        let item = this.data.users.find(user => user.id === id);
+        item.like += 1;
+        this.setData({
+          users: this.data.users,
+        });
+        wx.setStorageSync(key, item.like);
+      });
   },
   onLoad() {
     let now = new Date();
@@ -23,8 +51,8 @@ Page({
           });
         }
         this.setData({
-          users: response.users,
+          users: response.data,
         });
       });
-  }
+  },
 });

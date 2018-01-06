@@ -8,15 +8,15 @@
       暂时还没人签到，去抢个第一名吧！
     </view>
     <view class="item" wx:for="{{users}}" wx:key="{{item.id}}">
-      <image class="avatar" src="{{item.avatar}}"></image>
-      <view>
-        <text>
-          {{item.nickname}}
+      <image class="avatar" src="{{item.customer.avatar}}"></image>
+      <view class="detail">
+        <text>{{item.customer.nickname}}
           早起第{{item.day}}天
-          今天{{item.time}}
+          <text class="small">今天{{item.time}}</text>
         </text>
       </view>
-      <button type="default">{{item.like}}</button>
+      <button type="default" size="mini" class="like-button" bind:tap="like"
+              data-id="{{item.id}}">💛 {{item.like}}</button>
     </view>
   </view>
 </view>
