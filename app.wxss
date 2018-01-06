@@ -124,13 +124,14 @@ navigator {
   margin-left: auto;
   margin-right: auto;
 }
-.button .big {
-  font-size: 2em;
-}
 button[type=primary],
 .button-primary {
   background-color: #f29801;
   color: #fff;
+}
+button[type=primary]:active,
+.button-primary:active {
+  background-color: #da8901;
 }
 .button-secondary {
   background-color: #fff;

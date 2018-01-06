@@ -6,8 +6,15 @@
   flex-wrap: wrap;
   padding: 1em;
 }
-.day-count .button {
-  margin-right: 1em;
+.day-count .check-in-button {
+  font-size: 32rpx;
+  line-height: 2.4;
+}
+.day-count .check-in-button.checked {
+  line-height: 2;
+}
+.day-count .big {
+  font-size: 1.2em;
 }
 .others {
   border-top: 1px solid #f29801;

@@ -8,14 +8,13 @@
   margin-left auto
   margin-right auto
 
-  .big
-    font-size 2em
-
-
 button[type=primary],
 .button-primary
   background-color $primary-color
   color white
+
+  &:active
+    background-color darken($primary-color, 10%)
 
 .button-secondary
   background-color white

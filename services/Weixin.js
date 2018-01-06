@@ -1,6 +1,6 @@
 import Promise from '../libs/bluebird';
-import {API} from '../config/production';
-//import {API} from '../config/dev';
+//import {API} from '../config/production';
+import {API} from '../config/dev';
 
 let app;
 
@@ -56,13 +56,13 @@ export function login() {
         },
       });
     })
-    .then(({code, sessionId}) => {
+    .then(({code, sessionId, is_payed}) => {
       if (code !== 0) {
         throw new Error('登录失败');
       }
       app.globalData.sessionId = sessionId;
       wx.setStorageSync('sessionId', sessionId);
-      return sessionId;
+      return {sessionId, isPayed: is_payed};
     });
 }
 
@@ -103,9 +103,6 @@ export function pay(obj) {
       resolve(response);
     };
     obj.fail = response => {
-      if (response.errMsg === 'requestPayment:fail cancel' || response.errMsg === 'requestPayment:fail') {
-        return resolve(response);
-      }
       reject(response.errMsg.slice(20));
     };
     wx.requestPayment(obj);

@@ -19,8 +19,8 @@
     </form>
     <form report-submit="true" bind:submit="checkIn">
       <button form-type="submit"
-              class="button"
-              disabled="{{isChecking || !isCustomer}}"
+              class="check-in-button {{isChecked ? 'checked' : ''}}"
+              disabled="{{isChecking || !isCustomer || isChecked}}"
               loading="{{isChecking}}">
         <text wx:if="{{isChecked}}">第<text class="big">{{count}}</text>天</text>
         <text wx:else>签到</text>
@@ -54,7 +54,11 @@
     <view class="h2">21天知识回顾</view>
     <text class="small-hints">点击日期按钮可以回看当天知识点</text>
     <view class="days">
-      <view class="day status-{{item.status}}" wx:for="{{calendar}}" wx:key="{{index}}">{{index + 1}}</view>
+      <view class="day status-{{item.status}}"
+            data-date="{{item.date}}"
+            wx:for="{{calendar}}"
+            wx:key="{{index}}"
+            bind:tap="doStudyAt">{{index + 1}}</view>
     </view>
   </view>
   <view class="quit" wx:if="{{userId}}">

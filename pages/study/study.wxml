@@ -2,7 +2,6 @@
 
 <view class="listen" wx:if="{{type === 0 || type === 2}}">
   <view class="header cover">
-    <view class="h1">{{title}}</view>
     <view class="player">
       <view class="progress-bar">
         <text class="current">{{audioCurrent}}</text>
@@ -79,8 +78,7 @@
 
 <view class="read cover" wx:else>
   <view class="h2">今日任务</view>
-  <view class="h1" wx:if="{{readIndex === 0}}">{{title}}</view>
-  <view class="h1" wx:else>阅读，第{{readIndex}}部分</view>
+  <view class="h1" wx:if="{{readIndex > 0}}">阅读，第{{readIndex}}部分</view>
   <view class="player one-line">
     <view class="controls">
       <button class="pause-button" bind:tap="pause" wx:if="{{isPlaying}}"><view></view></button>

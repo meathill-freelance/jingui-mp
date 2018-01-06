@@ -21,7 +21,7 @@ Page({
     audioPosition: 0,
     audioDuration: 0,
 
-    index: 1,
+    index: 0,
     readIndex: 0,
     title: '',
     type: null,
@@ -121,16 +121,18 @@ Page({
       });
   },
   submitSelect() {
-    if (this.data.extra.questions.every(question => question.select !== null)) {
-      this.data.extra.questions = this.data.extra.questions.map(question => {
-        question.correct = question.select === Number(question.answer);
-        return question;
-      });
-      this.setData({
-        showExplanation: true,
-        extra: this.data.extra,
-      });
+    if (this.data.extra.questions.some(question => !question.hasOwnProperty('select'))) {
+      return Weixin.alert('请先做完所有题目再提交答案。');
     }
+
+    this.data.extra.questions = this.data.extra.questions.map(question => {
+      question.correct = question.select === Number(question.answer);
+      return question;
+    });
+    this.setData({
+      showExplanation: true,
+      extra: this.data.extra,
+    });
   },
   doExercise() {
     let exercise = this.data.exercises[this.data.index];
@@ -156,6 +158,9 @@ Page({
       explanation: explaination,
     });
     this.audioContext.src = audio;
+    wx.setNavigationBarTitle({
+      title,
+    });
   },
   doNextExercise() {
     this.setData({
@@ -207,7 +212,7 @@ Page({
   stopRecord() {
     this.recorderManager.stop();
   },
-  onLoad() {
+  onLoad(options = {}) {
     wx.showLoading({
       title: '加载题目',
       icon: 'loading',
@@ -225,6 +230,7 @@ Page({
       method: 'POST',
       data: {
         sessionId: app.globalData.sessionId,
+        date: options.date || '',
       },
     })
       .then(({code, data}) => {

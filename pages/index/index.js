@@ -48,13 +48,12 @@ Page({
           title: '签到成功',
           icon: 'success',
         });
+        this.setData({
+          isChecked: true,
+        })
       })
       .catch(err => {
-        console.log(err);
-        wx.showToast({
-          title: err.message || '签到失败',
-          icon: false,
-        });
+        Weixin.alert(err.message || '签到失败');
       })
       .then(() => {
         this.setData({
@@ -67,6 +66,21 @@ Page({
     if (this.data.isCustomer) {
       return wx.navigateTo({
         url: '/pages/study/study',
+      });
+    }
+
+    this.setData({
+      isPaymentModalOpen: true,
+    });
+  },
+  doStudyAt(event) {
+    let date = event.target.dataset.date;
+    if (new Date(date) > Date.now()) {
+      return false;
+    }
+    if (this.data.isCustomer) {
+      return wx.navigateTo({
+        url: '/pages/study/study?date=' + date,
       });
     }
 
@@ -87,11 +101,12 @@ Page({
       isLoading: true,
     });
     Weixin.login()
-      .then(sessionId => {
+      .then(({sessionId, isPayed}) => {
         this.setData({
           isLoading: false,
           userId: sessionId,
-          isPaymentModalOpen: true,
+          isPaymentModalOpen: !isPayed,
+          isCustomer: isPayed,
         });
       });
   },
