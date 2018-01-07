@@ -1,26 +1,21 @@
 import * as Weixin from '../../services/Weixin';
-import {fill, toMinute} from '../../utils/util';
+import {fill} from '../../utils/util';
 
 const app = getApp();
 
 Page({
-  audioContext: null,
   recorderManager: null,
-  playback: null,
 
   data: {
-    isPlaying: false,
     isRecording: false,
     isUploading: false,
-    isPlaybackPlaying: false,
     hasNext: false,
     hasRecordAll: false,
     showExplanation: false,
     ShowArticle: false,
-    audioCurrent: '00:00',
-    audioPosition: 0,
-    audioDuration: 0,
 
+    audioSrc: '',
+    playback: '',
     index: 0,
     readIndex: 0,
     title: '',
@@ -36,27 +31,6 @@ Page({
     error: '',
     avatar: '',
     exercises: null,
-  },
-  backward() {
-    this.audioContext.seek(this.data.audioPosition - 5);
-  },
-  forward() {
-    this.audioContext.seek(this.data.audioPosition + 5);
-  },
-  pause() {
-    this.audioContext.pause();
-  },
-  play() {
-    this.audioContext.play();
-  },
-  seekAudio(event) {
-    this.audioContext.seek(event.detail.value);
-  },
-  playPlayback() {
-    this.playback.play();
-  },
-  pausePlayback() {
-    this.playback.pause();
   },
   changeExplanation(event) {
     this.setData({
@@ -157,7 +131,9 @@ Page({
       blanks,
       explanation: explaination,
     });
-    this.audioContext.src = audio;
+    this.setData({
+      audioSrc: audio,
+    });
     wx.setNavigationBarTitle({
       title,
     });
@@ -170,14 +146,12 @@ Page({
     this.doExercise();
   },
   initCurrentPage() {
-    if (this.data.readIndex === 0) {
-      this.audioContext.src = this.data.audio;
-    } else {
-      this.audioContext.src = this.data.extra['audio' + this.data.readIndex];
-      if (this.data.records[this.data.readIndex - 1]) {
-        this.playback.src = this.data.records[this.data.readIndex - 1];
-      }
-    }
+    let audioSrc = this.data.readIndex === 0 ? this.data.audio : this.data.extra['audio' + this.data.readIndex];
+    let playback = this.data.records[this.data.readIndex - 1] ? this.data.records[this.data.readIndex - 1] : '';
+    this.setData({
+      audioSrc,
+      playback,
+    });
   },
   showPreviousPage() {
     this.setData({
@@ -217,14 +191,6 @@ Page({
       title: '加载题目',
       icon: 'loading',
     });
-    this.audioContext = wx.createInnerAudioContext();
-    this.audioContext.onTimeUpdate(this.player_onTimeUpdate.bind(this));
-    this.audioContext.onError(this.player_onError.bind(this));
-    this.audioContext.onPlay(this.player_onPlay.bind(this));
-    this.audioContext.onPause(this.player_onPause.bind(this));
-    this.playback = wx.createInnerAudioContext();
-    this.playback.onPlay(this.playback_onPlay.bind(this));
-    this.playback.onPause(this.playback_onPause.bind(this));
     Weixin.request({
       url: 'study',
       method: 'POST',
@@ -253,36 +219,6 @@ Page({
         wx.hideLoading();
       });
   },
-  playback_onPlay() {
-    this.setData({
-      isPlaybackPlaying: true,
-    });
-  },
-  playback_onPause() {
-    this.setData({
-      isPlaybackPlaying: false,
-    });
-  },
-  player_onError(err) {
-    console.log(err);
-  },
-  player_onTimeUpdate() {
-    this.setData({
-      audioPosition: this.audioContext.currentTime,
-      audioCurrent: toMinute(this.audioContext.currentTime),
-    });
-  },
-  player_onPlay() {
-    this.setData({
-      isPlaying: true,
-      audioDuration: this.audioContext.duration,
-    });
-  },
-  player_onPause() {
-    this.setData({
-      isPlaying: false,
-    });
-  },
   recorder_onStart() {
     this.setData({
       isRecording: true,
@@ -295,6 +231,8 @@ Page({
       hasRecordAll: this.data.records.length === 3 && this.data.records.every(record => !!record),
       records: this.data.records,
     });
-    this.playback.src = result.tempFilePath;
+    this.setData({
+      playback: result.tempFilePath,
+    });
   },
 });

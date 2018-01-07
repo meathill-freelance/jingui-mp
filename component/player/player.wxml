@@ -1,0 +1,11 @@
+<view class="player one-line">
+  <view class="controls">
+    <button class="pause-button {{isLoading ? 'loading' : ''}}" bind:tap="pause" loading="{{isLoading}}" wx:if="{{isPlaying}}"><view></view></button>
+    <button class="play-button {{isLoading ? 'loading' : ''}}" bind:tap="play" loading="{{isLoading}}" wx:else><view></view></button>
+  </view>
+  <view class="progress-bar" wx:if="{{progressBar}}">
+    <text class="current">{{audioCurrent}}</text>
+    <slider bind:change="seekAudio" value="{{audioPosition}}" max="{{audioDuration}}" activeColor="#ce8101"></slider>
+    <text class="total">{{audioDurationText}}</text>
+  </view>
+</view>

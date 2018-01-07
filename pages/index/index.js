@@ -271,7 +271,10 @@ Page({
     return {
       title: '21天突破研究生复试口语听力',
       path: '/pages/index/index',
-      success() {
+      success(result) {
+        if (!result.shareTickets) {
+          return Weixin.alert('必须分享到微信群才能享受优惠哟。');
+        }
         Weixin.request({
           url: 'onshare',
           method: 'POST',

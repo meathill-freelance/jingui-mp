@@ -1,5 +1,5 @@
 page {
-  font-size: 28rpx;
+  font-size: 32rpx;
   background-color: #eee;
   line-height: 1.6;
 }

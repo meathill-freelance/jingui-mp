@@ -11,12 +11,15 @@
       <image class="avatar" src="{{item.customer.avatar}}"></image>
       <view class="detail">
         <text>{{item.customer.nickname}}
-          早起第{{item.day}}天
+          早起第{{item.count}}天
           <text class="small">今天{{item.time}}</text>
         </text>
       </view>
       <button type="default" size="mini" class="like-button" bind:tap="like"
               data-id="{{item.id}}">💛 {{item.like}}</button>
     </view>
+  </view>
+  <view hidden>
+    <button type="primary" bind:tap="generateCard">生成卡片</button>
   </view>
 </view>

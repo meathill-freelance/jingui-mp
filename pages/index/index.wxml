@@ -61,9 +61,6 @@
             bind:tap="doStudyAt">{{index + 1}}</view>
     </view>
   </view>
-  <view class="quit" wx:if="{{userId}}">
-    <button type="primary">退出早起计划</button>
-  </view>
 </view>
 <view class="version">
   {{version}}

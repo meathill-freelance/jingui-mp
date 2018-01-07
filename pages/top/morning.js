@@ -8,6 +8,9 @@ Page({
 
     users: null,
   },
+  generateCard() {
+
+  },
   like(event) {
     let date = new Date();
     date = date.toLocaleDateString().replace(/\//g, '-');
@@ -53,6 +56,7 @@ Page({
         this.setData({
           users: response.data.map(item => {
             item.like = item.liker; // cannot use `like` in DB
+            item.time = item.created_at.substr(11, 5);
             return item;
           }),
         });
