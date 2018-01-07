@@ -1,5 +1,6 @@
 .player {
   background-color: #f29801;
+  border-radius: 8rpx;
   color: #fff;
 }
 .player.one-line {
@@ -111,6 +112,13 @@ slider {
 .backward-button {
   transform: rotate(-180deg);
 }
-.other {
-  font: 12px;
+.full {
+  display: flex;
+  flex-direction: column;
+}
+.full .controls {
+  order: 2;
+}
+.full .progress-bar {
+  order: 1;
 }

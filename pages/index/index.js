@@ -76,13 +76,13 @@ Page({
     });
   },
   doStudyAt(event) {
-    let date = event.target.dataset.date;
-    if (new Date(date) > Date.now()) {
+    let index = event.target.dataset.index;
+    if (index >= this.data.count) {
       return false;
     }
     if (this.data.isCustomer) {
       return wx.navigateTo({
-        url: '/pages/study/study?date=' + date,
+        url: '/pages/study/study?index=' + index,
       });
     }
 

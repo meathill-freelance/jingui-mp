@@ -140,3 +140,33 @@ radio-group
 
   .back-button
     transform rotate(-180deg)
+
+.teacher-card
+  padding 0
+
+  .header
+    color $primary-color
+    padding 0 30rpx
+    line-height 2.5
+
+  .body
+    background-color #EEE
+    border-radius 0 0 .25em .25em
+    font-size 28rpx
+    padding 20rpx 30rpx
+
+    text
+      position relative
+      text-indent 28rpx
+      display block
+
+      &:before
+        content ''
+        width 8rpx
+        height 8rpx
+        background-color $primary-color
+        position absolute
+        top 50%
+        left 0
+        margin-top -4rpx
+        transform rotate(45deg)

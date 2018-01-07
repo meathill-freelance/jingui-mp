@@ -62,7 +62,7 @@
     <text class="small-hints">点击日期按钮可以回看当天知识点</text>
     <view class="days">
       <view class="day status-{{item.status}}"
-            data-date="{{item.date}}"
+            data-index="{{index}}"
             wx:for="{{calendar}}"
             wx:key="{{index}}"
             bind:tap="doStudyAt">{{index + 1}}</view>

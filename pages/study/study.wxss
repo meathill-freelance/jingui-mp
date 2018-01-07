@@ -143,3 +143,33 @@ radio-group icon {
 .nav-button .back-button {
   transform: rotate(-180deg);
 }
+.teacher-card {
+  padding: 0;
+}
+.teacher-card .header {
+  color: #f29801;
+  padding: 0 30rpx;
+  line-height: 2.5;
+}
+.teacher-card .body {
+  background-color: #eee;
+  border-radius: 0 0 0.25em 0.25em;
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
+}
+.teacher-card .body text {
+  position: relative;
+  text-indent: 28rpx;
+  display: block;
+}
+.teacher-card .body text:before {
+  content: '';
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #f29801;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -4rpx;
+  transform: rotate(45deg);
+}

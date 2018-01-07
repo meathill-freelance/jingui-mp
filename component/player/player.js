@@ -4,6 +4,10 @@ Component({
   audioContext: null,
 
   properties: {
+    full: {
+      type: Boolean,
+      value: false,
+    },
     src: {
       type: String,
       value: '',

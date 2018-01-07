@@ -3,6 +3,7 @@
 
 .player
   background-color $primary-color
+  border-radius 8rpx
   color white
 
   &.one-line
@@ -99,5 +100,12 @@ slider
 .backward-button
   transform rotate(-180deg)
 
-.other
-  font 12px
+.full
+  display flex
+  flex-direction column
+
+  .controls
+    order 2
+
+  .progress-bar
+    order 1

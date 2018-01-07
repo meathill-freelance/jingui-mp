@@ -197,11 +197,11 @@ Page({
       method: 'POST',
       data: {
         sessionId: app.globalData.sessionId,
-        date: options.date || '',
+        index: options.index,
       },
     })
       .then(({code, data}) => {
-        if (code !== 0) {
+        if (code !== 0 || data.length === 0) {
           throw new Error('读取题目失败');
         }
         this.setData({

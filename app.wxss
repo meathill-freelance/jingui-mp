@@ -18,10 +18,13 @@ navigator {
 .text-muted {
   color: #aaa;
 }
+.text-danger {
+  color: #ff1a1a;
+}
 .cover {
   background-color: #fff;
   border-radius: 0.25em;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
   padding: 1em;
   margin: 0.5em;
 }
