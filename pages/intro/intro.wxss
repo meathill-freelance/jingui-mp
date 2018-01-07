@@ -1,3 +1,17 @@
+.h2 {
+  text-indent: 1em;
+}
+.h2::before {
+  background-color: #f29801;
+  content: '';
+  width: 16rpx;
+  height: 16rpx;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -12rpx;
+  transform: rotate(45deg);
+}
 .card-list {
   display: flex;
   flex-wrap: wrap;

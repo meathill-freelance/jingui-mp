@@ -16,6 +16,16 @@
 .day-count .big {
   font-size: 1.2em;
 }
+.day-count picker {
+  position: relative;
+}
+.day-count .icon-calendar {
+  position: absolute;
+  right: 30rpx;
+  bottom: 8rpx;
+  width: 20rpx;
+  height: 22rpx;
+}
 .others {
   border-top: 1px solid #f29801;
   display: flex;
@@ -25,16 +35,26 @@
   width: 100%;
   height: 118rpx;
 }
+.others .icon-user {
+  width: 27rpx;
+  height: 30rpx;
+  margin-right: 8rpx;
+  position: relative;
+  top: 4rpx;
+}
 .others .h3 {
-  width: 100%;
+  width: 300rpx;
   margin-bottom: 0.5em;
 }
-.others .icon-user {
+.others .customers {
+  width: 100%;
+}
+.others .customer {
   width: 56rpx;
   height: 56rpx;
   border-radius: 50%;
 }
-.others .icon-user + .icon-user {
+.others .customer + .customer {
   margin-left: 15rpx;
 }
 .intro {
@@ -72,8 +92,17 @@
   margin-top: 0.5em;
 }
 .h2 {
+  width: 650rpx;
   border-bottom: 1rpx solid #f29801;
-  padding-bottom: 0.5em;
+  text-indent: 60rpx;
+  position: relative;
+}
+.icon-calendar-c {
+  width: 49rpx;
+  height: 49rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .small-hints {
   font-size: 10px;

@@ -14,6 +14,7 @@
               disabled="{{!userId}}">
         <text>打卡时间：5:00-10:00
         提醒时间：{{alarmClock}}</text>
+        <image src="../../img/calendar.png" class="icon-calendar"></image>
       </picker>
       <button form-type="submit" size="mini" wx:if="{{isAlarmChanged}}">保存</button>
     </form>
@@ -27,8 +28,11 @@
       </button>
     </form>
     <view class="others">
+      <image src="../../img/user.png" class="icon-user"></image>
       <text class="h3">{{fellowNumber}}人已报名</text>
-      <image class="icon-user" src="{{item.avatar}}" wx:for="{{fellow}}" wx:key="{{index}}"></image>
+      <view class="customers">
+        <image class="customer" src="{{item.avatar}}" wx:for="{{fellow}}" wx:key="{{index}}"></image>
+      </view>
     </view>
   </view>
   <view class="intro cover">
@@ -51,7 +55,10 @@
     <button type="primary" bind:tap="doStudy">继续学习</button>
   </view>
   <view class="calendar cover">
-    <view class="h2">21天知识回顾</view>
+    <view class="h2">
+      <image src="../../img/calendar-c.png" class="icon-calendar-c"></image>
+      21天知识回顾
+    </view>
     <text class="small-hints">点击日期按钮可以回看当天知识点</text>
     <view class="days">
       <view class="day status-{{item.status}}"

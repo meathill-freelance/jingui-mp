@@ -18,6 +18,16 @@
   .big
     font-size 1.2em
 
+  picker
+    position relative
+
+  .icon-calendar
+    position absolute
+    right 30rpx
+    bottom 8rpx
+    width 20rpx
+    height 22rpx
+
 .others
   border-top 1px solid $primary-color
   display flex
@@ -27,16 +37,26 @@
   width 100%
   height 118rpx
 
+  .icon-user
+    width 27rpx
+    height 30rpx
+    margin-right 8rpx
+    position relative
+    top 4rpx
+
   .h3
-    width 100%
+    width 300rpx
     margin-bottom .5em
 
-  .icon-user
+  .customers
+    width 100%
+
+  .customer
     width 56rpx
     height 56rpx
     border-radius 50%
 
-    + .icon-user
+    + .customer
       margin-left 15rpx
 
 .intro
@@ -65,8 +85,17 @@
       margin-top .5em
 
 .h2
+  width 650rpx
   border-bottom 1rpx solid $primary-color
-  padding-bottom .5em
+  text-indent 60rpx
+  position relative
+
+.icon-calendar-c
+  width 49rpx
+  height 49rpx
+  position absolute
+  top 0
+  left 0
 
 .small-hints
   font-size 10px
