@@ -92,8 +92,11 @@
   <button class="mt-2" type="primary" bind:tap="showNextPage" wx:if="{{readIndex === 0}}">继续学习</button>
   <view wx:else class="nav-button">
     <button class="back-button" bind:tap="showPreviousPage"><view></view></button>
-    <button class="stop-record-button" bind:tap="stopRecord" wx:if="{{isRecording}}"><view></view></button>
-    <button class="record-button" bind:tap="startRecord" wx:else>录</button>
+    <view class="recorder">
+      <view class="tips" wx:if="{{isRecording}}">录音中，点击结束录音</view>
+      <button class="stop-record-button" bind:tap="stopRecord" wx:if="{{isRecording}}"><view></view></button>
+      <button class="record-button" bind:tap="startRecord" wx:else>录</button>
+    </view>
     <button class="next-button" bind:tap="showNextPage" disabled="{{readIndex >= 3}}"><view></view></button>
   </view>
   <button class="mt-3"
