@@ -23,17 +23,19 @@
   margin-top: 1em;
   padding-top: 0.5em;
   width: 100%;
-  height: 112rpx;
+  height: 118rpx;
 }
 .others .h3 {
   width: 100%;
   margin-bottom: 0.5em;
 }
 .others .icon-user {
-  margin-right: 0.5em;
-  width: 50rpx;
-  height: 50rpx;
+  width: 56rpx;
+  height: 56rpx;
   border-radius: 50%;
+}
+.others .icon-user + .icon-user {
+  margin-left: 15rpx;
 }
 .intro {
   margin: 0.5em;

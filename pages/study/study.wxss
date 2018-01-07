@@ -79,7 +79,7 @@ radio-group icon {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: 40rpx;
+  margin-top: 50rpx;
 }
 .nav-button button {
   border-radius: 50%;
@@ -96,7 +96,7 @@ radio-group icon {
   color: #fff;
   font-size: 20rpx;
   position: absolute;
-  top: -40rpx;
+  top: -45rpx;
   left: -80rpx;
   width: 250rpx;
   text-align: center;

@@ -20,6 +20,6 @@
     </view>
   </view>
   <view hidden>
-    <button type="primary" bind:tap="generateCard">生成卡片</button>
+    <button type="primary" bind:tap="generateCard">分享到朋友圈</button>
   </view>
 </view>

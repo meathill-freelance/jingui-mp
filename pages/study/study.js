@@ -125,6 +125,7 @@ Page({
       hasNext: this.data.index < this.data.exercises.length - 1,
       title,
       type,
+      audio,
       article,
       fillArticle,
       extra,
@@ -218,6 +219,12 @@ Page({
       .then(() => {
         wx.hideLoading();
       });
+  },
+  onUnload() {
+    this.setData({
+      audioSrc: '',
+      playback: '',
+    });
   },
   recorder_onStart() {
     this.setData({

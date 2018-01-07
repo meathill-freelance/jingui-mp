@@ -62,8 +62,8 @@ slider {
   height: 90rpx;
   margin: 0 50rpx;
 }
-.play-button .loading view,
-.pause-button .loading view {
+.play-button.loading view,
+.pause-button.loading view {
   display: none;
 }
 .play-button view {

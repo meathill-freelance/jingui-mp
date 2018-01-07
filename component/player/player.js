@@ -9,7 +9,9 @@ Component({
       value: '',
       observer(value) {
         this.audioContext.stop();
-        this.audioContext.src = value;
+        if (value) {
+          this.audioContext.src = value;
+        }
         this.setData({
           isPlaying: false,
           audioPosition: 0,
@@ -62,6 +64,7 @@ Component({
     },
     onTimeUpdate() {
       this.setData({
+        isLoading: false,
         audioPosition: this.audioContext.currentTime,
         audioCurrent: toMinute(this.audioContext.currentTime),
         audioDuration: this.audioContext.duration,
@@ -91,6 +94,11 @@ Component({
         audioCurrent: '00:00',
       });
     },
+    onWaiting() {
+      this.setData({
+        isLoading: true,
+      });
+    }
   },
 
   created() {
@@ -101,5 +109,6 @@ Component({
     this.audioContext.onPause(this.onPause.bind(this));
     this.audioContext.onCanplay(this.onCanPlay.bind(this));
     this.audioContext.onEnded(this.onEnded.bind(this));
+    this.audioContext.onWaiting(this.onWaiting.bind(this));
   },
 });

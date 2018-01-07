@@ -54,7 +54,8 @@ Page({
         })
       })
       .catch(err => {
-        Weixin.alert(err.message || '签到失败');
+        let message = err.data && err.data.msg || '签到失败';
+        Weixin.alert(message);
       })
       .then(() => {
         this.setData({
