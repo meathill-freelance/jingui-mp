@@ -40,7 +40,7 @@ Page({
       method: 'POST',
       data: {
         sessionId: app.globalData.sessionId,
-        formId: event.formId,
+        formId: event.detail.formId,
       },
     })
       .then(() => {

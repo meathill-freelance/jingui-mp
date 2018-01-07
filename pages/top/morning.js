@@ -51,7 +51,10 @@ Page({
           });
         }
         this.setData({
-          users: response.data,
+          users: response.data.map(item => {
+            item.like = item.liker; // cannot use `like` in DB
+            return item;
+          }),
         });
       });
   },
