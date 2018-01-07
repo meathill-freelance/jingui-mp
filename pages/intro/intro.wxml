@@ -10,27 +10,39 @@
     <view class="h2 mt-1">课程目标及亮点</view>
     <view class="card-list">
       <view class="card">
-        <image src="../../img/icon.png"></image>
+        <view class="image-container">
+          <image src="../../img/icon1.png" class="icon1"></image>
+        </view>
         <text>自我介绍速成</text>
       </view>
       <view class="card">
-        <image src="../../img/icon.png"></image>
+        <view class="image-container">
+          <image src="../../img/icon2.png" class="icon2"></image>
+        </view>
         <text>掌握常规话题</text>
       </view>
       <view class="card">
-        <image src="../../img/icon.png"></image>
+        <view class="image-container">
+          <image src="../../img/icon3.png" class="icon3"></image>
+        </view>
         <text>纠正发言问题</text>
       </view>
       <view class="card">
-        <image src="../../img/icon.png"></image>
+        <view class="image-container">
+          <image src="../../img/icon4.png" class="icon4"></image>
+        </view>
         <text>快速提高听力</text>
       </view>
       <view class="card">
-        <image src="../../img/icon.png"></image>
+        <view class="image-container">
+          <image src="../../img/icon5.png" class="icon5"></image>
+        </view>
         <text>全真模拟考试</text>
       </view>
       <view class="card">
-        <image src="../../img/icon.png"></image>
+        <view class="image-container">
+          <image src="../../img/icon6.png" class="icon6"></image>
+        </view>
         <text>定期礼品奖励</text>
       </view>
     </view>
@@ -45,6 +57,25 @@
         2018考研复试交流群
         海文名师答疑 学长学姐解惑
       </text>
+    </view>
+    <view class="h2 mt-2">
+      复试通关精品课
+    </view>
+    <text class="paragraph">复试通关精品课包含复试全项技巧指导、复试英语听力、复试英语口语和调剂技巧指导，现在报名还能享受四科联报价299元，进入上方微信群获取更多课程报名信息。
+    </text>
+    <view class="grid-2 my-2">
+      <navigator class="grid-item" url="/pages/external/page">
+        <image src="../../img/link1.png"></image>
+      </navigator>
+      <view class="grid-item" url="/pages/external/page">
+        <image src="../../img/link2.png"></image>
+      </view>
+      <view class="grid-item" url="/pages/external/page">
+        <image src="../../img/link3.png"></image>
+      </view>
+      <view class="grid-item" url="/pages/external/page">
+        <image src="../../img/link4.png"></image>
+      </view>
     </view>
   </view>
 </view>

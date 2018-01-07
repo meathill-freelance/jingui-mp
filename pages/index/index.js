@@ -29,6 +29,7 @@ Page({
     fellowNumber: 0,
     paymentType: 1,
     alarmClock: '07:00',
+    version: '',
   },
   // 签到
   checkIn(event) {
@@ -252,6 +253,9 @@ Page({
         this.start();
       };
     }
+    this.setData({
+      version: app.globalData.version,
+    });
   },
   onPaymentConfirm() {
     if (this.data.paymentType === 1 || this.data.hasShared) {

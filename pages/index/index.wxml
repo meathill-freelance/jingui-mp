@@ -65,6 +65,9 @@
     <button type="primary">退出早起计划</button>
   </view>
 </view>
+<view class="version">
+  {{version}}
+</view>
 
 <rich-modal isOpen="{{isPaymentModalOpen}}" title="选择报名模式" cancel="{{false}}" bindconfirm="onPaymentConfirm">
   <radio-group class="group" bind:change="setPayment">

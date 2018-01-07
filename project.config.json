@@ -28,6 +28,12 @@
 					"name": "测试做题页",
 					"pathName": "pages/study/study",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动详情",
+					"pathName": "pages/intro/intro",
+					"query": ""
 				}
 			]
 		}

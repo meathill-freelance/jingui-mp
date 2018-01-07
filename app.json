@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/intro/intro",
     "pages/top/morning",
-    "pages/study/study"
+    "pages/study/study",
+    "pages/external/page"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -16,10 +16,10 @@
   padding: 12rpx 0 6rpx;
   font-size: 10px;
 }
-.card image {
-  background-color: #ddd;
-  margin: 0 auto;
-  width: 120rpx;
+.card .image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 70rpx;
 }
 .card text {
@@ -30,6 +30,30 @@
 }
 .card:nth-child(3n + 1) {
   margin-left: 45rpx;
+}
+.card .icon1 {
+  width: 48rpx;
+  height: 50rpx;
+}
+.card .icon2 {
+  width: 71rpx;
+  height: 49rpx;
+}
+.card .icon3 {
+  width: 73rpx;
+  height: 57rpx;
+}
+.card .icon4 {
+  width: 49rpx;
+  height: 63rpx;
+}
+.card .icon5 {
+  width: 66rpx;
+  height: 45rpx;
+}
+.card .icon6 {
+  width: 76rpx;
+  height: 64rpx;
 }
 .qrcode {
   background-color: #ddd;
@@ -42,4 +66,24 @@
 .footer {
   color: #f29801;
   text-align: center;
+}
+.grid-2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.grid-2 .grid-item {
+  width: 298rpx;
+}
+.grid-2 .grid-item:nth-child(2n) {
+  margin-left: 20rpx;
+}
+.grid-2 .grid-item:nth-child(n + 3) {
+  margin-top: 20rpx;
+}
+.grid-2 image {
+  width: 298rpx;
+  height: 183rpx;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
 }
