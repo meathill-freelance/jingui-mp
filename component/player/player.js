@@ -15,6 +15,8 @@ Component({
         this.audioContext.stop();
         if (value) {
           this.audioContext.src = value;
+        } else {
+          this.audioContext = null;
         }
         this.setData({
           isPlaying: false,
@@ -67,6 +69,9 @@ Component({
       console.log(err);
     },
     onTimeUpdate() {
+      if (!this.data.isPlaying) {
+        return;
+      }
       this.setData({
         isLoading: false,
         audioPosition: this.audioContext.currentTime,

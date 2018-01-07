@@ -119,8 +119,8 @@ radio-group icon {
   height: 72rpx;
 }
 .nav-button .stop-record-button view {
-  width: 30rpx;
-  height: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
   background-color: #f29801;
 }
 .nav-button .back-button,
