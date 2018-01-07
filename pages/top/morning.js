@@ -9,7 +9,8 @@ Page({
     users: null,
   },
   generateCard() {
-
+    const ctx = wx.createCanvasContext('snapshot');
+    ctx.drawImage('../../img/banner2.jpg', 20, 20, 710, 205);
   },
   like(event) {
     let date = new Date();

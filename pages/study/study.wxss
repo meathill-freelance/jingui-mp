@@ -106,8 +106,17 @@ radio-group icon {
 .nav-button .stop-record-button {
   background-color: #fff;
   border: 4rpx solid #f29801;
-  width: 90rpx;
-  height: 90rpx;
+  display: flex;
+  justify-content: cursor;
+  align-items: center;
+  width: 100rpx;
+  height: 100rpx;
+  padding-left: 0;
+  padding-right: 0;
+}
+.nav-button .record-button image {
+  width: 42rpx;
+  height: 72rpx;
 }
 .nav-button .stop-record-button view {
   width: 30rpx;
