@@ -16,7 +16,7 @@ Page({
 
     audioSrc: '',
     playback: '',
-    index: 1,
+    index: 0,
     readIndex: 0,
     title: '',
     type: null,

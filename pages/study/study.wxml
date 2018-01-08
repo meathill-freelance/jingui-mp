@@ -48,7 +48,7 @@
         <view class="blank-list">
           <view class="blank-item {{showExplanation ? item.correct ? 'correct' : 'wrong' : ''}}" wx:for="{{blanks}}">
             <text>{{index + 1}}.</text>
-            <input type="text" name="{{'blank-' + index}}" confirm-type="next" bind:confirm="setInput" data-index="{{index}}" />
+            <input type="text" name="{{'blank-' + index}}" confirm-type="next" bind:change="setInput" data-index="{{index}}" />
           </view>
         </view>
         <button type="primary" form-type="submit" wx:if="{{!showExplanation}}">提交</button>
