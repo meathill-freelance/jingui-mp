@@ -2,15 +2,18 @@
   background-color: #f29801;
   border-radius: 0 0 8rpx 8rpx;
   color: #fff;
+  flex: 1;
 }
 .player.one-line {
+  border-radius: 8rpx;
   display: flex;
   flex-direction: row;
-  margin-bottom: 40rpx;
 }
 .player.one-line .controls {
+  display: flex;
+  flex-direction: row;
   padding: 10rpx;
-  width: 110rpx;
+  flex: 1 0 110rpx;
 }
 .player.one-line .play-button,
 .player.one-line .pause-button {
@@ -121,4 +124,11 @@ slider {
 }
 .full .progress-bar {
   order: 1;
+}
+.avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  margin-left: auto;
 }

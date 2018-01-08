@@ -16,6 +16,7 @@ Page({
 
     audioSrc: '',
     playback: '',
+    playbackScore: 0,
     index: 0,
     readIndex: 0,
     title: '',
@@ -32,6 +33,7 @@ Page({
     error: '',
     avatar: '',
     exercises: null,
+    userInfo: {},
   },
   backToHome() {
     wx.navigateBack({
@@ -94,37 +96,6 @@ Page({
       nodes,
     });
   },
-  submitRecord() {
-    if (!this.data.hasRecordAll) {
-      return;
-    }
-    this.setData({
-      isUploading: true,
-    });
-    this.data.records.reduce((p, record) => {
-      return p.then(() => {
-        return Weixin.upload({
-          url: 'file',
-          filePath: record,
-          formData: {
-            sessionId: app.globalData.sessionId,
-            index: this.data.readIndex,
-            eid: this.data.exercises[this.data.index].id,
-          },
-        });
-      });
-    }, Promise.resolve())
-      .then(() => {
-        wx.showToast({
-          title: '保存录音成功',
-          icon: 'success',
-        });
-        this.setData({
-          isUploading: false,
-          showExplanation: true,
-        });
-      });
-  },
   submitSelect() {
     if (this.data.extra.questions.some(question => !question.hasOwnProperty('select'))) {
       return Weixin.alert('请先做完所有题目再提交答案。');
@@ -182,10 +153,12 @@ Page({
   },
   initCurrentPage() {
     let audioSrc = this.data.readIndex === 0 ? this.data.audio : this.data.extra['audio' + this.data.readIndex];
-    let playback = this.data.records[this.data.readIndex - 1] ? this.data.records[this.data.readIndex - 1] : '';
+    let playback = this.data.records[this.data.readIndex - 1] ? this.data.records[this.data.readIndex - 1].path : '';
+    let playbackScore = this.data.records[this.data.readIndex - 1] ? this.data.records[this.data.readIndex - 1].score : '';
     this.setData({
       audioSrc,
       playback,
+      playbackScore,
     });
   },
   showPreviousPage() {
@@ -239,6 +212,7 @@ Page({
           throw new Error('读取题目失败');
         }
         this.setData({
+          userInfo: app.globalData.userInfo,
           exercises: data,
         });
         this.doExercise();
@@ -266,14 +240,38 @@ Page({
     });
   },
   recorder_onStop(result) {
-    this.data.records[this.data.readIndex - 1] = result.tempFilePath;
+    let index = this.data.readIndex - 1;
+    let record = this.data.records[index] || {};
+    record.path = result.tempFilePath;
+    this.data.records[this.data.readIndex - 1] = record;
     this.setData({
       isRecording: false,
-      hasRecordAll: this.data.records.length === 3 && this.data.records.every(record => !!record),
+      isUploading: true,
       records: this.data.records,
-    });
-    this.setData({
       playback: result.tempFilePath,
     });
+    Weixin.upload({
+      url: 'file',
+      filePath: result.tempFilePath,
+      formData: {
+        sessionId: app.globalData.sessionId,
+        index: this.data.readIndex,
+        eid: this.data.exercises[this.data.index].id,
+      },
+    })
+      .then(response => {
+        this.data.records[index].score = response.score;
+        let showExplanation = this.data.records.length >= 3 && this.data.records.every(item => item.score !== null);
+        this.setData({
+          isUploading: false,
+          records: this.data.records,
+          playbackScore: index === this.data.readIndex - 1 ? response.score : false,
+          showExplanation,
+        });
+      })
+      .catch(err => {
+        let message = err.data && err.data.msg || '打分失败';
+        Weixin.alert(message);
+      });
   },
 });

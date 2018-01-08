@@ -72,15 +72,23 @@
   </view>
   <view class="h1">{{title}}</view>
   <view class="h1" wx:if="{{readIndex > 0}}">阅读，第{{readIndex}}部分</view>
-  <player src="{{audioSrc}}"></player>
-  <view class="player one-line playback" wx:if="{{readIndex > 0 && records[readIndex - 1]}}">
-    <text>我的录音</text>
-    <player src="{{playback}}" progress-bar="{{false}}"></player>
-  </view>
-  <text class="original-article" wx:if="{{readIndex === 0}}">{{article}}</text>
   <text class="original-article" wx:if="{{readIndex === 1}}">{{extra.article1}}</text>
   <text class="original-article" wx:if="{{readIndex === 2}}">{{extra.article2}}</text>
   <text class="original-article" wx:if="{{readIndex === 3}}">{{extra.article3}}</text>
+  <view class="mb-1">
+    <player src="{{audioSrc}}"></player>
+  </view>
+  <view class="player one-line playback" wx:if="{{readIndex > 0 && records[readIndex - 1]}}">
+    <view wx:if="{{isUploading}}" class="uploading mr-1">
+      <icon type="waiting" color="#10AEFF" size="30"></icon>
+      <text class="text-muted">上传打分中</text>
+    </view>
+    <view class="score mr-1" wx:if="{{!isUploading && playbackScore !== false}}">
+      {{playbackScore}}分
+    </view>
+    <player src="{{playback}}" progress-bar="{{false}}" avatar="{{userInfo.avatarUrl}}"></player>
+  </view>
+  <text class="original-article" wx:if="{{readIndex === 0}}">{{article}}</text>
 
   <button class="mt-1" type="primary" bind:tap="showNextPage" wx:if="{{readIndex === 0}}">开始练习</button>
   <view wx:else class="nav-button">
@@ -94,11 +102,7 @@
     </view>
     <button class="next-button" bind:tap="showNextPage" disabled="{{readIndex >= 3}}"><view></view></button>
   </view>
-  <button class="mt-3"
-          type="primary"
-          bind:tap="submitRecord"
-          wx:if="{{readIndex >= 3 && hasRecordAll && !showExplanation}}"
-          loading="{{isUploading}}">提交</button>
+  <view class="small-hints">完成所有阅读练习后进入听力练习。</view>
 </view>
 
 <button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise" class="button-block">下一题</button>

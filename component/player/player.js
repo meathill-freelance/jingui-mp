@@ -24,6 +24,10 @@ Component({
       type: Boolean,
       value: true,
     },
+    avatar: {
+      type: String,
+      value: '',
+    },
   },
 
   data: {

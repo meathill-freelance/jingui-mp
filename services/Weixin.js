@@ -122,6 +122,9 @@ export function upload(obj) {
   return new Promise((resolve, reject) => {
     obj.success = response => {
       if (response.statusCode === 200) {
+        if (typeof response.data === 'string') {
+          response.data = JSON.parse(response.data);
+        }
         return resolve(response.data);
       }
       reject(response.data);

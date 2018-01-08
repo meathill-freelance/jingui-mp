@@ -104,6 +104,7 @@ Page({
       userInfo: e.detail.userInfo,
       isLoading: true,
     });
+    wx.setStorageSync('userInfo', app.globalData.userInfo);
     Weixin.login()
       .then(({sessionId, isPayed}) => {
         this.setData({

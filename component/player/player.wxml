@@ -8,6 +8,7 @@
     <button class="forward-button" type="button" bind:tap="forward" wx:if="{{full}}">
       <view></view>
     </button>
+    <image src="{{avatar}}" wx:if="{{avatar}}" class="avatar"></image>
   </view>
   <view class="progress-bar" wx:if="{{progressBar}}">
     <text class="current">{{audioCurrent}}</text>

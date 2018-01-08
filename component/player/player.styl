@@ -5,15 +5,18 @@
   background-color $primary-color
   border-radius 0 0 8rpx 8rpx
   color white
+  flex 1
 
   &.one-line
+    border-radius 8rpx
     display flex
     flex-direction row
-    margin-bottom 40rpx
 
     .controls
+      display flex
+      flex-direction row
       padding 10rpx
-      width 110rpx
+      flex 1 0 110rpx
 
     .play-button
     .pause-button
@@ -109,3 +112,10 @@ slider
 
   .progress-bar
     order 1
+
+.avatar
+  width 90rpx
+  height 90rpx
+  border 10rpx solid white
+  border-radius 50%
+  margin-left auto
