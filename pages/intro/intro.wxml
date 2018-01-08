@@ -51,7 +51,7 @@
       每日打卡时间：AM 5:00-AM 10:00
       连续完成21天打卡任务的同学我们将会有丰富礼品赠送，课程资料、寒假体验营等惊喜福利等你来拿。礼品赠送消息我们将在下方微信群内通知，请同学提前加入：
     </view>
-    <image src="../../img/qrcode.png" class="qrcode"></image>
+    <image src="../../img/qrcode.png" class="qrcode" bind:tap="saveQrcode" bind:longpress="saveQrcode"></image>
     <view class="footer">
       <text>
         2018考研复试交流群

@@ -132,3 +132,15 @@ export function upload(obj) {
     wx.uploadFile(obj);
   });
 }
+
+export function saveImageToPhotosAlbum(obj) {
+  return new Promise((resolve, reject) => {
+    obj.success = response => {
+      resolve(response);
+    };
+    obj.fail = err => {
+      reject(err);
+    };
+    wx.saveImageToPhotosAlbum(obj);
+  });
+}

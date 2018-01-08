@@ -10,9 +10,16 @@ App({
     userId: null, // 本系统用户id，可用于判断用户是否登录
     setting: null, // 用户设置，主要是权限
     version: 'alpha.8.1',
+    SDKVersion: '',
     count: 0,
   },
   onLaunch: function () {
+    let info = wx.getSystemInfoSync();
+    if (info.SDKVersion < '1.6.3') {
+      Weixin.alert('您的基础库版本过低，无法正常使用本小程序。请升级您的微信。');
+    }
+    this.globalData.SDKVersion = info.SDKVersion;
+
     wx.showLoading({
       title: '加载中，请稍候',
       mask: true,

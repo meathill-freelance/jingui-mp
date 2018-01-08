@@ -38,8 +38,8 @@
 
   <view class="listen-fill cover" wx:else>
     <view wx:if="{{showExplanation}}">
-      <view class="h2">答案及原文</view>
-      <text class="original-article">{{article}}</text>
+      <view class="h2 text-center">答案及原文</view>
+      <rich-text class="original-article" nodes="{{nodes}}"></rich-text>
     </view>
     <view wx:else>
       <text class="original-article">{{fillArticle}}</text>
@@ -66,7 +66,7 @@
   <image src="../../img/wangguixing.jpg" class="avatar"></image>
 </view>
 <view class="read cover" wx:if="{{type === 1}}">
-  <view class="h2">
+  <view class="h2 icon">
     <image src="../../img/calendar-c.png" class="icon-calendar-c"></image>
     今日任务
   </view>
@@ -82,7 +82,7 @@
   <text class="original-article" wx:if="{{readIndex === 2}}">{{extra.article2}}</text>
   <text class="original-article" wx:if="{{readIndex === 3}}">{{extra.article3}}</text>
 
-  <button class="mt-2" type="primary" bind:tap="showNextPage" wx:if="{{readIndex === 0}}">继续学习</button>
+  <button class="mt-1" type="primary" bind:tap="showNextPage" wx:if="{{readIndex === 0}}">开始练习</button>
   <view wx:else class="nav-button">
     <button class="back-button" bind:tap="showPreviousPage"><view></view></button>
     <view class="recorder">
@@ -101,4 +101,5 @@
           loading="{{isUploading}}">提交</button>
 </view>
 
-<button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise">下一题</button>
+<button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise" class="button-block">下一题</button>
+<button type="primary" wx:if="{{showExplanation && !hasNext}}" bind:tap="backToHome" class="button-block">回到首页</button>

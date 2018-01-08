@@ -21,6 +21,9 @@ navigator {
 .text-danger {
   color: #ff1a1a;
 }
+.text-center {
+  text-align: center;
+}
 .cover {
   background-color: #fff;
   border-radius: 0.25em;

@@ -30,6 +30,7 @@ Page({
     paymentType: 1,
     alarmClock: '07:00',
     version: '',
+    SDKVersion: '',
   },
   // 签到
   checkIn(event) {
@@ -266,6 +267,7 @@ Page({
     }
     this.setData({
       version: app.globalData.version,
+      SDKVersion: app.globalData.SDKVersion,
     });
   },
   onPaymentConfirm() {

@@ -16,11 +16,12 @@ Page({
 
     audioSrc: '',
     playback: '',
-    index: 0,
+    index: 1,
     readIndex: 0,
     title: '',
     type: null,
     article: '',
+    nodes: null,
     fillArticle: '',
     explanation: '',
     audio: '',
@@ -31,6 +32,11 @@ Page({
     error: '',
     avatar: '',
     exercises: null,
+  },
+  backToHome() {
+    wx.navigateBack({
+      delta: 1,
+    });
   },
   changeExplanation(event) {
     this.setData({
@@ -54,14 +60,39 @@ Page({
     });
   },
   submitFill() {
+    if (this.data.inputs.length < this.data.blanks.length || this.data.inputs.some(item => !item)) {
+      return Weixin.alert('请先完成填空。');
+    }
     this.data.blanks = this.data.blanks.map((blank, index) => {
       blank.correct = this.data.inputs[index] === blank.key;
       return blank;
     });
+    let nodes = [];
+    let segments = this.data.fillArticle.split(/_{2,}/);
+    segments.forEach((segment, index) => {
+      nodes.push({
+        type: 'text',
+        text: segment,
+      });
+      if (index >= this.data.blanks.length) {
+        return;
+      }
+      nodes.push({
+        name: 'strong',
+        attrs: {
+          style: 'color: ' + (this.data.blanks[index].correct ? 'green' : 'red'),
+        },
+        children: [{
+          type: 'text',
+          text: this.data.blanks[index].key,
+        }],
+      });
+    });
     this.setData({
       showExplanation: true,
-      blanks: this.data.blanks
-    })
+      blanks: this.data.blanks,
+      nodes,
+    });
   },
   submitRecord() {
     if (!this.data.hasRecordAll) {
@@ -119,6 +150,9 @@ Page({
         key
       });
       return fill([], key.length, '_').join('');
+    });
+    article = article.replace(/{([\w ]+)}/g, (match, key) => {
+      return `{<strong>${key}</strong>}`;
     });
     this.setData({
       showExplanation: false,

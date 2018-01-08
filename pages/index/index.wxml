@@ -70,7 +70,7 @@
   </view>
 </view>
 <view class="version">
-  {{version}}
+  Version: {{version}} | SDK: {{SDKVersion}}
 </view>
 
 <rich-modal isOpen="{{isPaymentModalOpen}}" title="选择报名模式" cancel="{{false}}" bindconfirm="onPaymentConfirm">
