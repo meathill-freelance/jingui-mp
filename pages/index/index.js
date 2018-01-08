@@ -28,7 +28,7 @@ Page({
     fellow: null,
     fellowNumber: 0,
     paymentType: 1,
-    alarmClock: '07:00',
+    alarmClock: '',
     version: '',
     SDKVersion: '',
   },
@@ -141,6 +141,7 @@ Page({
         this.setData({
           calendar: response.data,
           count: response.count,
+          alarmClock: response.alarm || '07:00',
           isChecked: response.isChecked,
           isCustomer: true,
         });
@@ -154,6 +155,7 @@ Page({
         }
         this.setData({
           calendar: createEmptyCalendar(),
+          alarmClock: '07:00',
           hasShared,
         });
       });
@@ -174,8 +176,9 @@ Page({
       url: 'setalarm',
       method: 'POST',
       data: {
-        ...event.detail,
+        formId: event.detail.formId,
         sessionId: app.globalData.sessionId,
+        alarm: event.detail.value.alarm,
       },
     })
       .then(() => {
@@ -185,7 +188,7 @@ Page({
         });
         this.setData({
           isAlarmChanged: false,
-        });[]
+        });
       })
       .catch(err => {
         let msg = err.msg || (err.data && err.data.msg);

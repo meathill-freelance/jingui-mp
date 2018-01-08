@@ -4,7 +4,7 @@
     <image class="banner-image" src="../../img/banner.jpg"></image>
   </view>
   <view class="day-count">
-    <form report-submit="true" bind:submit="saveAlarmOnServer">
+    <form class="set-alarm-form" report-submit="true" bind:submit="saveAlarmOnServer">
       <picker mode="time"
               value="{{alarmClock}}"
               bind:change="setAlarmClock"

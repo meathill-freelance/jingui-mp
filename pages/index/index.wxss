@@ -1,3 +1,13 @@
+.set-alarm-form {
+  position: relative;
+}
+.set-alarm-form button {
+  position: absolute;
+  right: -60%;
+  bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
 .day-count {
   background-color: #fff;
   display: flex;
