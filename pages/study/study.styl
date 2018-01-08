@@ -9,6 +9,9 @@
   padding .5em
   text-align center
 
+.h2
+  text-indent 2em
+
 .switch
   font-size 28rpx
   padding-bottom 40rpx
@@ -128,21 +131,38 @@ radio-group
 
   .back-button,
   .next-button
-    background-color $primary-color
-    border none
+    background-color white
+    border 4rpx solid $primary-color
     margin 0
-    width 72rpx
-    height 72rpx
+    width 60rpx
+    height 60rpx
+    padding-left 0
+    padding-right 0
 
     view
-      margin-left 8rpx
-      triangle-right(16rpx, 25rpx, white)
+      color $primary-color
+      position: relative;
+      width: 24rpx;
+      height: 4rpx;
+      background-color: currentColor;
+
+      &:before
+        content: '';
+        position: absolute;
+        right: 0
+        top: -7rpx;
+        width: 16rpx;
+        height: @width;
+        border-top: solid 3rpx currentColor;
+        border-right: solid 3rpx currentColor;
+        transform: rotate(45deg);
 
   .back-button
     transform rotate(-180deg)
 
 .teacher-card
   padding 0
+  position relative
 
   .header
     color $primary-color
@@ -170,3 +190,12 @@ radio-group
         left 0
         margin-top -4rpx
         transform rotate(45deg)
+
+  .avatar
+    border 1px solid #DDD
+    position absolute
+    top 50%
+    right 20rpx
+    margin-top -90rpx
+    width 144rpx
+    height 180rpx

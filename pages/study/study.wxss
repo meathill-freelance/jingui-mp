@@ -6,6 +6,9 @@
   padding: 0.5em;
   text-align: center;
 }
+.h2 {
+  text-indent: 2em;
+}
 .switch {
   font-size: 28rpx;
   padding-bottom: 40rpx;
@@ -125,26 +128,40 @@ radio-group icon {
 }
 .nav-button .back-button,
 .nav-button .next-button {
-  background-color: #f29801;
-  border: none;
+  background-color: #fff;
+  border: 4rpx solid #f29801;
   margin: 0;
-  width: 72rpx;
-  height: 72rpx;
+  width: 60rpx;
+  height: 60rpx;
+  padding-left: 0;
+  padding-right: 0;
 }
 .nav-button .back-button view,
 .nav-button .next-button view {
-  margin-left: 8rpx;
-  width: 0;
-  height: 0;
-  border-top: 16rpx solid transparent;
-  border-left: 25rpx solid #fff;
-  border-bottom: 16rpx solid transparent;
+  color: #f29801;
+  position: relative;
+  width: 24rpx;
+  height: 4rpx;
+  background-color: currentColor;
+}
+.nav-button .back-button view:before,
+.nav-button .next-button view:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -7rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-top: solid 3rpx currentColor;
+  border-right: solid 3rpx currentColor;
+  transform: rotate(45deg);
 }
 .nav-button .back-button {
   transform: rotate(-180deg);
 }
 .teacher-card {
   padding: 0;
+  position: relative;
 }
 .teacher-card .header {
   color: #f29801;
@@ -172,4 +189,13 @@ radio-group icon {
   left: 0;
   margin-top: -4rpx;
   transform: rotate(45deg);
+}
+.teacher-card .avatar {
+  border: 1px solid #ddd;
+  position: absolute;
+  top: 50%;
+  right: 20rpx;
+  margin-top: -90rpx;
+  width: 144rpx;
+  height: 180rpx;
 }

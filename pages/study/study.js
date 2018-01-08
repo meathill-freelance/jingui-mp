@@ -136,7 +136,7 @@ Page({
       audioSrc: audio,
     });
     wx.setNavigationBarTitle({
-      title,
+      title: '21天' + (type === 1 ? '口语' : '听力') + '计划 Day' + app.globalData.count,
     });
   },
   doNextExercise() {

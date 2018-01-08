@@ -2,6 +2,7 @@
 
 <view class="listen" wx:if="{{type === 0 || type === 2}}">
   <view class="header cover">
+    <view class="h1">{{title}}</view>
     <player full="{{true}}" src="{{audioSrc}}"></player>
   </view>
 
@@ -56,15 +57,20 @@
   </view>
 </view>
 
-<view class="teacher-card cover" wx:esle>
+<view class="teacher-card cover" wx:if="{{type === 1}}">
   <view class="header">王桂星</view>
   <view class="body">
     <text>北京语言大学英语语言学硕士</text>
     <text>海文考研独家授课名师</text>
   </view>
+  <image src="../../img/wangguixing.jpg" class="avatar"></image>
 </view>
 <view class="read cover" wx:if="{{type === 1}}">
-  <view class="h2">今日任务</view>
+  <view class="h2">
+    <image src="../../img/calendar-c.png" class="icon-calendar-c"></image>
+    今日任务
+  </view>
+  <view class="h1">{{title}}</view>
   <view class="h1" wx:if="{{readIndex > 0}}">阅读，第{{readIndex}}部分</view>
   <player src="{{audioSrc}}"></player>
   <view class="player one-line playback" wx:if="{{readIndex > 0 && records[readIndex - 1]}}">

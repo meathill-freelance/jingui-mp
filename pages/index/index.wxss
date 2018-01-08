@@ -97,15 +97,8 @@
   text-indent: 60rpx;
   position: relative;
 }
-.icon-calendar-c {
-  width: 49rpx;
-  height: 49rpx;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 .small-hints {
-  font-size: 10px;
+  font-size: 20rpx;
 }
 .days {
   display: flex;
@@ -136,14 +129,14 @@
   font-weight: bold;
 }
 .day.status-1 {
-  background-color: #40b9fe;
+  background-color: #bee2fe;
   border: none;
   color: #fff;
 }
 .day.status-1:after {
   width: 4rpx;
   height: 4rpx;
-  background-color: #40b9fe;
+  background-color: #bee2fe;
   border: #fff 2px solid;
 }
 .quit {

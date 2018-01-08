@@ -77,9 +77,10 @@ Page({
   },
   doStudyAt(event) {
     let index = event.target.dataset.index;
-    if (index >= this.data.count) {
+    // 临时去掉对不能看以后题目的限制
+    /*if (index >= this.data.count) {
       return false;
-    }
+    }*/
     if (this.data.isCustomer) {
       return wx.navigateTo({
         url: '/pages/study/study?index=' + index,
@@ -105,10 +106,18 @@ Page({
     Weixin.login()
       .then(({sessionId, isPayed}) => {
         this.setData({
-          isLoading: false,
           userId: sessionId,
           isPaymentModalOpen: !isPayed,
           isCustomer: isPayed,
+        });
+
+        if (isPayed) {
+          return this.getCalendar();
+        }
+      })
+      .then(() => {
+        this.setData({
+          isLoading: false,
         });
       });
   },
@@ -133,6 +142,7 @@ Page({
           isChecked: response.isChecked,
           isCustomer: true,
         });
+        app.globalData.count = response.count;
       })
       .catch(err => {
         console.log(err);

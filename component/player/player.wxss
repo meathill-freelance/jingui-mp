@@ -1,6 +1,6 @@
 .player {
   background-color: #f29801;
-  border-radius: 8rpx;
+  border-radius: 0 0 8rpx 8rpx;
   color: #fff;
 }
 .player.one-line {
