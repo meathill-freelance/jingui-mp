@@ -11,7 +11,7 @@
   </view>
   <view class="progress-bar" wx:if="{{progressBar}}">
     <text class="current">{{audioCurrent}}</text>
-    <slider bind:change="seekAudio" value="{{audioPosition}}" max="{{audioDuration}}" activeColor="#ce8101"></slider>
+    <slider bind:change="seek" value="{{audioPosition}}" max="{{audioDuration}}" activeColor="#ce8101"></slider>
     <text class="total">{{audioDurationText}}</text>
   </view>
 </view>

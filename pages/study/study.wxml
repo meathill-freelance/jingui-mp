@@ -37,7 +37,7 @@
   </view>
 
   <view class="listen-fill cover" wx:else>
-    <view wx:if="showExplanation">
+    <view wx:if="{{showExplanation}}">
       <view class="h2">答案及原文</view>
       <text class="original-article">{{article}}</text>
     </view>
@@ -57,7 +57,7 @@
   </view>
 </view>
 
-<view class="teacher-card cover" wx:if="{{type === 1}}">
+<view class="teacher-card cover" wx:if="{{type === 1 && readIndex === 0}}">
   <view class="header">王桂星</view>
   <view class="body">
     <text>北京语言大学英语语言学硕士</text>

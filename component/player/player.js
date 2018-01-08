@@ -18,13 +18,6 @@ Component({
         } else {
           this.audioContext = null;
         }
-        this.setData({
-          isPlaying: false,
-          audioPosition: 0,
-          audioDuration: 0,
-          audioCurrent: '00:00',
-          audioDurationText: '00:00',
-        });
       },
     },
     progressBar: {
@@ -91,6 +84,15 @@ Component({
         isPlaying: false,
       });
     },
+    onStop() {
+      this.setData({
+        isPlaying: false,
+        audioPosition: 0,
+        audioDuration: 0,
+        audioCurrent: '00:00',
+        audioDurationText: '00:00',
+      });
+    },
     onCanPlay() {
       this.setData({
         isLoading: false,
@@ -116,6 +118,7 @@ Component({
     this.audioContext.onError(this.onError.bind(this));
     this.audioContext.onPlay(this.onPlay.bind(this));
     this.audioContext.onPause(this.onPause.bind(this));
+    this.audioContext.onStop(this.onStop.bind(this));
     this.audioContext.onCanplay(this.onCanPlay.bind(this));
     this.audioContext.onEnded(this.onEnded.bind(this));
     this.audioContext.onWaiting(this.onWaiting.bind(this));
