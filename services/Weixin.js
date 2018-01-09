@@ -108,11 +108,12 @@ export function pay(obj) {
   });
 }
 
-export function alert(msg) {
+export function alert(msg, confirmText) {
   return new Promise(resolve => {
     wx.showModal({
       content: msg,
       showCancel: false,
+      confirmText,
       success(res) {
         resolve(res);
       },

@@ -1,0 +1,3 @@
+<view>
+  <image src="../../img/qrcode-full.png" bind:longpress="saveQrcode"></image>
+</view>

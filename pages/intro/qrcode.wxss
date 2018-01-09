@@ -1,0 +1,9 @@
+view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+image {
+  width: 750rpx;
+  height: 1181rpx;
+}

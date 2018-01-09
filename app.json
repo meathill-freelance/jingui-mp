@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/intro/intro",
+    "pages/intro/qrcode",
     "pages/top/morning",
     "pages/study/study",
     "pages/external/page"

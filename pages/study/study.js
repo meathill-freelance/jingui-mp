@@ -126,7 +126,7 @@ Page({
     let {title, type, extra} = exercise;
     let {article, audio, explaination} = extra;
     let blanks = [];
-    let fillArticle = article.replace(/{([\w ]+)}/g, (match, key) => {
+    let fillArticle = article.replace(/{([\w -]+)}/g, (match, key) => {
       blanks.push({
         correct: false,
         key
@@ -284,7 +284,7 @@ Page({
       },
     })
       .then(response => {
-        let score = Math.round(response.score * .8 + 20); // 最低分 20
+        let score = response.score > 0 ? Math.round(response.score * .8 + 20) : 0; // 最低分 20
         this.data.records[index].score = score;
         let showExplanation = this.data.records.length >= 3 && this.data.records.every(item => item.score !== null);
         this.setData({

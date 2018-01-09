@@ -100,7 +100,11 @@ strong.wrong
 .uploading
   display flex
   flex-direction column
+  justify-content center
   align-items center
+
+  text
+    margin-top 10rpx
 
 .score
   background-color white
@@ -114,16 +118,17 @@ strong.wrong
   justify-content center
   align-items center
   position relative
+  padding 6rpx
 
-  &::before
+  view
     border 8rpx solid $primary-color
     border-radius 50%
     content: ''
-    top 8rpx
-    left 8rpx
-    width 94rpx
-    height 94rpx
-    position absolute
+    width 100%
+    height 100%
+    display flex
+    justify-content center
+    align-items center
 
 .nav-button
   display flex
@@ -143,7 +148,7 @@ strong.wrong
 
     &[disabled]
       opacity .6;
-      background-color #DDD
+      background-color #EEE
 
   .recorder
     position relative
@@ -262,3 +267,7 @@ strong.wrong
   margin-top 30rpx
   padding-top 20rpx
   text-align center
+
+button[disabled][type="primary"]
+  opacity .6
+  color #EEE

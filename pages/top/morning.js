@@ -62,7 +62,7 @@ Page({
   onShareAppMessage() {
     let self = this;
     return {
-      title: '我已参加21天考研复试英语打卡活动，邀您一起共同学习！海文考研专家团队帮您快速、有效提升考研复试英语口语和听力综合能力！',
+      title: '我已参加21天考研复试英语打卡活动，邀您一起共同学习！',
       path: '/pages/index/index',
       success() {
         console.log('Share morning');

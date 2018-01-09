@@ -23,6 +23,7 @@ Page({
     hasShared: false, // 已经分享过
     isAlarmChanged: false, // 修改了提醒时间
     isOutOfCheckIn: false, // 是否不在签到时间里
+    isNewbieLate: true, // 新付费用户，晚于10点
 
     count: '-',
     calendar: [],
@@ -250,7 +251,17 @@ Page({
         this.setData({
           isCustomer: true,
         });
-        this.doStudy();
+        // 如果超过了签到时间，进入抢先体验
+        let date = new Date();
+        if (date.getHours() >= 10) {
+          this.setData({
+            isNewbieLate: true,
+          });
+          Weixin.alert('签到计划将从明天开始（05:00-10:00）。', '抢先体验')
+            .then(() => {
+              this.doStudy();
+            });
+        }
       })
       .catch(err => {
         let msg = err.msg || (err.data && err.data.msg);
