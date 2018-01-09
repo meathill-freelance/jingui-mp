@@ -142,15 +142,16 @@ Page({
         sessionId: this.data.userId,
       },
     })
-      .then(response => {
+      .then(({data, count, alarm, isChecked, payed_at}) => {
         this.setData({
-          calendar: response.data,
-          count: response.count,
-          alarmClock: response.alarm || '07:00',
-          isChecked: response.isChecked,
+          calendar: data,
+          count: count,
+          alarmClock: alarm || '07:00',
+          isChecked: isChecked,
           isCustomer: true,
+          isNewbieLate: (Date.now() - new Date(`${payed_at} 00:00:00`).getTime()) < 86400000,
         });
-        app.globalData.count = response.count;
+        app.globalData.count = count;
       })
       .catch(err => {
         console.log(err);
