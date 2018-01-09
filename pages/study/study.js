@@ -10,9 +10,8 @@ Page({
     isRecording: false,
     isUploading: false,
     hasNext: false,
-    hasRecordAll: false,
     showExplanation: false,
-    ShowArticle: false,
+    showArticle: false,
 
     audioSrc: '',
     playback: '',
@@ -34,6 +33,7 @@ Page({
     avatar: '',
     exercises: null,
     userInfo: {},
+    date: 0,
   },
   backToHome() {
     wx.navigateBack({
@@ -141,7 +141,7 @@ Page({
       audioSrc: audio,
     });
     wx.setNavigationBarTitle({
-      title: '21天' + (type === 1 ? '口语' : '听力') + '计划 Day' + app.globalData.count,
+      title: '21天' + (type === 1 ? '口语' : '听力') + '计划 Day' + this.data.date,
     });
   },
   doNextExercise() {
@@ -213,6 +213,7 @@ Page({
         }
         this.setData({
           userInfo: app.globalData.userInfo,
+          date: options.index ? Number(options.index) + 1 : app.globalData.count,
           exercises: data,
         });
         this.doExercise();
@@ -260,12 +261,13 @@ Page({
       },
     })
       .then(response => {
-        this.data.records[index].score = response.score;
+        let score = Math.round(response.score * .8 + 20); // 最低分 20
+        this.data.records[index].score = score;
         let showExplanation = this.data.records.length >= 3 && this.data.records.every(item => item.score !== null);
         this.setData({
           isUploading: false,
           records: this.data.records,
-          playbackScore: index === this.data.readIndex - 1 ? response.score : false,
+          playbackScore: index === this.data.readIndex - 1 ? score : false,
           showExplanation,
         });
       })

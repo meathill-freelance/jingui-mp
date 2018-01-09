@@ -8,10 +8,6 @@ Page({
 
     users: null,
   },
-  generateCard() {
-    const ctx = wx.createCanvasContext('snapshot');
-    ctx.drawImage('../../img/banner2.jpg', 20, 20, 710, 205);
-  },
   like(event) {
     let date = new Date();
     date = date.toLocaleDateString().replace(/\//g, '-');
@@ -21,6 +17,7 @@ Page({
     if (store) {
       return Weixin.alert('您已经为他/她投过票了。');
     }
+    wx.setStorageSync(key, id);
     Weixin.request({
       url: 'like',
       method: 'POST',
@@ -35,7 +32,6 @@ Page({
         this.setData({
           users: this.data.users,
         });
-        wx.setStorageSync(key, item.like);
       });
   },
   onLoad() {
@@ -62,5 +58,15 @@ Page({
           }),
         });
       });
+  },
+  onShareAppMessage() {
+    let self = this;
+    return {
+      title: '我已参加21天考研复试英语打卡活动，邀您一起共同学习！海文考研专家团队帮您快速、有效提升考研复试英语口语和听力综合能力！',
+      path: '/pages/index/index',
+      success() {
+        console.log('Share morning');
+      },
+    };
   },
 });

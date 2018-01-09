@@ -1,7 +1,7 @@
 page {
-  font-size: 32rpx;
+  font-size: 28rpx;
   background-color: #eee;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 .container {
   height: 100%;
@@ -9,10 +9,11 @@ page {
   flex-direction: column;
   justify-content: flex-start;
   box-sizing: border-box;
-  font-size: 24rpx;
 }
 button,
 view,
+view::before,
+view::after,
 image,
 navigator {
   box-sizing: border-box;
@@ -28,10 +29,10 @@ navigator {
 }
 .cover {
   background-color: #fff;
-  border-radius: 0.25em;
+  border-radius: 8rpx;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-  padding: 1em;
-  margin: 0.5em;
+  padding: 30rpx;
+  margin: 20rpx;
 }
 .mt-1 {
   margin-top: 1em;
@@ -246,8 +247,8 @@ button[type=primary],
   background-color: #f29801;
   color: #fff;
 }
-button[type=primary]:active,
-.button-primary:active {
+button[type=primary].button-hover,
+.button-primary.button-hover {
   background-color: #da8901;
 }
 .button-secondary {

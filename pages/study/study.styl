@@ -6,7 +6,7 @@
 
 .h1
   font-size 36rpx
-  padding .5em
+  padding .5em 0
   text-align center
 
 .h2.icon
@@ -44,7 +44,6 @@ radio-group
 
 .original-article
   display block
-  font-size 28rpx
   margin-bottom 20rpx
 
 .explanation
@@ -120,8 +119,8 @@ strong.wrong
     border 8rpx solid $primary-color
     border-radius 50%
     content: ''
-    top 5rpx
-    left 5rpx
+    top 50rpx
+    left 50rpx
     width 70rpx
     height 70rpx
     position absolute
@@ -138,6 +137,13 @@ strong.wrong
     display flex
     justify-content center
     align-items center
+
+    &::after
+      border-radius 50%
+
+    &[disabled]
+      opacity .6;
+      background-color #DDD
 
   .recorder
     position relative

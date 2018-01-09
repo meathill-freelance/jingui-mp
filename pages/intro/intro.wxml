@@ -61,12 +61,12 @@
     <view class="h2 mt-2">
       复试通关精品课
     </view>
-    <text class="paragraph">复试通关精品课包含复试全项技巧指导、复试英语听力、复试英语口语和调剂技巧指导，现在报名还能享受四科联报价299元，进入上方微信群获取更多课程报名信息。
-    </text>
+    <view class="paragraph">复试通关精品课包含复试全项技巧指导、复试英语听力、复试英语口语和调剂技巧指导，现在报名还能享受四科联报价299元，进入上方微信群获取更多课程报名信息。
+    </view>
     <view class="grid-2 my-2">
-      <navigator class="grid-item" url="/pages/external/page">
+      <view class="grid-item" url="/pages/external/page">
         <image src="../../img/link1.png"></image>
-      </navigator>
+      </view>
       <view class="grid-item" url="/pages/external/page">
         <image src="../../img/link2.png"></image>
       </view>

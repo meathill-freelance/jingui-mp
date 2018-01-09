@@ -19,7 +19,7 @@ Page({
     isChecked: false, // 已签到
     isCustomer: false, // 已经付费成为我们的用户
     isPaymentModalOpen: false, // 打开付费窗口
-    isShareOpen: false, // 打开分享矿口
+    isShareOpen: false, // 打开分享窗口
     hasShared: false, // 已经分享过
     isAlarmChanged: false, // 修改了提醒时间
 
@@ -52,7 +52,10 @@ Page({
         });
         this.setData({
           isChecked: true,
-        })
+        });
+        wx.navigateTo({
+          url: '/pages/top/morning',
+        });
       })
       .catch(err => {
         let message = err.data && err.data.msg || '签到失败';
@@ -262,6 +265,9 @@ Page({
       icon: 'loading',
       mask: true,
     });
+    wx.showShareMenu({
+      withShareTicket: true,
+    });
     if (app.isReady) {
       this.start();
     } else {
@@ -299,8 +305,9 @@ Page({
             sessionId: app.globalData.sessionId,
           },
         })
-          .catch(() => {
-            console.log('Fail to record');
+          .catch(err => {
+            let message = err.data && err.data.msg || '()';
+            console.log('Fail to record. ' + message);
           })
           .then(() => {
             self.setData({

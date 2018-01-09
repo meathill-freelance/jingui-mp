@@ -3,7 +3,7 @@
 }
 .h1 {
   font-size: 36rpx;
-  padding: 0.5em;
+  padding: 0.5em 0;
   text-align: center;
 }
 .h2.icon {
@@ -41,7 +41,6 @@ radio-group icon {
 }
 .original-article {
   display: block;
-  font-size: 28rpx;
   margin-bottom: 20rpx;
 }
 .explanation {
@@ -117,8 +116,8 @@ strong.wrong {
   border: 8rpx solid #f29801;
   border-radius: 50%;
   content: '';
-  top: 5rpx;
-  left: 5rpx;
+  top: 50rpx;
+  left: 50rpx;
   width: 70rpx;
   height: 70rpx;
   position: absolute;
@@ -135,6 +134,13 @@ strong.wrong {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.nav-button button::after {
+  border-radius: 50%;
+}
+.nav-button button[disabled] {
+  opacity: 0.6;
+  background-color: #ddd;
 }
 .nav-button .recorder {
   position: relative;

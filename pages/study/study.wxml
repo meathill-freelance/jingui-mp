@@ -57,7 +57,7 @@
   </view>
 </view>
 
-<view class="teacher-card cover" wx:if="{{type === 1 && readIndex === 0}}">
+<view class="teacher-card cover" wx:if="{{type === 1}}">
   <view class="header">王桂星</view>
   <view class="body">
     <text>北京语言大学英语语言学硕士</text>
@@ -66,12 +66,12 @@
   <image src="../../img/wangguixing.jpg" class="avatar"></image>
 </view>
 <view class="read cover" wx:if="{{type === 1}}">
-  <view class="h2 icon">
+  <view class="h2 icon" wx:if="{{readIndex === 0}}">
     <image src="../../img/calendar-c.png" class="icon-calendar-c"></image>
     今日任务
   </view>
-  <view class="h1">{{title}}</view>
-  <view class="h1" wx:if="{{readIndex > 0}}">阅读，第{{readIndex}}部分</view>
+  <view class="h1" wx:if="{{readIndex === 0}}">{{title}}</view>
+  <view class="h1" wx:else>口语，第{{readIndex}}部分</view>
   <text class="original-article" wx:if="{{readIndex === 1}}">{{extra.article1}}</text>
   <text class="original-article" wx:if="{{readIndex === 2}}">{{extra.article2}}</text>
   <text class="original-article" wx:if="{{readIndex === 3}}">{{extra.article3}}</text>
@@ -100,10 +100,10 @@
         <image src="../../img/mic.png"></image>
       </button>
     </view>
-    <button class="next-button" bind:tap="showNextPage" disabled="{{readIndex >= 3}}"><view></view></button>
+    <button class="next-button" bind:tap="showNextPage" disabled="{{readIndex >= 3 || !records[readIndex - 1].score}}"><view></view></button>
   </view>
-  <view class="small-hints">完成所有阅读练习后进入听力练习。</view>
+  <view class="small-hints" wx:if="{{readIndex > 0 && !showExplanation}}">完成<text wx:if="{{readIndex >= 3}}">本</text><text wx:else> 3 </text>次口语练习后进入听力练习。</view>
 </view>
 
-<button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise" class="button-block">下一题</button>
+<button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise" class="button-block">开始听力练习</button>
 <button type="primary" wx:if="{{showExplanation && !hasNext}}" bind:tap="backToHome" class="button-block">回到首页</button>

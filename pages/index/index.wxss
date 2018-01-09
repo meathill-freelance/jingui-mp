@@ -14,7 +14,7 @@
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 1em;
+  padding: 30rpx;
 }
 .day-count .check-in-button {
   font-size: 32rpx;
@@ -67,27 +67,20 @@
 .others .customer + .customer {
   margin-left: 15rpx;
 }
-.intro {
-  margin: 0.5em;
-  padding: 1em;
-}
 .intro .link {
   color: #f29801;
+  margin-top: 0.5em;
   text-align: right;
 }
 .sign-up,
-.signed,
-.quit {
-  padding: 0.5em 0;
+.signed {
   text-align: center;
   width: 100%;
 }
 .sign-up button,
 .signed button,
-.quit button,
 .sign-up .button,
-.signed .button,
-.quit .button {
+.signed .button {
   width: 640rpx;
   height: 64rpx;
   font-size: 28rpx;
@@ -95,17 +88,16 @@
 }
 .sign-up button + button,
 .signed button + button,
-.quit button + button,
 .sign-up .button + button,
-.signed .button + button,
-.quit .button + button {
+.signed .button + button {
   margin-top: 0.5em;
 }
 .h2 {
   width: 650rpx;
   border-bottom: 1rpx solid #f29801;
-  text-indent: 60rpx;
+  padding-bottom: 10rpx;
   position: relative;
+  text-indent: 60rpx;
 }
 .small-hints {
   font-size: 20rpx;
@@ -113,7 +105,7 @@
 .days {
   display: flex;
   flex-wrap: wrap;
-  padding: 30rpx 10rpx 10rpx;
+  padding: 20rpx 0 10rpx;
 }
 .day {
   width: 60rpx;

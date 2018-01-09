@@ -1,4 +1,4 @@
-<view class="backdrop animated fast fadeIn" bind:tap="close" wx:if="{{isOpen}}">
+<view class="backdrop animated fast fadeIn" bind:tap="cancel" wx:if="{{isOpen}}">
   <view class="styled-modal animated fast fadeInUp" style="width:{{width}}rpx;height:{{height}}rpx">
     <slot></slot>
   </view>

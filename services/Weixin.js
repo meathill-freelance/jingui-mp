@@ -1,4 +1,3 @@
-import Promise from '../libs/bluebird';
 import {API} from '../config/production';
 //import {API} from '../config/dev';
 

@@ -19,8 +19,7 @@
               data-id="{{item.id}}">💛 {{item.like}}</button>
     </view>
   </view>
-  <canvas canvas-id="snapshot" hidden></canvas>
-  <view hidden>
-    <button type="primary" bind:tap="generateCard">分享到朋友圈</button>
+  <view>
+    <button class="share-button" type="primary" open-type="share">分享到微信群</button>
   </view>
 </view>
