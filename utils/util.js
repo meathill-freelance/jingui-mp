@@ -13,3 +13,7 @@ export function toMinute(sec) {
 export function fillTen(number) {
   return number > 9 ? number : ('0' + number);
 }
+
+export function toCDN(url) {
+  return url.replace('https://fushi.gaokaofun.com/storage/', 'http://audio1.gaokaofun.com/');
+}

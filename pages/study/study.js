@@ -1,5 +1,5 @@
 import * as Weixin from '../../services/Weixin';
-import {fill} from '../../utils/util';
+import {fill, toCDN} from '../../utils/util';
 
 const app = getApp();
 
@@ -44,6 +44,17 @@ Page({
     this.setData({
       showArticle: event.detail.value,
     });
+  },
+  checkAuth() {
+    return Weixin.getSetting()
+      .then(({authSetting}) => {
+        if ('scope.record' in authSetting && !authSetting['scope.record']) {
+          Weixin.alert('您禁用了麦克风，为正常使用本小程序，请开启麦克风权限。')
+            .then(() => {
+              wx.openSetting();
+            });
+        }
+      });
   },
   setAnswer(event) {
     let target = event.target;
@@ -174,22 +185,25 @@ Page({
     this.initCurrentPage();
   },
   startRecord() {
-    this.setData({
-      isRecording: true,
-    });
-    if (!this.recorderManager) {
-      this.recorderManager = wx.getRecorderManager();
-      this.recorderManager.onStart(this.recorder_onStart.bind(this));
-      this.recorderManager.onStop(this.recorder_onStop.bind(this));
-    }
-    this.recorderManager.start({
-      duration: 120000,
-      sampleRate: 44100,
-      numberOfChannels: 1,
-      encodeBitRate: 192000,
-      format: 'mp3',
-      frameSize: 50,
-    });
+    this.checkAuth()
+      .then(() => {
+        this.setData({
+          isRecording: true,
+        });
+        if (!this.recorderManager) {
+          this.recorderManager = wx.getRecorderManager();
+          this.recorderManager.onStart(this.recorder_onStart.bind(this));
+          this.recorderManager.onStop(this.recorder_onStop.bind(this));
+        }
+        this.recorderManager.start({
+          duration: 120000,
+          sampleRate: 44100,
+          numberOfChannels: 1,
+          encodeBitRate: 192000,
+          format: 'mp3',
+          frameSize: 50,
+        });
+      });
   },
   stopRecord() {
     this.recorderManager.stop();
@@ -214,7 +228,15 @@ Page({
         this.setData({
           userInfo: app.globalData.userInfo,
           date: options.index ? Number(options.index) + 1 : app.globalData.count,
-          exercises: data,
+          exercises: data.map(item => {
+            item.extra.audio = toCDN(item.extra.audio);
+            if (item.type === 1) {
+              item.extra.audio1 = toCDN(item.extra.audio1);
+              item.extra.audio2 = toCDN(item.extra.audio2);
+              item.extra.audio3 = toCDN(item.extra.audio3);
+            }
+            return item;
+          }),
         });
         this.doExercise();
       })
@@ -228,6 +250,7 @@ Page({
       .then(() => {
         wx.hideLoading();
       });
+    this.checkAuth();
   },
   onUnload() {
     this.setData({

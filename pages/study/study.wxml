@@ -102,7 +102,10 @@
     </view>
     <button class="next-button" bind:tap="showNextPage" disabled="{{readIndex >= 3 || !records[readIndex - 1].score}}"><view></view></button>
   </view>
-  <view class="small-hints" wx:if="{{readIndex > 0 && !showExplanation}}">完成<text wx:if="{{readIndex >= 3}}">本</text><text wx:else> 3 </text>次口语练习后进入听力练习。</view>
+  <view class="small-hints" wx:if="{{readIndex > 0 && !showExplanation}}">
+    <text wx:if="{{readIndex >= 3}}">完成本次口语练习后进入听力练习。</text>
+    <text wx:else>点击上方录音按钮进行练习</text>
+  </view>
 </view>
 
 <button type="primary" wx:if="{{showExplanation && hasNext}}" bind:tap="doNextExercise" class="button-block">开始听力练习</button>

@@ -12,4 +12,33 @@
 .styled-modal {
   width: auto;
   height: auto;
+  position: relative;
+}
+.close-button {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  color: #fff;
+  width: 40rpx;
+  height: 40rpx;
+}
+.close-button::before {
+  content: '';
+  position: absolute;
+  top: 20rpx;
+  width: 42rpx;
+  height: 4rpx;
+  background-color: currentColor;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.close-button::after {
+  content: '';
+  position: absolute;
+  top: 20rpx;
+  width: 42rpx;
+  height: 4rpx;
+  background-color: currentColor;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

@@ -109,10 +109,15 @@ export function pay(obj) {
 }
 
 export function alert(msg) {
-  wx.showModal({
-    content: msg,
-    showCancel: false,
-  })
+  return new Promise(resolve => {
+    wx.showModal({
+      content: msg,
+      showCancel: false,
+      success(res) {
+        resolve(res);
+      },
+    });
+  });
 }
 
 export function upload(obj) {
@@ -145,4 +150,14 @@ export function saveImageToPhotosAlbum(obj) {
     };
     wx.saveImageToPhotosAlbum(obj);
   });
+}
+
+export function getSetting() {
+  return new Promise(resolve => {
+    wx.getSetting({
+      success(res) {
+        resolve(res);
+      }
+    });
+  })
 }

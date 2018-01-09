@@ -22,6 +22,7 @@ Page({
     isShareOpen: false, // 打开分享窗口
     hasShared: false, // 已经分享过
     isAlarmChanged: false, // 修改了提醒时间
+    isOutOfCheckIn: false, // 是否不在签到时间里
 
     count: '-',
     calendar: [],
@@ -275,9 +276,11 @@ Page({
         this.start();
       };
     }
+    let time = new Date();
     this.setData({
       version: app.globalData.version,
       SDKVersion: app.globalData.SDKVersion,
+      isOutOfCheckIn: time.getHours() < 5 || time.getHours() >= 10,
     });
   },
   onPaymentConfirm() {

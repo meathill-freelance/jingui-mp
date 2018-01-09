@@ -42,7 +42,7 @@
     <navigator url="/pages/intro/intro" class="link">查看活动详情
     </navigator>
   </view>
-  <view class="sign-up" wx:if="{{!userId}}">
+  <view class="sign-up" wx:if="{{!isCustomer}}">
     <text class="alert alert-danger animated slideInDown" wx:if="{{noAuth}}">您必须对本小程序授权才能正常使用我们的服务哦。</text>
     <button type="primary"
             open-type="getUserInfo"
@@ -52,7 +52,10 @@
   </view>
   <view class="signed" wx:else>
     <navigator url="/pages/top/morning" class="button button-secondary button-block">查看排名</navigator>
-    <button type="primary" bind:tap="doStudy">继续学习</button>
+    <button type="primary" bind:tap="doStudy">
+      <text wx:if="isOutOfCheckIn">已错过打卡，点击进入练习</text>
+      <text wx:else>继续学习</text>
+    </button>
   </view>
   <view class="calendar cover">
     <view class="h2">
