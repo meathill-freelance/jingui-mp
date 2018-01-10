@@ -250,6 +250,13 @@ button[type=primary],
 button[type=primary].button-hover,
 .button-primary.button-hover {
   background-color: #da8901;
+  font-size: 28rpx;
+}
+button[type=primary][disabled],
+.button-primary[disabled] {
+  background-color: #feaf2a;
+  opacity: 0.6;
+  color: #eee;
 }
 .button-secondary {
   background-color: #fff;

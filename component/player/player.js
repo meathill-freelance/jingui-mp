@@ -42,6 +42,7 @@ Component({
 
   methods: {
     play() {
+      this.audioContext.onWaiting(this.onWaiting.bind(this));
       this.audioContext.play();
       this.setData({
         isLoading: true,
@@ -125,6 +126,5 @@ Component({
     this.audioContext.onStop(this.onStop.bind(this));
     this.audioContext.onCanplay(this.onCanPlay.bind(this));
     this.audioContext.onEnded(this.onEnded.bind(this));
-    this.audioContext.onWaiting(this.onWaiting.bind(this));
   },
 });

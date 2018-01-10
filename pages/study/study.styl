@@ -146,7 +146,7 @@ strong.wrong
     &::after
       border-radius 50%
 
-    &[disabled]
+    .disabled
       opacity .6;
       background-color #EEE
 
@@ -207,11 +207,11 @@ strong.wrong
         content: '';
         position: absolute;
         right: 0
-        top: -7rpx;
+        top: -5rpx;
         width: 16rpx;
         height: @width;
-        border-top: solid 3rpx currentColor;
-        border-right: solid 3rpx currentColor;
+        border-top: solid 4rpx currentColor;
+        border-right: solid 4rpx currentColor;
         transform: rotate(45deg);
 
   .back-button
@@ -257,7 +257,8 @@ strong.wrong
     width 40rpx
     height 40rpx
 
-.button-block
+.button-block[type=primary]
+  background-color #1AAD19
   margin 20rpx
 
 .small-hints
@@ -267,7 +268,3 @@ strong.wrong
   margin-top 30rpx
   padding-top 20rpx
   text-align center
-
-button[disabled][type="primary"]
-  opacity .6
-  color #EEE

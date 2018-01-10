@@ -84,9 +84,9 @@ Page({
   doStudyAt(event) {
     let index = event.target.dataset.index;
     // 临时去掉对不能看以后题目的限制
-    /*if (index >= this.data.count) {
+    if (index >= this.data.count) {
       return false;
-    }*/
+    }
     if (this.data.isCustomer) {
       return wx.navigateTo({
         url: '/pages/study/study?index=' + index,
@@ -131,7 +131,9 @@ Page({
   getCalendar() {
     if (!app.globalData.sessionId) {
       this.setData({
+        alarmClock: '07:00',
         calendar: createEmptyCalendar(),
+        isLoading: false,
       });
       return Promise.resolve();
     }
@@ -149,6 +151,7 @@ Page({
           alarmClock: alarm || '07:00',
           isChecked: isChecked,
           isCustomer: true,
+          isLoading: false,
           isNewbieLate: (Date.now() - new Date(`${payed_at} 00:00:00`).getTime()) < 86400000,
         });
         app.globalData.count = count;
@@ -218,7 +221,6 @@ Page({
         userId: app.globalData.sessionId
       });
     }
-    this.setData({isLoading: false});
     this.getCalendar()
       .then(() => {
         wx.hideLoading();

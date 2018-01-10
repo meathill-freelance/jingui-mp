@@ -143,7 +143,7 @@ strong.wrong {
 .nav-button button::after {
   border-radius: 50%;
 }
-.nav-button button[disabled] {
+.nav-button button .disabled {
   opacity: 0.6;
   background-color: #eee;
 }
@@ -206,11 +206,11 @@ strong.wrong {
   content: '';
   position: absolute;
   right: 0;
-  top: -7rpx;
+  top: -5rpx;
   width: 16rpx;
   height: 16rpx;
-  border-top: solid 3rpx currentColor;
-  border-right: solid 3rpx currentColor;
+  border-top: solid 4rpx currentColor;
+  border-right: solid 4rpx currentColor;
   transform: rotate(45deg);
 }
 .nav-button .back-button {
@@ -256,7 +256,8 @@ strong.wrong {
   width: 40rpx;
   height: 40rpx;
 }
-.button-block {
+.button-block[type=primary] {
+  background-color: #1aad19;
   margin: 20rpx;
 }
 .small-hints {
@@ -266,8 +267,4 @@ strong.wrong {
   margin-top: 30rpx;
   padding-top: 20rpx;
   text-align: center;
-}
-button[disabled][type="primary"] {
-  opacity: 0.6;
-  color: #eee;
 }

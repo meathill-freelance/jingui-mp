@@ -35,11 +35,6 @@ Page({
     userInfo: {},
     date: 0,
   },
-  backToHome() {
-    wx.navigateBack({
-      delta: 1,
-    });
-  },
   changeExplanation(event) {
     this.setData({
       showArticle: event.detail.value,
@@ -182,6 +177,9 @@ Page({
     this.initCurrentPage();
   },
   showNextPage() {
+    if (this.data.readIndex >= 3) {
+      return Weixin.alert('您必须使用录音功能完成三段口语练习后才能进行听力练习。');
+    }
     this.setData({
       readIndex: this.data.readIndex + 1,
     });
