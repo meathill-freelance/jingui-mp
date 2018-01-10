@@ -110,5 +110,5 @@
   </view>
 </view>
 
-<button type="primary" wx:if="{{readIndex > 2 && hasNext}}" bind:tap="doNextExercise" class="button-block" disabled="{{!showExplanation}}">开始听力练习</button>
+<button type="primary" wx:if="{{readIndex > 2 && hasNext}}" bind:tap="doNextExercise" class="button-block">开始听力练习</button>
 <button type="primary" wx:if="{{showExplanation && !hasNext}}" bind:tap="backToHome" class="button-block">回到首页</button>

@@ -258,7 +258,7 @@ Page({
           this.setData({
             isNewbieLate: true,
           });
-          Weixin.alert('签到计划将从明天开始（05:00-10:00）。', '抢先体验')
+          Weixin.alert('签到将从明天开始（05:00-10:00）。', '抢先体验')
             .then(() => {
               this.doStudy();
             });
@@ -292,7 +292,7 @@ Page({
     this.setData({
       version: app.globalData.version,
       SDKVersion: app.globalData.SDKVersion,
-      isOutOfCheckIn: time.getHours() < 5 || time.getHours() >= 10,
+      isOutOfCheckIn: time.getHours() >= 10,
     });
   },
   onPaymentConfirm() {

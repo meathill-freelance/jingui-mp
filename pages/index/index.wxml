@@ -53,7 +53,7 @@
   <view class="signed" wx:elif="{{!isNewbieLate}}">
     <navigator url="/pages/top/morning" class="button button-secondary button-block">查看排名</navigator>
     <button type="primary" bind:tap="doStudy">
-      <text wx:if="isOutOfCheckIn">已错过打卡，点击进入练习</text>
+      <text wx:if="{{isOutOfCheckIn && !isChecked}}">已错过打卡，点击进入练习</text>
       <text wx:else>继续学习</text>
     </button>
   </view>

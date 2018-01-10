@@ -9,7 +9,7 @@ App({
     userInfo: null, // 微信用户信息
     userId: null, // 本系统用户id，可用于判断用户是否登录
     setting: null, // 用户设置，主要是权限
-    version: 'alpha.13.1',
+    version: 'alpha.14.3',
     SDKVersion: '',
     count: 0,
   },

@@ -47,7 +47,7 @@ Page({
   },
   checkAuth() {
     return Weixin.getSetting()
-      .then(({authSetting}) => {
+      .then(authSetting => {
         if ('scope.record' in authSetting && !authSetting['scope.record']) {
           Weixin.alert('您禁用了麦克风，为正常使用本小程序，请开启麦克风权限。')
             .then(() => {
@@ -156,6 +156,9 @@ Page({
     });
   },
   doNextExercise() {
+    if (this.data.index === 0 && !this.data.showExplanation) {
+      return Weixin.alert('您必须使用录音功能完成三段口语练习后才能进行听力练习。');
+    }
     this.setData({
       index: this.data.index + 1,
       readIndex: 0,

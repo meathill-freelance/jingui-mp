@@ -108,7 +108,7 @@ export function pay(obj) {
   });
 }
 
-export function alert(msg, confirmText) {
+export function alert(msg, confirmText = '确定') {
   return new Promise(resolve => {
     wx.showModal({
       content: msg,
@@ -157,7 +157,7 @@ export function getSetting() {
   return new Promise(resolve => {
     wx.getSetting({
       success(res) {
-        resolve(res);
+        resolve(res.authSetting);
       }
     });
   })
