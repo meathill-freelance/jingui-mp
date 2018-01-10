@@ -12,6 +12,7 @@
 
 .day-count
   background-color white
+  font-size 24rpx
   display flex
   flex-direction row
   justify-content space-between
@@ -20,13 +21,13 @@
 
   .check-in-button
     font-size 32rpx
-    line-height 2.4
+    line-height 2.25
 
     &.checked
       line-height 2
 
   .big
-    font-size 1.2em
+    font-size 36rpx
 
   picker
     position relative
@@ -70,11 +71,15 @@
       margin-left 15rpx
 
 .intro
+  display flex
+  flex-direction column
+
+  text
+    margin-bottom 20rpx
 
   .link
     color $primary-color
-    margin-top .5em
-    text-align right
+    margin-left auto
 
 .sign-up,
 .signed

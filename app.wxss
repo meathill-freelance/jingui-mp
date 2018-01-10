@@ -10,7 +10,6 @@ page {
   justify-content: flex-start;
   box-sizing: border-box;
 }
-button,
 view,
 view::before,
 view::after,
@@ -246,12 +245,10 @@ navigator {
 button[type=primary],
 .button-primary {
   background-color: #f29801;
-  color: #fff;
 }
 button[type=primary].button-hover,
 .button-primary.button-hover {
   background-color: #da8901;
-  font-size: 28rpx;
 }
 button[type=primary][disabled],
 .button-primary[disabled] {
@@ -262,9 +259,6 @@ button[type=primary][disabled],
 .button-secondary {
   background-color: #fff;
   border: 1px solid #ddd;
-}
-.button-block {
-  display: block;
 }
 radio-group label {
   display: flex;

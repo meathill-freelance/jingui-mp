@@ -10,6 +10,7 @@
 }
 .day-count {
   background-color: #fff;
+  font-size: 24rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,13 +19,13 @@
 }
 .day-count .check-in-button {
   font-size: 32rpx;
-  line-height: 2.4;
+  line-height: 2.25;
 }
 .day-count .check-in-button.checked {
   line-height: 2;
 }
 .day-count .big {
-  font-size: 1.2em;
+  font-size: 36rpx;
 }
 .day-count picker {
   position: relative;
@@ -67,10 +68,16 @@
 .others .customer + .customer {
   margin-left: 15rpx;
 }
+.intro {
+  display: flex;
+  flex-direction: column;
+}
+.intro text {
+  margin-bottom: 20rpx;
+}
 .intro .link {
   color: #f29801;
-  margin-top: 0.5em;
-  text-align: right;
+  margin-left: auto;
 }
 .sign-up,
 .signed {

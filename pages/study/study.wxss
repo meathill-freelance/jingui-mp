@@ -223,7 +223,7 @@ strong.wrong {
 .teacher-card .header {
   color: #f29801;
   padding: 0 30rpx;
-  line-height: 2.75;
+  line-height: 80rpx;
   text-indent: 40rpx;
 }
 .teacher-card .body {
@@ -251,14 +251,22 @@ strong.wrong {
 .teacher-card .avatar {
   border-radius: 50%;
   position: absolute;
-  top: 26rpx;
+  top: 20rpx;
   left: 26rpx;
   width: 40rpx;
   height: 40rpx;
 }
+button[type=primary] {
+  font-size: 36rpx;
+  line-height: 80rpx;
+  height: 80rpx;
+}
 .button-block[type=primary] {
   background-color: #1aad19;
   margin: 20rpx;
+}
+.button-block[type=primary].button-hover {
+  background-color: #179b16;
 }
 .back-button {
   background-color: #f29801;
