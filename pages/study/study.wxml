@@ -102,7 +102,7 @@
         <image src="../../img/mic.png"></image>
       </button>
     </view>
-    <button class="next-button {{readIndex >= 3 ? 'disabled' : ''}}" bind:tap="showNextPage"><view></view></button>
+    <button class="next-button {{readIndex >= 3 ? 'invisible' : ''}}" bind:tap="showNextPage"><view></view></button>
   </view>
   <view class="small-hints" wx:if="{{readIndex > 0 && !showExplanation}}">
     <text wx:if="{{readIndex >= 3}}">完成本次口语录音练习后进入听力练习。</text>
@@ -111,4 +111,7 @@
 </view>
 
 <button type="primary" wx:if="{{readIndex > 2 && hasNext}}" bind:tap="doNextExercise" class="button-block">开始听力练习</button>
-<navigator url="/pages/index/index" class="btn btn-block" wx:if="{{showExplanation && !hasNext}}">回到首页</navigator>
+<navigator url="/pages/index/index"
+           class="button button-block back-button"
+           wx:if="{{showExplanation && !hasNext}}"
+           open-type="navigateBack">回到首页</navigator>

@@ -241,6 +241,7 @@ navigator {
   border-radius: 10rpx;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 button[type=primary],
 .button-primary {

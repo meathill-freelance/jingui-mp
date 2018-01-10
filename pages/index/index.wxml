@@ -58,7 +58,7 @@
     </button>
   </view>
   <view class="signed" wx:else>
-    <button type="primary" bind:tab="doStudy">抢先体验</button>
+    <button type="primary" bind:tap="doStudy">抢先体验</button>
   </view>
   <view class="calendar cover">
     <view class="h2">

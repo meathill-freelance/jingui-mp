@@ -260,6 +260,18 @@ strong.wrong {
   background-color: #1aad19;
   margin: 20rpx;
 }
+.back-button {
+  background-color: #f29801;
+  color: #fff;
+  display: flex;
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  height: 70rpx;
+}
+.back-button.navigator-hover {
+  background-color: #da8901;
+}
 .small-hints {
   border-top: 1px solid #ddd;
   color: #999;
@@ -267,4 +279,7 @@ strong.wrong {
   margin-top: 30rpx;
   padding-top: 20rpx;
   text-align: center;
+}
+.invisible {
+  visibility: hidden;
 }

@@ -25,7 +25,7 @@
         <view class="image-container">
           <image src="../../img/icon3.png" class="icon3"></image>
         </view>
-        <text>纠正发言问题</text>
+        <text>纠正发音问题</text>
       </view>
       <view class="card">
         <view class="image-container">
@@ -66,18 +66,18 @@
     <view class="paragraph">复试通关精品课包含复试全项技巧指导、复试英语听力、复试英语口语和调剂技巧指导，现在报名还能享受四科联报价299元，进入上方微信群获取更多课程报名信息。
     </view>
     <view class="grid-2 my-2">
-      <view class="grid-item" url="/pages/external/page">
+      <navigator class="grid-item" url="/pages/external/page?index=1">
         <image src="../../img/link1.png"></image>
-      </view>
-      <view class="grid-item" url="/pages/external/page">
+      </navigator>
+      <navigator class="grid-item" url="/pages/external/page?index=2">
         <image src="../../img/link2.png"></image>
-      </view>
-      <view class="grid-item" url="/pages/external/page">
+      </navigator>
+      <navigator class="grid-item" url="/pages/external/page?index=3">
         <image src="../../img/link3.png"></image>
-      </view>
-      <view class="grid-item" url="/pages/external/page">
+      </navigator>
+      <navigator class="grid-item" url="/pages/external/page?index=4">
         <image src="../../img/link4.png"></image>
-      </view>
+      </navigator>
     </view>
   </view>
 </view>

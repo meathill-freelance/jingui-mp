@@ -261,6 +261,18 @@ strong.wrong
   background-color #1AAD19
   margin 20rpx
 
+.back-button
+  background-color $primary-color
+  color white
+  display flex
+  font-size 32rpx
+  margin-left 20rpx
+  margin-right 20rpx
+  height 70rpx
+
+  &.navigator-hover
+    background-color darken($primary-color, 10%)
+
 .small-hints
   border-top 1px solid #DDD
   color #999
@@ -268,3 +280,6 @@ strong.wrong
   margin-top 30rpx
   padding-top 20rpx
   text-align center
+
+.invisible
+  visibility hidden
