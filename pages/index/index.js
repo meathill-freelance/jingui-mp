@@ -151,7 +151,6 @@ Page({
           alarmClock: alarm || '07:00',
           isChecked: isChecked,
           isCustomer: true,
-          isLoading: false,
           isNewbieLate: (Date.now() - new Date(`${payed_at} 00:00:00`).getTime()) < 86400000,
         });
         app.globalData.count = count;
@@ -165,6 +164,7 @@ Page({
         this.setData({
           calendar: createEmptyCalendar(),
           alarmClock: '07:00',
+          isLoading: false,
           hasShared,
         });
       });
