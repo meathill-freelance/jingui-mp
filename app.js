@@ -12,6 +12,7 @@ App({
     version: 'alpha.15',
     SDKVersion: '',
     count: 0,
+    reload: false,
   },
   onLaunch: function () {
     let info = wx.getSystemInfoSync();
@@ -41,5 +42,8 @@ App({
         }
         wx.hideLoading();
       });
+  },
+  onHide() {
+    this.globalData.reload = true;
   },
 });

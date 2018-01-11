@@ -297,6 +297,13 @@ Page({
       isOutOfCheckIn: time.getHours() >= 10,
     });
   },
+  onShow() {
+    if (!app.globalData.reload) {
+      return;
+    }
+    app.globalData.reload = false;
+    this.getCurrentUser();
+  },
   onPaymentConfirm() {
     if (this.data.paymentType === 1 || this.data.hasShared) {
       return this.pay();
