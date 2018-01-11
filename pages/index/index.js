@@ -25,7 +25,7 @@ Page({
     isOutOfCheckIn: false, // 是否不在签到时间里
     isNewbieLate: true, // 新付费用户，晚于10点
 
-    count: '-',
+    count: 0,
     calendar: [],
     fellow: null,
     fellowNumber: 0,
