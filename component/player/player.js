@@ -83,10 +83,16 @@ Component({
         isPlaying: true,
         isLoading: false,
       });
+      wx.setKeepScreenOn({
+        keepScreenOn: true,
+      });
     },
     onPause() {
       this.setData({
         isPlaying: false,
+      });
+      wx.setKeepScreenOn({
+        keepScreenOn: false,
       });
     },
     onStop() {
@@ -96,6 +102,9 @@ Component({
         audioDuration: 0,
         audioCurrent: '00:00',
         audioDurationText: '00:00',
+      });
+      wx.setKeepScreenOn({
+        keepScreenOn: false,
       });
     },
     onCanPlay() {
@@ -108,6 +117,9 @@ Component({
         isPlaying: false,
         audioPosition: 0,
         audioCurrent: '00:00',
+      });
+      wx.setKeepScreenOn({
+        keepScreenOn: false,
       });
     },
     onWaiting() {
