@@ -176,7 +176,6 @@ Page({
         app.globalData.count = count;
       })
       .catch(err => {
-        console.log(err);
         let hasShared = false;
         if (err.data && err.statusCode === 402) {
           hasShared = err.data.is_shared;

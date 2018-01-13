@@ -169,7 +169,7 @@ radio-group label + label {
   flex-direction: column;
   width: 539rpx;
   height: 638rpx;
-  padding-top: 339rpx;
+  padding-top: 280rpx;
   position: relative;
 }
 .share-modal image {
@@ -182,8 +182,22 @@ radio-group label + label {
 }
 .share-modal text {
   position: relative;
-  font-size: 28rpx;
-  margin: 0 30rpx 0;
+  font-size: 24rpx;
+}
+.share-modal .h3 {
+  background-color: #ffc706;
+  border-radius: 8rpx;
+  color: #333;
+  font-size: 32rpx;
+  line-height: 1.5;
+  height: 48rpx;
+  margin: 0 30rpx 20rpx;
+  position: relative;
+  text-align: center;
+}
+.share-modal .mx-30 {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
 }
 .share-modal button {
   background-color: #f53b55;
