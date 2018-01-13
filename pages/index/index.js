@@ -110,9 +110,6 @@ Page({
   },
   // 关闭广告，需记录，不再显示
   closeAD() {
-    if (app.globalData.viewedAD.indexOf(this.data.coverId) !== -1) {
-      return;
-    }
     app.globalData.viewedAD.push(this.data.coverId);
     wx.setStorageSync('viewedAD', app.globalData.viewedAD);
   },
@@ -346,26 +343,36 @@ Page({
       title: '21天突破研究生复试口语听力',
       path: '/pages/index/index',
       success(result) {
-        if (!result.shareTickets) {
+        if (!result.shareTickets && this.data.isShareOpen) {
           return Weixin.alert('必须分享到微信群才能享受优惠哟。');
         }
-        Weixin.request({
-          url: 'onshare',
-          method: 'POST',
-          data: {
-            sessionId: app.globalData.sessionId,
-          },
+        let promise;
+        if (result.shareTickets) {
+          promise = Weixin.getShareInfo(result.shareTickets);
+        } else {
+          promise = promise.resolve();
+        }
+        promise.then(shareInfo => {
+          return Weixin.request({
+            url: 'onshare',
+            method: 'POST',
+            data: {
+              sessionId: app.globalData.sessionId,
+              shareInfo,
+            },
+          });
         })
-          .catch(err => {
-            let message = err.data && err.data.msg || '()';
-            console.log('Fail to record. ' + message);
-          })
           .then(() => {
             self.setData({
               hasShared: true,
             });
           })
+          .catch(err => {
+            let message = err.data && err.data.msg || err.msg || '()';
+            Weixin.alert('分享失败. 原因：' + message);
+          });
       },
     };
   },
+  noop() {},
 });

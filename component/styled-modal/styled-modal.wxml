@@ -1,7 +1,7 @@
 <view class="backdrop animated fast fadeIn" bind:tap="cancel" wx:if="{{isOpen}}">
-  <view class="styled-modal animated fast fadeInUp" style="width:{{width}}rpx;height:{{height}}rpx">
+  <view class="styled-modal animated fast fadeInUp" style="width:{{width}}rpx;height:{{height}}rpx" catch:tap="stopPropagation">
     <slot></slot>
-    <view bind:tap="cancel" class="close-button">
+    <view catch:tap="cancel" class="close-button">
       <view></view>
     </view>
   </view>
