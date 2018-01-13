@@ -191,6 +191,14 @@ radio-group label + label {
   color: #ffc706;
   margin: auto 30rpx 30rpx;
 }
+.ad-modal .modal-body {
+  width: 540rpx;
+  height: 640rpx;
+}
+.ad-modal image {
+  width: 100%;
+  height: 100%;
+}
 .version {
   color: #ccc;
   font-size: 20rpx;

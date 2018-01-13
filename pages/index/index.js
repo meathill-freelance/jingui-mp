@@ -27,6 +27,8 @@ Page({
 
     count: 0,
     calendar: [],
+    cover: '',
+    coverId: '',
     fellow: null,
     fellowNumber: 0,
     paymentType: 1,
@@ -96,6 +98,14 @@ Page({
     this.setData({
       isPaymentModalOpen: true,
     });
+  },
+  // 关闭广告，需记录，不再显示
+  closeAD() {
+    if (app.globalData.viewedAD.indexOf(this.data.coverId) !== -1) {
+      return;
+    }
+    app.globalData.viewedAD.push(this.data.coverId);
+    wx.setStorageSync('viewedAD', app.globalData.viewedAD);
   },
   // 登录+获取用户信息
   getUserInfo(e) {
@@ -173,14 +183,17 @@ Page({
     Weixin.request({
       url: 'fellow'
     })
-      .then(({data, total, config}) => {
+      .then(({data, total, config, cover}) => {
+        let path = app.globalData.viewedAD.indexOf(cover.id) === -1 ? cover.path : null;
         this.setData({
           fellow: data,
           fellowNumber: total,
           originalPrice: config.original_price ? config.original_price / 100 : 99,
           discountPrice: config.discount_price ? config.discount_price / 100 : 9.9,
+          cover: path,
+          coverId: cover.id,
         });
-      })
+      });
   },
   saveAlarmOnServer(event) {
     Weixin.request({

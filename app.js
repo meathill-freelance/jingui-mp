@@ -13,6 +13,7 @@ App({
     SDKVersion: '',
     count: 0,
     reload: false,
+    viewedAD: null,
   },
   onLaunch: function () {
     let info = wx.getSystemInfoSync();
@@ -27,6 +28,7 @@ App({
     });
 
     this.globalData.userInfo = wx.getStorageSync('userInfo') || {};
+    this.globalData.viewedAD = wx.getStorageSync('viewedAD') || [];
 
     Weixin.checkSession(this)
       .then(sessionId => {

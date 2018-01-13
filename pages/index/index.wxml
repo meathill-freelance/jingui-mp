@@ -107,3 +107,13 @@
     <button open-type="share" wx:else>邀请微信群好友一起学</button>
   </view>
 </styled-modal>
+
+<styled-modal class="ad-modal"
+              width="540"
+              height="640"
+              isOpen="{{cover}}"
+              bind:cancel="closeAD">
+  <view class="modal-body">
+    <image src="{{cover}}" class="bg"></image>
+  </view>
+</styled-modal>
