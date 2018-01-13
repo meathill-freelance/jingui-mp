@@ -89,7 +89,11 @@ export function request(obj) {
       reject(result);
     };
     obj.failed = (err) => {
-      reject(err);
+      let data = err.data || err;
+      if (typeof data === 'string') {
+        data = JSON.parse(data);
+      }
+      reject(data);
     };
     wx.request(obj);
   })
@@ -161,4 +165,18 @@ export function getSetting() {
       }
     });
   })
+}
+
+export function getShareInfo(ticket) {
+  return new Promise((resolve, rejct) => {
+    wx.getShareInfo({
+      shareTicket: ticket,
+      success(res) {
+        resolve(res);
+      },
+      fail(err) {
+        reject(err);
+      },
+    });
+  });
 }
