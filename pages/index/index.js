@@ -24,6 +24,7 @@ Page({
     isAlarmChanged: false, // 修改了提醒时间
     isOutOfCheckIn: false, // 是否不在签到时间里
     isNewbieLate: true, // 新付费用户，晚于10点
+    hasDiscount: true, // 是否有优惠方案
 
     count: 0,
     calendar: [],
@@ -79,9 +80,13 @@ Page({
       });
     }
 
-    this.setData({
-      isPaymentModalOpen: true,
-    });
+    if (this.data.hasDiscount) {
+      this.setData({
+        isPaymentModalOpen: true,
+      });
+    } else {
+      this.pay();
+    }
   },
   doStudyAt(event) {
     let index = event.target.dataset.index;
@@ -95,9 +100,13 @@ Page({
       });
     }
 
-    this.setData({
-      isPaymentModalOpen: true,
-    });
+    if (this.data.hasDiscount) {
+      this.setData({
+        isPaymentModalOpen: true,
+      });
+    } else {
+      this.pay();
+    }
   },
   // 关闭广告，需记录，不再显示
   closeAD() {
@@ -109,7 +118,6 @@ Page({
   },
   // 登录+获取用户信息
   getUserInfo(e) {
-    console.log(e);
     if (!e.detail.userInfo) {
       this.setData({noAuth: true});
       return;
@@ -124,12 +132,14 @@ Page({
       .then(({sessionId, isPayed}) => {
         this.setData({
           userId: sessionId,
-          isPaymentModalOpen: !isPayed,
+          isPaymentModalOpen: !isPayed && this.data.hasDiscount,
           isCustomer: isPayed,
         });
 
         if (isPayed) {
           return this.getCalendar();
+        } else if(!this.data.hasDiscount) {
+          return this.pay();
         }
       })
       .then(() => {
@@ -180,7 +190,7 @@ Page({
       });
   },
   getCurrentUser () {
-    Weixin.request({
+    return Weixin.request({
       url: 'fellow'
     })
       .then(({data, total, config, cover}) => {
@@ -192,6 +202,7 @@ Page({
           discountPrice: config.discount_price ? config.discount_price / 100 : 9.9,
           cover: path,
           coverId: cover.id,
+          hasDiscount: config.has_discount === '0', // 默认有，0有 1没
         });
       });
   },
@@ -236,11 +247,13 @@ Page({
         userId: app.globalData.sessionId
       });
     }
-    this.getCalendar()
+    this.getCurrentUser()
+      .then(() => {
+        return this.getCalendar();
+      })
       .then(() => {
         wx.hideLoading();
       });
-    this.getCurrentUser();
   },
   pay() {
     wx.showLoading({
@@ -282,7 +295,7 @@ Page({
         }
       })
       .catch(err => {
-        let msg = err.msg || (err.data && err.data.msg);
+        let msg = err === 'cancel' ? '用户取消付费' : (err.msg || (err.data && err.data.msg));
         Weixin.alert('付费失败，请稍后重试。错误信息：' + msg);
       })
       .then(() => {
