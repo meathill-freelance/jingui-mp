@@ -173,10 +173,12 @@ Page({
     Weixin.request({
       url: 'fellow'
     })
-      .then(response => {
+      .then(({data, total, config}) => {
         this.setData({
-          fellow: response.data,
-          fellowNumber: response.total,
+          fellow: data,
+          fellowNumber: total,
+          originalPrice: config.original_price ? config.original_price / 100 : 99,
+          discountPrice: config.discount_price ? config.discount_price / 100 : 9.9,
         });
       })
   },

@@ -58,7 +58,7 @@
 </view>
 
 <view class="teacher-card cover" wx:if="{{type === 1}}">
-  <view class="header">王桂星</view>
+  <view class="header">Shelley</view>
   <view class="body">
     <text>北京语言大学英语语言学硕士</text>
     <text>海文考研独家授课名师</text>
@@ -71,7 +71,7 @@
     今日任务
   </view>
   <view class="h1" wx:if="{{readIndex === 0}}">{{title}}</view>
-  <view class="h1" wx:else>口语，第{{readIndex}}部分</view>
+  <view class="h1" wx:else>口语练习 {{readIndex}}/3</view>
   <text class="original-article" wx:if="{{readIndex === 1}}">{{extra.article1}}</text>
   <text class="original-article" wx:if="{{readIndex === 2}}">{{extra.article2}}</text>
   <text class="original-article" wx:if="{{readIndex === 3}}">{{extra.article3}}</text>

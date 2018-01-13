@@ -86,14 +86,14 @@
       <view class="icon" wx:else></view>
       <radio hidden value="1" checked="{{paymentType === 1}}"></radio>
       <text>土豪模式</text>
-      <text class="small text-muted">99元，原价直接购买</text>
+      <text class="small text-muted">{{originalPrice}}元，原价直接购买</text>
     </label>
     <label>
       <icon type="success" size="16" wx:if="{{paymentType === 2}}" color="#f29801"></icon>
       <view class="icon" wx:else></view>
       <radio hidden value="2" checked="{{paymentType === 2}}"></radio>
       <text>优惠模式（限时）</text>
-      <text class="small text-muted">9.9元，分享至考研微信群后购买</text>
+      <text class="small text-muted">{{discountPrice}}元，分享至考研微信群后购买</text>
     </label>
   </radio-group>
 </rich-modal>
@@ -101,7 +101,7 @@
 <styled-modal class="share-modal" width="539" height="638" isOpen="{{isShareOpen}}">
   <view class="modal-body">
     <image src="../../img/share.png" class="bg"></image>
-    <text wx:if="{{hasShared}}">您已经完成分享，可以以优惠价 ￥9.9 加入学习</text>
+    <text wx:if="{{hasShared}}">您已经完成分享，可以以优惠价 ￥{{discountPrice}} 加入学习</text>
     <text wx:else>将小应用分享给你的考研同胞，获取优惠机会!!</text>
     <button bind:tap="pay" wx:if="{{hasShared}}">立即购买，开始学习</button>
     <button open-type="share" wx:else>邀请微信群好友一起学</button>
