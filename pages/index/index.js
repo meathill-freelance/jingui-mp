@@ -139,6 +139,10 @@ Page({
           return this.pay();
         }
       })
+      .catch(err => {
+        let message = err.data && err.data.msg || '登录失败';
+        Weixin.alert(message);
+      })
       .then(() => {
         this.setData({
           isLoading: false,
@@ -369,7 +373,7 @@ Page({
           })
           .catch(err => {
             let message = err.data && err.data.msg || err.msg || '()';
-            Weixin.alert('分享失败. 原因：' + message);
+            Weixin.alert('分享失败。 原因：' + message);
           });
       },
     };

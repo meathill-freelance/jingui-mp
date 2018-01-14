@@ -101,10 +101,11 @@
 <styled-modal class="share-modal" width="539" height="638" isOpen="{{isShareOpen}}">
   <view class="modal-body" catch:tap="noop">
     <image src="../../img/share.png" class="bg"></image>
-    <text class="mx-30" wx:if="{{hasShared}}">您已经完成分享，可以以优惠价 ￥{{discountPrice}} 加入学习</text>
+    <text class="mx-30" wx:if="{{hasShared}}">您已经完成分享，可以以优惠价 ￥{{discountPrice}} 加入学习。
+    请添加客服微信号 Idlichen，另外获取10元优惠券。</text>
     <view class="h3" wx:else>9.9元优惠购买说明</view>
-    <text class="mx-30" wx:if="{{!hasShared}}">第一步：分享至考研微信群可享受19.9元优惠价
-      第二步：添加客服微信号 Idlichen，可另外获取10元优惠券</text>
+    <text class="mx-30" wx:if="{{!hasShared}}">第一步：分享至考研微信群可享受19.9元优惠价。
+      第二步：添加客服微信号 Idlichen，可另外获取10元优惠券。</text>
     <button bind:tap="pay" wx:if="{{hasShared}}">立即购买，开始学习</button>
     <button open-type="share" wx:else>邀请微信群好友一起学</button>
   </view>
