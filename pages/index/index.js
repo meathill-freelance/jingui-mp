@@ -189,16 +189,16 @@ Page({
     return Weixin.request({
       url: 'fellow'
     })
-      .then(({data, total, config, cover}) => {
-        let path = app.globalData.viewedAD.indexOf(cover.id) === -1 ? cover.path : null;
+      .then(({data, total, config = {}, cover}) => {
+        let path = cover && app.globalData.viewedAD.indexOf(cover.id) === -1 ? cover.path : null;
         this.setData({
           fellow: data,
           fellowNumber: total,
           originalPrice: config.original_price ? config.original_price / 100 : 99,
           discountPrice: config.discount_price ? config.discount_price / 100 : 9.9,
           cover: path,
-          coverId: cover.id,
-          hasDiscount: config.has_discount === '0', // 默认有，0有 1没
+          coverId: cover && cover.id,
+          hasDiscount: !config.hasOwnProperty('has_discount') || config.has_discount === '0', // 默认有，0有 1没
         });
       });
   },
