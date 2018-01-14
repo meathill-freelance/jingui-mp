@@ -129,7 +129,7 @@ Page({
       .then(({sessionId, isPayed}) => {
         this.setData({
           userId: sessionId,
-          isPaymentModalOpen: !isPayed && this.data.hasDiscount,
+          isPaymentModalOpen: !isPayed,
           isCustomer: isPayed,
         });
 
@@ -333,7 +333,7 @@ Page({
     this.getCurrentUser();
   },
   onPaymentConfirm() {
-    if (this.data.paymentType === 1 || this.data.hasShared) {
+    if (this.data.paymentType === 1) {
       return this.pay();
     }
 
