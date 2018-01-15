@@ -50,16 +50,16 @@
             loading="{{isLoading}}"
             disabled="{{isLoading}}">马上加入学习</button>
   </view>
-  <view class="signed" wx:elif="{{!isNewbieLate}}">
+  <form class="signed" report-submit="true" bind:submit="doStudy" wx:elif="{{!isNewbieLate}}">
     <navigator url="/pages/top/morning" class="button button-secondary button-block">查看排名</navigator>
-    <button type="primary" bind:tap="doStudy">
+    <button type="primary" form-type="submit">
       <text wx:if="{{isOutOfCheckIn && !isChecked}}">已错过打卡，点击进入练习</text>
       <text wx:else>继续学习</text>
     </button>
-  </view>
-  <view class="signed" wx:else>
-    <button type="primary" bind:tap="doStudy">抢先体验</button>
-  </view>
+  </form>
+  <form class="signed" report-submit="true" bind:submit="doStudy" wx:else>
+    <button type="primary" form-type="submit">抢先体验</button>
+  </form>
   <view class="calendar cover">
     <view class="h2">
       <image src="../../img/calendar-c.png" class="icon-calendar-c"></image>

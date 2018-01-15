@@ -73,7 +73,10 @@ Page({
       });
   },
   // 开始学习
-  doStudy() {
+  doStudy(event) {
+    if (event) {
+      this.saveAlarmOnServer(event, false);
+    }
     if (this.data.isCustomer) {
       return wx.navigateTo({
         url: '/pages/study/study',
@@ -206,17 +209,20 @@ Page({
         });
       });
   },
-  saveAlarmOnServer(event) {
+  saveAlarmOnServer(event, hasToast = true) {
     Weixin.request({
       url: 'setalarm',
       method: 'POST',
       data: {
         formId: event.detail.formId,
         sessionId: app.globalData.sessionId,
-        alarm: event.detail.value.alarm,
+        alarm: event.detail.value.alarm || this.data.alarmClock,
       },
     })
       .then(() => {
+        if (!hasToast) {
+          return;
+        }
         wx.showToast({
           title: '保存提醒成功',
           icon: 'success',
