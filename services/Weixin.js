@@ -86,6 +86,10 @@ export function request(obj) {
       if (result.statusCode === 200) {
         resolve(result.data);
       }
+      if (typeof result.data === 'string') {
+        result.data = result.data.replace(/^[\ufeff]+/g, '');
+        result.data = JSON.parse(result.data);
+      }
       reject(result);
     };
     obj.failed = (err) => {

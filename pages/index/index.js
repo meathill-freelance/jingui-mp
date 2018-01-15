@@ -358,7 +358,7 @@ Page({
         }
         promise.then(shareInfo => {
           return Weixin.request({
-            url: 'onshare',
+            url: 'onshare/v2',
             method: 'POST',
             data: {
               sessionId: app.globalData.sessionId,
