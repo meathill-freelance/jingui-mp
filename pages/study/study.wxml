@@ -58,7 +58,7 @@
 </view>
 
 <view class="teacher-card cover" wx:if="{{type === 1}}">
-  <view class="header">Shelley</view>
+  <view class="header">Shelley 老师</view>
   <view class="body">
     <text>北京语言大学英语语言学硕士</text>
     <text>海文考研独家授课名师</text>

@@ -25,6 +25,7 @@ Page({
     isOutOfCheckIn: false, // 是否不在签到时间里
     isNewbieLate: true, // 新付费用户，晚于10点
     hasDiscount: true, // 是否有优惠方案
+    isAllOpen: false, // 是否允许查看所有练习
 
     count: 0,
     calendar: [],
@@ -34,6 +35,7 @@ Page({
     fellowNumber: 0,
     paymentType: 1,
     alarmClock: '',
+    introLink: '',
     version: '',
     SDKVersion: '',
   },
@@ -93,8 +95,7 @@ Page({
   },
   doStudyAt(event) {
     let index = event.target.dataset.index;
-    // 临时去掉对不能看以后题目的限制
-    if (index >= this.data.count) {
+    if (!this.data.isAllOpen && index >= this.data.count) {
       return false;
     }
     if (this.data.isCustomer) {
@@ -206,6 +207,8 @@ Page({
           cover: path,
           coverId: cover && cover.id,
           hasDiscount: !config.hasOwnProperty('has_discount') || config.has_discount === '0', // 默认有，0有 1没
+          introLink: config.intro_link,
+          isAllOpen: Number(config.is_all_open),
         });
       });
   },

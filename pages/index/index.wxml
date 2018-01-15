@@ -39,8 +39,7 @@
     <text>【21天搞定复试英语口听】这是由海文考研专家团队推出的针对考研复试英语口语听力的趣味学习计划，将考研复试常考察的口语、听力内容科学合理地融入每日学习中。帮您快速、有效提升考研复试英语口语和听力综合能力！
       加入我们，考研复试英语不再是拦路虎！！Fight！
     </text>
-    <navigator url="/pages/intro/intro" class="link">查看活动详情
-    </navigator>
+    <navigator url="{{introLink ? '/pages/external/page?url=' + introLink : '/pages/intro/intro'}}" class="link">查看活动详情</navigator>
   </view>
   <view class="sign-up" wx:if="{{!isCustomer}}">
     <text class="alert alert-danger animated slideInDown" wx:if="{{noAuth}}">您必须对本小程序授权才能正常使用我们的服务哦。</text>

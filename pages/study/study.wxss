@@ -222,7 +222,7 @@ strong.wrong {
 }
 .teacher-card .header {
   color: #f29801;
-  padding: 0 30rpx;
+  padding: 0 40rpx;
   line-height: 80rpx;
   text-indent: 40rpx;
 }
