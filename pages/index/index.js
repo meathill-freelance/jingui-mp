@@ -133,7 +133,8 @@ Page({
       .then(({sessionId, isPayed}) => {
         this.setData({
           userId: sessionId,
-          isPaymentModalOpen: !isPayed,
+          isPaymentModalOpen: !isPayed && this.data.hasDiscount && !this.data.hasShared,
+          isShareOpen: !isPayed && this.data.hasDiscount && this.data.hasShared,
           isCustomer: isPayed,
         });
 
@@ -190,6 +191,7 @@ Page({
           alarmClock: '07:00',
           isLoading: false,
           hasShared,
+          paymentType: hasShared ? 2 : 1,
         });
       });
   },
@@ -378,6 +380,7 @@ Page({
           .then(() => {
             self.setData({
               hasShared: true,
+              paymentType: 2,
             });
           })
           .catch(err => {
