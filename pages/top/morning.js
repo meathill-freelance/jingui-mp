@@ -36,8 +36,11 @@ Page({
   },
   onLoad() {
     let now = new Date();
-    this.isTooEarly = now.getHours() < 5;
-    if (this.isTooEarly) {
+    let isTooEarly = now.getHours() < 5;
+    if (isTooEarly) {
+      this.setData({
+        isTooEarly,
+      });
       return;
     }
     Weixin.request({
@@ -60,7 +63,6 @@ Page({
       });
   },
   onShareAppMessage() {
-    let self = this;
     return {
       title: '我已参加21天考研复试英语打卡活动，邀您一起共同学习！',
       path: '/pages/index/index',

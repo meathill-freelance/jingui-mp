@@ -20,8 +20,12 @@
 			"current": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"game": {
 			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -34,6 +38,11 @@
 					"name": "活动详情",
 					"pathName": "pages/intro/intro",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "排行榜",
+					"pathName": "pages/top/morning"
 				}
 			]
 		}

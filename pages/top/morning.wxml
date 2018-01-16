@@ -19,7 +19,7 @@
               data-id="{{item.id}}">💛 {{item.like}}</button>
     </view>
   </view>
-  <view>
+  <view wx:if="{{!isTooEarly}}">
     <button class="share-button" type="primary" open-type="share">分享到微信群</button>
   </view>
 </view>

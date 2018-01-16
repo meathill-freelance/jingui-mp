@@ -140,7 +140,7 @@ Page({
 
         if (isPayed) {
           return this.getCalendar();
-        } else if(!this.data.hasDiscount) {
+        } else if (!this.data.hasDiscount) {
           return this.pay();
         }
       })
