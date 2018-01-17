@@ -197,7 +197,7 @@ Page({
   },
   getCurrentUser () {
     return Weixin.request({
-      url: 'fellow'
+      url: 'v2/fellow'
     })
       .then(({data, total, config = {}, cover}) => {
         let path = cover && app.globalData.viewedAD.indexOf(cover.id) === -1 ? cover.path : null;
