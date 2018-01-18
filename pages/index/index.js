@@ -38,6 +38,9 @@ Page({
     introLink: '',
     version: '',
     SDKVersion: '',
+    shareTitle: '9.9元优惠购买说明',
+    shareContent: '第一步：分享至考研微信群可享受19.9元优惠价。\n第二步：添加客服微信号 LiLyMM365，可另外获取10元优惠券。',
+    sharedContent: '您已经完成分享，可以以优惠价19.9加入学习。\n请添加客服微信号 LiLyMM365，另外获取10元优惠券。',
   },
   // 签到
   checkIn(event) {
@@ -197,7 +200,7 @@ Page({
   },
   getCurrentUser () {
     return Weixin.request({
-      url: 'v2/fellow'
+      url: 'v3/fellow'
     })
       .then(({data, total, config = {}, cover}) => {
         let path = cover && app.globalData.viewedAD.indexOf(cover.id) === -1 ? cover.path : null;
