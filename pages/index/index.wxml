@@ -41,17 +41,8 @@
     </text>
     <navigator url="{{introLink ? '/pages/external/page?url=' + introLink : '/pages/intro/intro'}}" class="link">查看活动详情</navigator>
   </view>
-  <view class="sign-up" wx:if="{{!isCustomer && !userId}}">
+  <form class="sign-up" wx:if="{{!isCustomer}}" bind:submit="getUserInfo" report-submit="true">
     <text class="alert alert-danger animated slideInDown" wx:if="{{noAuth}}">您必须对本小程序授权才能正常使用我们的服务哦。</text>
-    <button type="primary"
-            open-type="getUserInfo"
-            bind:getuserinfo="getUserInfo"
-            loading="{{isLoading}}"
-            disabled="{{isLoading}}">
-      马上加入学习 <text wx:if="{{!hasDiscount}}">（￥{{originalPrice}}）</text>
-    </button>
-  </view>
-  <form class="sign-up" wx:elif="{{!isCustomer && userId}}" report-submit="true" bind:submit="doStudy">
     <button type="primary"
             form-type="submit"
             loading="{{isLoading}}"

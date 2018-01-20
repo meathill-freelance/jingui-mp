@@ -25,7 +25,7 @@ export function checkSession(host) {
   });
 }
 
-export function login() {
+export function login(formId) {
   return new Promise( (resolve, reject) => {
     wx.login({
       success(result) {
@@ -44,6 +44,7 @@ export function login() {
     })
     .then(({code, userInfo}) => {
       app.globalData.userInfo = userInfo;
+      wx.setStorageSync('userInfo', userInfo);
 
       return request({
         url: 'login',
@@ -51,7 +52,8 @@ export function login() {
         data: {
           code: code,
           nickname: userInfo.nickName,
-          avatar: userInfo.avatarUrl
+          avatar: userInfo.avatarUrl,
+          formId,
         },
       });
     })
@@ -175,6 +177,19 @@ export function getShareInfo(ticket) {
   return new Promise((resolve, rejct) => {
     wx.getShareInfo({
       shareTicket: ticket,
+      success(res) {
+        resolve(res);
+      },
+      fail(err) {
+        reject(err);
+      },
+    });
+  });
+}
+
+export function openSetting() {
+  return new Promise((resolve, reject) => {
+    wx.openSetting({
       success(res) {
         resolve(res);
       },

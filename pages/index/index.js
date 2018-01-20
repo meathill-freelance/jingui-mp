@@ -122,17 +122,26 @@ Page({
   },
   // 登录+获取用户信息
   getUserInfo(e) {
-    if (!e.detail.userInfo) {
-      this.setData({noAuth: true});
-      return;
+    let promise = Promise.resolve();
+    if (this.data.noAuth) {
+      promise = Weixin.openSetting()
+        .then(result => {
+          if (result.authSetting['scope.userInfo']) {
+            return this.setData({
+              noAuth: false,
+            });
+          }
+          throw new Error('您仍未许可我们使用您的基础信息，我们无法正常为您提供服务。');
+        });
     }
-    app.globalData.userInfo = e.detail.userInfo;
-    this.setData({
-      userInfo: e.detail.userInfo,
-      isLoading: true,
-    });
-    wx.setStorageSync('userInfo', app.globalData.userInfo);
-    Weixin.login()
+    promise.then(() => {
+      this.setData({
+        isLoading: true,
+      });
+    })
+      .then(() => {
+        return Weixin.login(e.detail.formId)
+      })
       .then(({sessionId, isPayed}) => {
         this.setData({
           userId: sessionId,
@@ -148,7 +157,12 @@ Page({
         }
       })
       .catch(err => {
-        let message = err.data && err.data.msg || '登录失败';
+        if (!err) {
+          return this.setData({
+            noAuth: true,
+          });
+        }
+        let message = err.data && err.data.msg || err.message || '登录失败';
         Weixin.alert(message);
       })
       .then(() => {
@@ -200,7 +214,7 @@ Page({
   },
   getCurrentUser () {
     return Weixin.request({
-      url: 'v3/fellow'
+      url: 'v2/fellow'
     })
       .then(({data, total, config = {}, cover}) => {
         let path = cover && app.globalData.viewedAD.indexOf(cover.id) === -1 ? cover.path : null;
@@ -298,6 +312,7 @@ Page({
         });
         this.setData({
           isCustomer: true,
+          isShareOpen: false,
         });
         // 如果超过了签到时间，进入抢先体验
         let date = new Date();
