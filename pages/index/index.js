@@ -214,6 +214,9 @@ Page({
           hasDiscount: !config.hasOwnProperty('has_discount') || config.has_discount === '0', // 默认有，0有 1没
           introLink: config.intro_link,
           isAllOpen: Number(config.is_all_open),
+          shareTitle: config.share_title || this.data.shareTitle,
+          shareContent: config.share_content || this.data.shareContent,
+          sharedContent: config.shared_content || this.data.sharedContent,
         });
       });
   },

@@ -84,7 +84,7 @@ export function request(obj) {
   return new Promise( (resolve, reject) => {
     obj.success = result => {
       if (result.statusCode === 200) {
-        resolve(result.data);
+        return resolve(result.data);
       }
       if (typeof result.data === 'string') {
         result.data = result.data.replace(/^[\ufeff]+/g, '');
