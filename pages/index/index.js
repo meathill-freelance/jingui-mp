@@ -26,6 +26,7 @@ Page({
     isNewbieLate: true, // 新付费用户，晚于10点
     hasDiscount: true, // 是否有优惠方案
     isAllOpen: false, // 是否允许查看所有练习
+    hasCSDiscount: true, // 关闭优惠后，是否允许客服改价
 
     count: 0,
     calendar: [],
@@ -41,6 +42,8 @@ Page({
     shareTitle: '9.9元优惠购买说明',
     shareContent: '第一步：分享至考研微信群可享受19.9元优惠价。\n第二步：添加客服微信号 LiLyMM365，可另外获取10元优惠券。',
     sharedContent: '您已经完成分享，可以以优惠价19.9加入学习。\n请添加客服微信号 LiLyMM365，另外获取10元优惠券。',
+    originalPriceTitle: '土豪模式',
+    discountPriceTitle: '优惠模式（限时）',
   },
   // 签到
   checkIn(event) {
@@ -153,7 +156,14 @@ Page({
         if (isPayed) {
           return this.getCalendar();
         } else if (!this.data.hasDiscount) {
-          return this.pay();
+          if (this.data.hasCSDiscount) {
+            return this.setData({
+              isShareOpen: true,
+              hasShared: true,
+            });
+          } else {
+            return this.pay();
+          }
         }
       })
       .catch(err => {
@@ -221,8 +231,8 @@ Page({
         this.setData({
           fellow: data,
           fellowNumber: total,
-          originalPrice: config.original_price ? config.original_price / 100 : 99,
-          discountPrice: config.discount_price ? config.discount_price / 100 : 9.9,
+          originalPrice: config.original_price / 100 || 99,
+          discountPrice: config.discount_price / 100 || 9.9,
           cover: path,
           coverId: cover && cover.id,
           hasDiscount: !config.hasOwnProperty('has_discount') || config.has_discount === '0', // 默认有，0有 1没
@@ -231,6 +241,9 @@ Page({
           shareTitle: config.share_title || this.data.shareTitle,
           shareContent: config.share_content || this.data.shareContent,
           sharedContent: config.shared_content || this.data.sharedContent,
+          originalPriceTitle: config.original_price_title || this.data.originalPriceTitle,
+          discountPriceTitle: config.discount_price_title || this.data.discountPriceTitle,
+          hasCSDiscount: !config || config.has_cs_discount !== '1',
         });
       });
   },

@@ -85,14 +85,14 @@
       <icon type="success" size="16" wx:if="{{paymentType === 1}}" color="#f29801"></icon>
       <view class="icon" wx:else></view>
       <radio hidden value="1" checked="{{paymentType === 1}}"></radio>
-      <text>土豪模式</text>
+      <text>{{originalPriceTitle}}</text>
       <text class="small text-muted">{{originalPrice}}元，原价直接购买</text>
     </label>
     <label>
       <icon type="success" size="16" wx:if="{{paymentType === 2}}" color="#f29801"></icon>
       <view class="icon" wx:else></view>
       <radio hidden value="2" checked="{{paymentType === 2}}"></radio>
-      <text>优惠模式（限时）</text>
+      <text>{{discountPriceTitle}}</text>
       <text class="small text-muted">{{discountPrice}}元，分享至考研微信群后购买</text>
     </label>
   </radio-group>
