@@ -86,14 +86,14 @@
       <view class="icon" wx:else></view>
       <radio hidden value="1" checked="{{paymentType === 1}}"></radio>
       <text>{{originalPriceTitle}}</text>
-      <text class="small text-muted">{{originalPrice}}元，原价直接购买</text>
+      <text class="small text-muted">{{originalPriceLabel}}</text>
     </label>
     <label>
       <icon type="success" size="16" wx:if="{{paymentType === 2}}" color="#f29801"></icon>
       <view class="icon" wx:else></view>
       <radio hidden value="2" checked="{{paymentType === 2}}"></radio>
       <text>{{discountPriceTitle}}</text>
-      <text class="small text-muted">{{discountPrice}}元，分享至考研微信群后购买</text>
+      <text class="small text-muted">{{discountPriceLabel}}</text>
     </label>
   </radio-group>
 </rich-modal>

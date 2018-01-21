@@ -44,6 +44,8 @@ Page({
     sharedContent: '您已经完成分享，可以以优惠价19.9加入学习。\n请添加客服微信号 LiLyMM365，另外获取10元优惠券。',
     originalPriceTitle: '土豪模式',
     discountPriceTitle: '优惠模式（限时）',
+    originalPriceLabel: '99元，原价直接购买',
+    discountPriceLabel: '9.9元，分享至考研微信群后购买',
   },
   // 签到
   checkIn(event) {
@@ -243,7 +245,9 @@ Page({
           sharedContent: config.shared_content || this.data.sharedContent,
           originalPriceTitle: config.original_price_title || this.data.originalPriceTitle,
           discountPriceTitle: config.discount_price_title || this.data.discountPriceTitle,
-          hasCSDiscount: !config || config.has_cs_discount !== '1',
+          originalPriceLabel: config.original_price_label || this.data.originalPriceLabel,
+          discountPriceLabel: config.discount_price_label || this.data.discountPriceLabel,
+          hasCSDiscount: config.has_cs_discount !== '1',
         });
       });
   },
