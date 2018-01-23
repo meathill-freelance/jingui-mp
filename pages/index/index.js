@@ -150,22 +150,12 @@ Page({
       .then(({sessionId, isPayed}) => {
         this.setData({
           userId: sessionId,
-          isPaymentModalOpen: !isPayed && this.data.hasDiscount && !this.data.hasShared,
-          isShareOpen: !isPayed && this.data.hasDiscount && this.data.hasShared,
+          isPaymentModalOpen: !isPayed,
           isCustomer: isPayed,
         });
 
         if (isPayed) {
           return this.getCalendar();
-        } else if (!this.data.hasDiscount) {
-          if (this.data.hasCSDiscount) {
-            return this.setData({
-              isShareOpen: true,
-              hasShared: true,
-            });
-          } else {
-            return this.pay();
-          }
         }
       })
       .catch(err => {
@@ -388,6 +378,7 @@ Page({
 
     this.setData({
       isShareOpen: true,
+      hasShared: this.data.hasShared || !this.data.hasDiscount,
     });
   },
   onShareAppMessage() {

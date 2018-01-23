@@ -1,5 +1,6 @@
 # IDE
 .idea
+.svn
 
 # repo
 node_modules

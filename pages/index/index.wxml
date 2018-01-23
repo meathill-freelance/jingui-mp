@@ -47,7 +47,7 @@
             form-type="submit"
             loading="{{isLoading}}"
             disabled="{{isLoading}}">
-      马上加入学习 <text wx:if="{{!hasDiscount}}">（￥{{originalPrice}}）</text>
+      马上加入学习
     </button>
   </form>
   <form class="signed" report-submit="true" bind:submit="doStudy" wx:elif="{{!isNewbieLate}}">
