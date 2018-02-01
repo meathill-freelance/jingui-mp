@@ -18,7 +18,8 @@
       </picker>
       <button form-type="submit" size="mini" wx:if="{{isAlarmChanged}}">保存</button>
     </form>
-    <form report-submit="true" bind:submit="checkIn">
+    <button class="check-in-button checked" open-type="contact" wx:if="{{hasStudied}}">复试必备</button>
+    <form report-submit="true" bind:submit="checkIn" wx:else>
       <button form-type="submit"
               class="check-in-button {{isChecked ? 'checked' : ''}}"
               disabled="{{isChecking || !isCustomer || isChecked}}"

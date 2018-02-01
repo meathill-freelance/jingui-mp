@@ -27,6 +27,7 @@ Page({
     hasDiscount: true, // 是否有优惠方案
     isAllOpen: false, // 是否允许查看所有练习
     hasCSDiscount: true, // 关闭优惠后，是否允许客服改价
+    hasStudied: false, // 是否已经付费超过21天
 
     count: 0,
     calendar: [],
@@ -86,6 +87,9 @@ Page({
   doStudy(event) {
     if (event) {
       this.saveAlarmOnServer(event, false);
+    }
+    if (this.data.hasStudied) {
+      return Weixin.alert('您已完成21天学习打卡任务，点击21天知识回顾下方日期按钮可以回看任意天知识点！');
     }
     if (this.data.isCustomer) {
       return wx.navigateTo({
@@ -190,13 +194,16 @@ Page({
       },
     })
       .then(({data, count, alarm, isChecked, payed_at}) => {
+        payed_at = payed_at.replace(/-/g, '/');
+        let duration = (Date.now() - new Date(`${payed_at} 00:00:00`).getTime()) / 86400000 >> 0;
         this.setData({
           calendar: data,
           count: count,
           alarmClock: alarm || '07:00',
           isChecked: isChecked,
           isCustomer: true,
-          isNewbieLate: (Date.now() - new Date(`${payed_at} 00:00:00`).getTime()) < 86400000,
+          isNewbieLate: duration === 0,
+          hasStudied: duration > 20,
         });
         app.globalData.count = count;
       })
