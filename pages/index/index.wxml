@@ -18,7 +18,7 @@
       </picker>
       <button form-type="submit" size="mini" wx:if="{{isAlarmChanged}}">保存</button>
     </form>
-    <button class="check-in-button checked" open-type="contact" wx:if="{{hasStudied}}">复试必备</button>
+    <button class="check-in-button success-button" open-type="contact" wx:if="{{hasStudied}}">复试全程规划</button>
     <form report-submit="true" bind:submit="checkIn" wx:else>
       <button form-type="submit"
               class="check-in-button {{isChecked ? 'checked' : ''}}"
@@ -54,7 +54,8 @@
   <form class="signed" report-submit="true" bind:submit="doStudy" wx:elif="{{!isNewbieLate}}">
     <navigator url="/pages/top/morning" class="button button-secondary button-block">查看排名</navigator>
     <button type="primary" form-type="submit">
-      <text wx:if="{{isOutOfCheckIn && !isChecked}}">已错过打卡，点击进入练习</text>
+      <text wx:if="{{hasStudied}}">点击进入练习</text>
+      <text wx:elif="{{isOutOfCheckIn && !isChecked}}">已错过打卡，点击进入练习</text>
       <text wx:else>继续学习</text>
     </button>
   </form>

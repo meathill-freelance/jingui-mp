@@ -194,8 +194,8 @@ Page({
       },
     })
       .then(({data, count, alarm, isChecked, payed_at}) => {
-        payed_at = payed_at.replace(/-/g, '/');
-        let duration = (Date.now() - new Date(`${payed_at} 00:00:00`).getTime()) / 86400000 >> 0;
+        let ymd = payed_at.split('-');
+        let duration = (Date.now() - new Date(ymd[0], ymd[1] - 1, ymd[2], 0, 0, 0).getTime()) / 86400000 >> 0;
         this.setData({
           calendar: data,
           count: count,
