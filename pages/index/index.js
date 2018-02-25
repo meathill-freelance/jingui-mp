@@ -107,7 +107,7 @@ Page({
   },
   doStudyAt(event) {
     let index = event.target.dataset.index;
-    let disabled = event.target.dataset.disabled;
+    let disabled = event.target.dataset.disabled === '1';
     if (disabled || (!this.data.isAllOpen && index >= this.data.count)) {
       return false;
     }
