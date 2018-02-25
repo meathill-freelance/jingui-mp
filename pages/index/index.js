@@ -107,13 +107,19 @@ Page({
   },
   doStudyAt(event) {
     let index = event.target.dataset.index;
-    if (!this.data.isAllOpen && index >= this.data.count) {
+    let disabled = event.target.dataset.disabled;
+    if (disabled || (!this.data.isAllOpen && index >= this.data.count)) {
       return false;
     }
     if (this.data.isCustomer) {
       return wx.navigateTo({
         url: '/pages/study/study?index=' + index,
       });
+    } else if (!app.globalData.sessionId) {
+      return this.getUserInfo()
+        .then(() => {
+          this.doStudyAt(event);
+        });
     }
 
     if (this.data.hasDiscount) {
@@ -130,7 +136,7 @@ Page({
     wx.setStorageSync('viewedAD', app.globalData.viewedAD);
   },
   // 登录+获取用户信息
-  getUserInfo(e) {
+  getUserInfo(event) {
     let promise = Promise.resolve();
     if (this.data.noAuth) {
       promise = Weixin.openSetting()
@@ -143,13 +149,14 @@ Page({
           throw new Error('您仍未许可我们使用您的基础信息，我们无法正常为您提供服务。');
         });
     }
-    promise.then(() => {
+    return promise.then(() => {
       this.setData({
         isLoading: true,
       });
     })
       .then(() => {
-        return Weixin.login(e.detail.formId)
+        const formId = event ? event.detail.formId : '';
+        return Weixin.login(formId)
       })
       .then(({sessionId, isPayed}) => {
         this.setData({

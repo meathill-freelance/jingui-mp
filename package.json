@@ -1,10 +1,11 @@
 {
   "name": "21天学英语",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "stylus": "gulp watch"
   },
   "repository": {
     "type": "git",

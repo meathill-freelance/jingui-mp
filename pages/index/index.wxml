@@ -69,8 +69,9 @@
     </view>
     <text class="small-hints">点击日期按钮可以回看当天知识点</text>
     <view class="days">
-      <view class="day status-{{item.status}}"
+      <view class="day status-{{item.status}} {{isLoading ? 'disabled' : ''}}"
             data-index="{{index}}"
+            data-disabled="{{isLoading ? '1' : ''}}"
             wx:for="{{calendar}}"
             wx:key="{{index}}"
             bind:tap="doStudyAt">{{index + 1}}</view>
