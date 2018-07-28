@@ -1,5 +1,5 @@
 {
-  "name": "21天学英语",
+  "name": "21-day-english",
   "version": "1.7.1",
   "description": "",
   "main": "app.js",
@@ -17,7 +17,7 @@
   "devDependencies": {
     "animate.css": "^3.6.1",
     "bluebird": "^3.5.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.7.0",
     "lodash": "^4.17.4"
