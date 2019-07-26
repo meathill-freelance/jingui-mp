@@ -15,11 +15,11 @@
   "author": "Meathill <meathill@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "animate.css": "^3.6.1",
-    "bluebird": "^3.5.3",
-    "gulp": "^4.0.0",
+    "animate.css": "^3.7.2",
+    "bluebird": "^3.5.5",
+    "gulp": "^4.0.2",
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.7.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.15"
   }
 }
